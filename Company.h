@@ -11,6 +11,7 @@ class Company
 {
 private:
 	UI* point;
+	int x;
 
 public:
 	UI ui;
