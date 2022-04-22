@@ -5,6 +5,10 @@ using namespace std;
 # include <fstream>
 # include "UI.h" 
 # include "LinkedQueue.h"
+# include "Truck.h"
+# include "Cargo.h"
+# include "LinkedList.h"
+
 
 
 class Company
@@ -13,12 +17,15 @@ private:
 	UI* point;
 	string fileinname;
 	int nt;
-	LinkedQueue <int>* NT = new LinkedQueue <int> [nt];
+	LinkedQueue <truck>* NT = new LinkedQueue <truck> [nt];
 	int st;
-	LinkedQueue <int>* ST = new LinkedQueue <int>[st];
+	LinkedQueue <truck>* ST = new LinkedQueue <truck>[st];
 	int vt;
-	LinkedQueue <int>* VT = new LinkedQueue <int>[vt];
-
+	LinkedQueue <truck>* VT = new LinkedQueue <truck>[vt];
+	LinkedQueue <cargo>* VC;
+	LinkedQueue<cargo>* SC;
+	LinkedList<cargo>* Nc;
+	
 
 public:
 	Company();

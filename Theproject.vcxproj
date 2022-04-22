@@ -142,6 +142,7 @@
     <ClInclude Include="ArrayStack.h" />
     <ClInclude Include="Cargo.h" />
     <ClInclude Include="Company.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="QueueADT.h" />
