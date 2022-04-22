@@ -2,7 +2,7 @@
 using namespace std;
 # include <string>
 # include "UI.h"
-
+# include "Company.h"
 
 UI::UI()
 {
@@ -32,12 +32,19 @@ string UI::getfilename()
 
 void UI::print()
 {
+	Company c;
 	cout << " Hello" << endl;
 	cout << "please choose the printing method you prefer " << endl << "1.interactive" << endl << "2.step by step" << endl << "3.silent " << endl;
 	cin >> printtype;
 	setprinttype(printtype);
 	if (printtype == 1)
 	{
-		cout << "1.interactive";
+		cout << "1.interactive" << endl;
 	}
+	cout << "Enter file name" << endl;
+	cin >> filename;
+	setfilename(filename);
+	c.print();
+
+	
 }

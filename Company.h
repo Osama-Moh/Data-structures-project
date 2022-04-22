@@ -27,7 +27,8 @@ public:
 	//	while (days<1)					// while true
 	//	{
 			ui.print();
-
+			
+			//point->print();
 
 			hour = hour + 1.0;
 			if (hour == 24.00)
@@ -37,7 +38,7 @@ public:
 			}
 	//	}
 	}
-	
+	string filename = ui.getfilename();
 	bool openfile(string filename)
 	{
 		ofstream output;
@@ -51,4 +52,13 @@ public:
 			return true;
 		}
 	}
+	
+	void print()
+	{
+		
+		
+			cout << "The file has been opened successfully";
+		
+	}
+
 };
