@@ -54,12 +54,14 @@ private:
 
 	Node<T>* backPtr;
 	Node<T>* frontPtr;
+	int count;
 public:
 	LinkedQueue();
 	bool isEmpty() const;
 	bool enqueue(const T& newEntry);
 	bool dequeue(T& frntEntry);
 	bool peek(T& frntEntry)  const;
+	int getcount();
 	~LinkedQueue();
 
 	//copy constructor
@@ -115,6 +117,7 @@ bool LinkedQueue<T>::enqueue(const T& newEntry)
 		backPtr->setNext(newNodePtr); // The queue was not empty
 
 	backPtr = newNodePtr; // New node is the last node now
+	count++;
 	return true;
 } // end enqueue
 
@@ -144,10 +147,20 @@ bool LinkedQueue<T>::dequeue(T& frntEntry)
 
 	// Free memory reserved for the dequeued node
 	delete nodeToDeletePtr;
-
+	count--;
 	return true;
 
 }
+
+// the function will return the number of elements in the queue
+template <typename T>
+int LinkedQueue<T>::getcount()
+{
+	return count;
+}
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////////
 /*
 Function: peek
