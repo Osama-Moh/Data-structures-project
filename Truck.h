@@ -21,7 +21,7 @@ public:
 
 	string gettrucktype()
 	{
-		return trucktype
+		return trucktype;
 	}
 
 	float gettruckcapacity()

@@ -39,11 +39,21 @@ void UI::print()
 	setprinttype(printtype);
 	if (printtype == 1)
 	{
-		cout << "1.interactive" << endl;
+		cout << "The printing method will be the interactive" << endl;
 	}
+	else if (printtype == 2)
+	{
+		cout << "step by step mode" << endl;
+	}
+	else
+	{
+		cout << " silent" << endl;
+	}
+
 	cout << "Enter file name" << endl;
 	cin >> filename;
 	setfilename(filename);
+	cout << "read from the user, UI" << filename << endl;
 	c.print();
 
 	

@@ -7,14 +7,13 @@ using namespace std;
 # include "LinkedQueue.h"
 # include "Truck.h"
 # include "Cargo.h"
-# include "LinkedList.h"
-
+class Linkedlist;
 
 
 class Company
 {
 private:
-	UI* point;
+	UI point;
 	string fileinname;
 	int nt;
 	LinkedQueue <truck>* NT = new LinkedQueue <truck> [nt];
@@ -24,10 +23,13 @@ private:
 	LinkedQueue <truck>* VT = new LinkedQueue <truck>[vt];
 	LinkedQueue <cargo>* VC;
 	LinkedQueue<cargo>* SC;
-	LinkedList<cargo>* Nc;
-	
+	//LinkedList <cargo>* Nc;
+
 
 public:
+
+	void setfileinname();
+
 	Company();
 
 	void simulate();
@@ -35,6 +37,8 @@ public:
 	
 	bool openfile(string fileinname);
 	
+	void writetofile();
+
 	void print();
 
 };
