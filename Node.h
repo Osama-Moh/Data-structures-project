@@ -1,62 +1,54 @@
+#pragma once
 
-#ifndef _NODE
-#define _NODE
-template < typename T>
+
+template <typename T>
 class Node
 {
-private :
-	T item; // A data item
-	Node<T>* next; // Pointer to next node
-public :
-	Node();
-	Node( const T & r_Item);	
-	Node( const T & r_Item, Node<T>* nextNodePtr);
-	void setItem( const T & r_Item);
-	void setNext(Node<T>* nextNodePtr);
-	T getItem() const ;
-	Node<T>* getNext() const ;
-}; // end Node
-#endif
+private:
+	T Item;
+	Node<T>* Next;
+	int Key;
 
-template < typename T>
-Node<T>::Node() 
-{
-	next = nullptr;
-} 
+public:
+	Node(T newItem, int newKey=1, Node* newNext=nullptr)
+	{
+		setItem(newItem);
+		setNext(newNext);
+		setKey(newKey);
+	}
 
-template < typename T>
-Node<T>::Node( const T& r_Item)
-{
-	item = r_Item;
-	next = nullptr;
-} 
+	void setItem(T newItem)
+	{
+		Item=newItem;
+	}
 
-template < typename T>
-Node<T>::Node( const T& r_Item, Node<T>* nextNodePtr)
-{
-	item = r_Item;
-	next = nextNodePtr;
-}
-template < typename T>
-void Node<T>::setItem( const T& r_Item)
-{
-	item = r_Item;
-} 
+	void setNext(Node* newNext)
+	{
+		Next=newNext;
+	}
 
-template < typename T>
-void Node<T>::setNext(Node<T>* nextNodePtr)
-{
-	next = nextNodePtr;
-} 
+	void setKey(int newKey)
+	{
+		Key=newKey>=1?newKey:1;
+	}
 
-template < typename T>
-T Node<T>::getItem() const
-{
-	return item;
-} 
+	T getItem()
+	{
+		return Item;
+	}
 
-template < typename T>
-Node<T>* Node<T>::getNext() const
-{
-	return next;
-} 
+	Node* getNext()
+	{
+		return Next;
+	}
+
+	int getKey()
+	{
+		return Key;
+	}
+
+	~Node()
+	{
+
+	}
+};
