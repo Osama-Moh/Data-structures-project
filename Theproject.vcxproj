@@ -142,6 +142,7 @@
     <ClInclude Include="ArrayStack.h" />
     <ClInclude Include="Cargo.h" />
     <ClInclude Include="Company.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Node.h" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="Cargo.cpp" />
     <ClCompile Include="Company.cpp" />
+    <ClCompile Include="Event.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Truck.cpp" />
     <ClCompile Include="UI.cpp" />
