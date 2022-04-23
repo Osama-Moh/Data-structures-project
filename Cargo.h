@@ -12,7 +12,6 @@ private:
 	int DIST;
 	int COST;
 
-
 public:
 	Cargo();
 	Cargo(char typ, int id, int ptd, int pth, int lt, int dist, int cost);
