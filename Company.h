@@ -13,20 +13,23 @@ class Linkedlist;
 class Company
 {
 private:
+	ifstream input;
 	UI point;
 	string fileinname;
-	int nt;
-	LinkedQueue <truck>* NT = new LinkedQueue <truck> [nt];
+	int nt = 3;
+	//LinkedQueue <Truck>* NT = new LinkedQueue <Truck> [nt];
 	int st;
-	LinkedQueue <truck>* ST = new LinkedQueue <truck>[st];
+	//LinkedQueue <Truck>* ST = new LinkedQueue <Truck>[st];
 	int vt;
-	LinkedQueue <truck>* VT = new LinkedQueue <truck>[vt];
-	LinkedQueue <cargo>* VC;
-	LinkedQueue<cargo>* SC;
+	//LinkedQueue <Truck>* VT = new LinkedQueue <Truck>[vt];
+	//LinkedQueue <Cargo>* VC;
+	//LinkedQueue<Cargo>* SC;
 	//LinkedList <cargo>* Nc;
 
 
 public:
+
+	void setnt(int x);
 
 	void setfileinname();
 
@@ -35,10 +38,11 @@ public:
 	void simulate();
 
 	
-	bool openfile(string fileinname);
+	bool openfile();
 	
 	void writetofile();
 
 	void print();
 
+	void readdata();
 };

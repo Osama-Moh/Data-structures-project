@@ -51,10 +51,10 @@ void UI::print()
 	}
 
 	cout << "Enter file name" << endl;
-	cin >> filename;
-	setfilename(filename);
-	cout << "read from the user, UI" << filename << endl;
+	//cin >> filename;
+	//setfilename(filename);
+	//cout << "read from the user, UI " << filename << endl;
 	c.print();
-
+	
 	
 }

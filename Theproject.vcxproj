@@ -145,14 +145,17 @@
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedQueue.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="QueueADT.h" />
     <ClInclude Include="StackADT.h" />
     <ClInclude Include="Truck.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Cargo.cpp" />
     <ClCompile Include="Company.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Truck.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>

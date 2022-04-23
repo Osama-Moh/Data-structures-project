@@ -15,7 +15,7 @@ Company::Company()
 
 void Company::simulate()
 {
-	openfile(fileinname);
+	
 	
 	
 	
@@ -24,7 +24,7 @@ void Company::simulate()
 	while (days<2)					// while true (this condition will be changed but i make it this way in order to make basic tests
 	{
 		point.print();
-
+		readdata();
 //		point->print();
 
 		hour = hour + 1.00;
@@ -36,17 +36,28 @@ void Company::simulate()
 	}
 }
 
-bool Company::openfile(string filein)					// we may change the implementation and remove the input parameter
+bool Company::openfile()					// we may change the implementation and remove the input parameter
 {														// then we will call the function getfilename from UI class
-	ifstream input;
 
 	input.open("data.txt", ios::in);
 
 	if (input.is_open() == true)
 	{
+		cout << "well done" << endl;
 		return true;
 	}
+	
+}
+
+void Company::setnt(int x)
+{
+	nt = x;
+}
+
+void Company::readdata()
+{
 	input >> nt;
+	setnt(nt);
 }
 
 void Company::writetofile()
@@ -59,6 +70,7 @@ void Company::print()
 {
 
 	cout << "hey" << endl;
-	cout << fileinname << endl;
+	cout << fileinname << endl;					// does not printed
+	openfile();
 	cout << nt;
 }
