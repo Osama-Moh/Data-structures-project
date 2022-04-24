@@ -57,6 +57,7 @@ void UI::print1()
 	else
 	{
 		cout << "Silent" << endl;
+		silent();
 	}
 }
 
@@ -69,10 +70,6 @@ void UI::printmode(int n, int t, int d)
 	else if (printtype == 2)
 	{
 		stepbystep(n,t,d);
-	}
-	else if (printtype == 3)
-	{
-		silent();
 	}
 
 }
@@ -160,5 +157,8 @@ void UI::readtruckdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, int
 void UI::readevents(int& e, ifstream& in)
 {
 	in >> e;
-
+	for (int i = 1; i <= e; i++)
+	{
+		
+	}
 }
