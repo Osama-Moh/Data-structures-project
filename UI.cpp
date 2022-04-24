@@ -55,23 +55,26 @@ void UI::print1()
 	cout << "Enter file name" << endl;
 	
 	
-	//print2();
+
 
 	
 	
 }
 
-void UI::print2(int n,int s,int v,int sn,int ss,int sv)
+void UI::print2(int n, int s, int v, int sn, int ss, int sv, int ntc, int stc, int vtc, int j, int cn, int cs, int cv, int Auto, int max)
 {
 	cout << "well done" << endl;
 	cout << n << "  " << s << "  " << v << endl;
 	cout << sn << "  " << ss << "  " << sv << endl;
+	cout << ntc << "  " << stc << "  " << vtc << endl;
+	cout << j << "  " << cn << "  " << cs << "  " << cv << endl;
+	cout << Auto << "  " << max << endl;
 }
 
-void UI::readdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, ifstream& input)
+void UI::readtruckdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, int &ntc, int &stc,int &vtc, int& j, int& cn, int& cs, int& cv, int &Auto, int &max, ifstream& input)
 {
 	Company c;
 	c.openfile();
-	input >> nt >> st >> vt >> ns >> ss >> vs;
+	input >> nt >> st >> vt >> ns >> ss >> vs >> ntc >> stc >> vtc >> j >> cn >> cs >> cv >> Auto >> max;
 
 }

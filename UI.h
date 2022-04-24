@@ -24,9 +24,9 @@ public:
 
 	void print1();
 
-	void print2(int n, int s, int v, int sn,int ss,int sv);
+	void print2(int n, int s, int v, int sn,int ss,int sv, int ntc, int stc, int vtc,int j, int cn, int cs, int cv, int Auto, int max);
 
-	void readdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, ifstream& input);
+	void readtruckdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, int& ntc, int& stc, int& vtc, int &j, int &cn, int &cs,int &cv, int &Auto, int & max, ifstream& input);
 
 
 };

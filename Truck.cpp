@@ -5,18 +5,18 @@ Truck::Truck()
 }
 Truck::Truck(char typ, int tc, int mt, int v)
 {
-	setTYP(typ);
-	setTC(tc);
-	setMT(mt);
-	setV(v);
-	setN(0);
+	setTYP(typ);							// truck type
+	setTC(tc);								// truck capacity
+	setMT(mt);								// checkup time
+	setV(v);								// velocity
+	setN(0);								// number of trucks
 }
 void Truck::addCargo(Cargo C)
 {
 	Q.enqueue(C);
 	setN(++N);
 }
-void Truck::setTYP(char typ)
+void Truck::setTYP(char typ)					
 {
 	TYP=typ;
 }

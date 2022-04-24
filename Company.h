@@ -15,6 +15,10 @@ class Company
 private:
 	int  ns, ss, vs;
 	int nt, st, vt;
+	int NTC, STC, VTC;
+	int J;
+	int CN, CS, CV;
+	int AutoP, MaxW;
 	ifstream input;
 	UI point;
 	string fileinname;
@@ -25,13 +29,11 @@ private:
 	
 	LinkedQueue <Truck*> VT;
 	LinkedQueue <Cargo*> VC;
-	//LinkedQueue<Cargo>* SC;
+	LinkedQueue<Cargo>* SC;
 	//LinkedList <Cargo>* Nc;
 
 
 public:
-
-	void setnt(int x);
 
 	void setfileinname();
 
@@ -45,5 +47,7 @@ public:
 	void writetofile();
 
 	void print();
+
+	void filltruckdata();
 
 };
