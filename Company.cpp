@@ -4,12 +4,6 @@ using namespace std;
 # include "Company.h"
 # include "Truck.h"
 
-void Company::setfileinname()
-{
-	fileinname = point.getfilename();
-}
-
-
 Company::Company()
 {
 
@@ -18,21 +12,26 @@ Company::Company()
 void Company::simulate()
 {	
 	openfile();
-	
-	float hour = 00.00;
+	point.print1();
+	point.print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW);
+	point.print3(E);
+	filltruckdata();
+
+	int hours = 00;
 	int days = 1;
 	while (days<2)					// while true (this condition will be changed but i make it this way in order to make basic tests
 	{
-		point.print1();
-		point.print2(nt, st, vt,ns,ss,vs,NTC,STC,VTC,J,CN,CS,CV,AutoP,MaxW);
-		
-		hour = hour + 1.00;
-		if (hour == 24.00)
+		int n = NT.getcount() + ST.getcount() + VT.getcount();
+		point.interactive(n, hours, days);
+
+		hours++;
+		if (hours == 24)
 		{
-			hour = 00.00;
-			days = days + 1;
+			hours = 00;
+			days++;
 		}
 	}
+	// function write to file will be called here
 }
 
 void Company::filltruckdata()
@@ -40,32 +39,32 @@ void Company::filltruckdata()
 	for (int i = 1; i <= nt; i++)
 	{
 		//char N = N;
-		Truck* pointern;
+		Truck pointern;
 		NT.enqueue(pointern);
 		//pointern->setTYP(N);
-		pointern->setN(i);
-		pointern->setV(ns);
-		pointern->setTC(NTC);
+		//pointern->setN(i);
+		pointern.setV(ns);
+		pointern.setTC(NTC);
 	}
 	for (int j = 1; j <= st; j++)
 	{
 		//char S = S;
-		Truck* pointers;
+		Truck pointers;
 		ST.enqueue(pointers);
-		pointers->setN(j);
+		//pointers.setN(j);
 		//pointers->setTYP(S);
-		pointers->setV(ss);
-		pointers->setTC(STC);
+		pointers.setV(ss);
+		pointers.setTC(STC);
 	}
 	for (int k = 1; k <= vt; k++)
 	{
 	//	char V = V;
-		Truck* pointerv;
+		Truck pointerv;
 		VT.enqueue(pointerv);
 		//pointerv->setTYP(V);
-		pointerv->setN(k);
-		pointerv->setV(vs);
-		pointerv->setTC(VTC);
+		//pointerv->setN(k);
+		pointerv.setV(vs);
+		pointerv.setTC(VTC);
 	}
 }
 
@@ -77,6 +76,7 @@ void Company::openfile()
 	if (input.is_open() == true)
 	{
 		point.readtruckdata(nt,st,vt,ns,ss,vs,NTC,STC,VTC,J,CN,CS,CV,AutoP,MaxW,input);
+		point.readevents(E,input);
 	}
 	
 }
@@ -88,7 +88,7 @@ void Company::writetofile()
 	output.open("Output.txt", ios::out);
 }
 
-void Company::print()
+void Company::print()			// isa will be deleted
 {
 
 }

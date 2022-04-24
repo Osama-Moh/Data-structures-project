@@ -6,7 +6,6 @@ using namespace std;
 class UI
 {
 private:
-	//ifstream input;
 	string filename;
 	int printtype;
 
@@ -28,5 +27,16 @@ public:
 
 	void readtruckdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, int& ntc, int& stc, int& vtc, int &j, int &cn, int &cs,int &cv, int &Auto, int & max, ifstream& input);
 
+	void print3(int e);
+
+	void readevents(int &e, ifstream& in);
+
+	void interactive(int trucksnumbet, int time, int days);
+
+	void stepbystep();
+
+	void silent();
+
+	void detectenter();
 
 };

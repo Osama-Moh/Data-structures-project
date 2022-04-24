@@ -19,23 +19,25 @@ private:
 	int J;
 	int CN, CS, CV;
 	int AutoP, MaxW;
+	int E;
+
 	ifstream input;
 	UI point;
 	string fileinname;
 
-	LinkedQueue <Truck*> NT;
+	LinkedQueue <Truck> NT;
 	
-	LinkedQueue <Truck*> ST;
+	LinkedQueue <Truck> ST;
 	
-	LinkedQueue <Truck*> VT;
-	LinkedQueue <Cargo*> VC;
-	LinkedQueue<Cargo>* SC;
-	//LinkedList <Cargo>* Nc;
+	LinkedQueue <Truck> VT;
+	
+	LinkedQueue <Cargo> SC;
+	
+	//LinkedList <Cargo*> Nc;
 
 
 public:
 
-	void setfileinname();
 
 	Company();
 
