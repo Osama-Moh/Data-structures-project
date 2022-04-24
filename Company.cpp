@@ -22,7 +22,7 @@ void Company::simulate()
 	while (days<2)					// while true (this condition will be changed but i make it this way in order to make basic tests
 	{
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
-		point.interactive(n, hours, days);
+		point.printmode(n, hours, days);
 
 		hours++;
 		if (hours == 24)

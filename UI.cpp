@@ -49,59 +49,83 @@ void UI::print1()
 	if (printtype == 1)
 	{
 		cout << "Interactive Mode" << endl;
-	//	interactive();
 	}
 	else if (printtype == 2)
 	{
 		cout << "Step by step Mode" << endl;
-		//stepbystep();
 	}
 	else
 	{
 		cout << "Silent" << endl;
-		//silent();
 	}
+}
+
+void UI::printmode(int n, int t, int d)
+{
+	if (printtype == 1)
+	{
+		interactive(n,t,d);
+	}
+	else if (printtype == 2)
+	{
+		stepbystep(n,t,d);
+	}
+	else if (printtype == 3)
+	{
+		silent();
+	}
+
 }
 
 void UI::interactive(int n, int t, int d)
-{
-	int hours = 00;
-	int days = 1;
-	//while (days < 2)
-	//{
+{		
 		cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
 		cout << "--------------------------------" << endl << endl;
+		
+		cout << " " << "Waiting Cargos: " << endl << endl;
+		cout << "--------------------------------" << endl << endl;
+		
+		cout << " " << "Loading Trucks: " << endl << endl;
+		cout << "--------------------------------" << endl << endl;
+		
 		cout << n << " " << "Empty Trucks:" << endl << endl;
 		cout << "--------------------------------" << endl << endl;
 
+		cout << " " << "Moving Cargos: " << endl << endl;
+		cout << "--------------------------------" << endl << endl;
+
+		cout << " " << "In-Checkup Trucks: " << endl << endl;
+		cout << "--------------------------------" << endl << endl;
+		
+		cout << " " << "Delivered Cargos: " << endl << endl;
+		cout << "--------------------------------" << endl << endl;
+
 		detectenter();
-
-
-	//	hours++;
-	//	if (hours == 24)
-	//	{
-	//		hours = 00;
-	//		days++;
-		//}
-//	}
 }
 
-void UI::stepbystep()
+void UI::stepbystep(int n, int t, int d)
 {
-	int hours = 00;
-	int days = 1;
-	while (days < 2)
-	{
-		cout << "Current Time (Day:Hour):" << days << ":" << hours << endl;
+	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
+	cout << "--------------------------------" << endl << endl;
 
+	cout << " " << "Waiting Cargos: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
 
-		hours++;
-		if (hours == 24)
-		{
-			hours = 00;
-			days++;
-		}
-	}
+	cout << " " << "Loading Trucks: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+
+	cout << n << " " << "Empty Trucks:" << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+
+	cout << " " << "Moving Cargos: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+
+	cout << " " << "In-Checkup Trucks: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+
+	cout << " " << "Delivered Cargos: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+
 }
 
 void UI::silent()
@@ -128,8 +152,7 @@ void UI::print3(int e)
 
 void UI::readtruckdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, int &ntc, int &stc,int &vtc, int& j, int& cn, int& cs, int& cv, int &Auto, int &max, ifstream& input)
 {
-	//Company c;
-	//c.openfile();
+
 	input >> nt >> st >> vt >> ns >> ss >> vs >> ntc >> stc >> vtc >> j >> cn >> cs >> cv >> Auto >> max;
 
 }

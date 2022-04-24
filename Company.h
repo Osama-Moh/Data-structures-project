@@ -52,4 +52,7 @@ public:
 
 	void filltruckdata();
 
+	void filleventsdata();
+
+	void fillcargodata();
 };
