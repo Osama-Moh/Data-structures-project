@@ -28,7 +28,7 @@ private:
 	UI point;
 	string fileinname;
 
-	LinkedQueue <Truck> NT;
+	LinkedQueue <Truck*> NT;
 	
 	LinkedQueue <Truck> ST;
 	

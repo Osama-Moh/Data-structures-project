@@ -38,13 +38,13 @@ void Company::filltruckdata()
 {
 	for (int i = 1; i <= nt; i++)
 	{
-		Truck pointern;
+		Truck *pointern;
 		NT.enqueue(pointern);
-		pointern.setTYP('N');
-		pointern.setN(J);
-		pointern.setV(ns);
-		pointern.setTC(NTC);
-		pointern.setMT(CN);
+		pointern->setTYP('N');
+		pointern->setN(J);
+		pointern->setV(ns);
+		pointern->setTC(NTC);
+		pointern->setMT(CN);
 		
 	}
 	for (int j = 1; j <= st; j++)

@@ -4,6 +4,7 @@ using namespace std;
 # include "UI.h"
 # include "Company.h"
 # include <fstream>
+# include <Windows.h>
 
 UI::UI()
 {
@@ -122,7 +123,7 @@ void UI::stepbystep(int n, int t, int d)
 
 	cout << " " << "Delivered Cargos: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
-
+	Sleep(1000);
 }
 
 void UI::silent()
