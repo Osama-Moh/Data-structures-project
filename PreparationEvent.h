@@ -11,6 +11,7 @@ private:
 public:
 	PreparationEvent();
 	PreparationEvent(char type, int id, int day, int hour, int load, int dist, int cost);
+	void Execute(Company* C);
 	~PreparationEvent();
 };
 
