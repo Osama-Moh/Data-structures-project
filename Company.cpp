@@ -14,7 +14,7 @@ void Company::simulate()
 	openfile();
 	point.print1();
 	point.print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW);
-	point.print3(E);
+	point.print3(E, ev, typ, et, id, dist, lt, cost);
 	filltruckdata();
 
 	int hours = 00;
@@ -31,7 +31,7 @@ void Company::simulate()
 			days++;
 		}
 	}
-	// function write to file will be called here
+	writetofile();
 }
 
 void Company::filltruckdata()
@@ -42,19 +42,22 @@ void Company::filltruckdata()
 		Truck pointern;
 		NT.enqueue(pointern);
 		//pointern->setTYP(N);
-		//pointern->setN(i);
+		pointern.setN(J);
 		pointern.setV(ns);
 		pointern.setTC(NTC);
+		pointern.setMT(CN);
+		
 	}
 	for (int j = 1; j <= st; j++)
 	{
 		//char S = S;
 		Truck pointers;
 		ST.enqueue(pointers);
-		//pointers.setN(j);
+		pointers.setN(J);
 		//pointers->setTYP(S);
 		pointers.setV(ss);
 		pointers.setTC(STC);
+		pointers.setMT(CS);
 	}
 	for (int k = 1; k <= vt; k++)
 	{
@@ -62,12 +65,12 @@ void Company::filltruckdata()
 		Truck pointerv;
 		VT.enqueue(pointerv);
 		//pointerv->setTYP(V);
-		//pointerv->setN(k);
+		pointerv.setN(J);
 		pointerv.setV(vs);
 		pointerv.setTC(VTC);
+		pointerv.setMT(CV);
 	}
 }
-
 
 void Company::openfile()					
 {													// the file name should be a user input
@@ -75,17 +78,50 @@ void Company::openfile()
 
 	if (input.is_open() == true)
 	{
-		point.readtruckdata(nt,st,vt,ns,ss,vs,NTC,STC,VTC,J,CN,CS,CV,AutoP,MaxW,input);
-		point.readevents(E,input);
+		readtruckdata();
+		readevents();
 	}
 	
 }
 
+void Company::readtruckdata()
+{
+	input >> nt >> st >> vt >> ns >> ss >> vs >> NTC >> STC >> VTC >> J >> CN >> CS >> CV >> AutoP >> MaxW;
+}
+
+void Company::readevents()
+{
+	input >> E;
+	for (int i = 1; i <= E; i++)
+	{
+		input >> ev;
+		if (ev == 'R')
+		{
+			input >> typ >> et >> id >> dist >> lt >> cost;
+		}
+		if (ev == 'X')
+		{
+			input >> et >> id;
+		}
+		if (ev == 'P')
+		{
+			input >> et >> id >> cost;
+		}
+	}
+}
+
+void Company::openfile2()
+{
+	output.open("Output.txt", ios::out);
+	if (output.is_open() == true)
+	{
+		writetofile();
+	}
+}
 
 void Company::writetofile()
 {
-	ofstream output;
-	output.open("Output.txt", ios::out);
+	output << "The output function is working";
 }
 
 void Company::print()			// isa will be deleted

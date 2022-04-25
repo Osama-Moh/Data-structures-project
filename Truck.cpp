@@ -31,7 +31,7 @@ void Truck::setMT(int mt)
 }
 void Truck::setDT(int dt)
 {
-	DT=dt;
+	DT=dt;					// DT=(distance to deliver furthest cargo)/(V)+
 }
 void Truck::setV(int v)
 {

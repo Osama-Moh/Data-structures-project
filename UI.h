@@ -28,10 +28,10 @@ public:
 	void print2(int n, int s, int v, int sn,int ss,int sv, int ntc, int stc, int vtc,int j, int cn, int cs, int cv, int Auto, int max);
 
 	void readtruckdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, int& ntc, int& stc, int& vtc, int &j, int &cn, int &cs,int &cv, int &Auto, int & max, ifstream& input);
+	
+	void print3(int e, char evt, char truckt, string et, int id, int dist,int lt,int cost);
 
-	void print3(int e);
-
-	void readevents(int &e, ifstream& in);
+	void readeventsnumber(int& e, char& ev, char& ty, int& et, int& id, int& dist, int& lt, int& cost, ifstream& in);
 
 	void interactive(int trucksnumbet, int time, int days);
 
@@ -40,5 +40,7 @@ public:
 	void silent();
 
 	void detectenter();
+
+	void readevents(char& e, char& ty, int& et, int& id, int& dist, int& lt, int& cost, ifstream& in);
 
 };

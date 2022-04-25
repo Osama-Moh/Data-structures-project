@@ -141,24 +141,54 @@ void UI::print2(int n, int s, int v, int sn, int ss, int sv, int ntc, int stc, i
 	cout << Auto << "  " << max << endl;
 }
 
-void UI::print3(int e)
+void UI::print3(int e, char ev,char ty, string et,int id,int dist,int ly,int cost)
 {
 	// this function is used to test that the data from the file is loaded (should be deleted or not to be submited)
-	cout << e << endl;
+	cout << e << endl << ev << "  " << ty << "  " << et << "  " << id << "  " << dist << "  " << ly << "  " << cost << endl;
 }
 
 void UI::readtruckdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, int &ntc, int &stc,int &vtc, int& j, int& cn, int& cs, int& cv, int &Auto, int &max, ifstream& input)
 {
-
+	// will be deleted
 	input >> nt >> st >> vt >> ns >> ss >> vs >> ntc >> stc >> vtc >> j >> cn >> cs >> cv >> Auto >> max;
 
 }
 
-void UI::readevents(int& e, ifstream& in)
+void UI::readeventsnumber(int& e, char& ev, char& ty, int& et, int& id, int& dist, int& lt, int& cost, ifstream& in)
 {
 	in >> e;
 	for (int i = 1; i <= e; i++)
 	{
-		
+		in >> ev;
+		if (ev == 'R')
+		{
+			in >> ty >> et >> id >> dist >> lt >> cost;
+		}
+		if (ev == 'X')
+		{
+			in >> et >> id;
+		}
+		if (ev == 'P')
+		{
+			in >> et >> id >> cost;
+		}
 	}
 }
+
+void UI::readevents(char &ev, char &ty, int &et, int &id, int &dist, int &lt, int &cost, ifstream& in)
+{
+	in >> ev;
+	if (ev == 'R')
+	{
+		in >> ty >> et >> id >> dist >> lt >> cost;
+	}
+	if (ev == 'X')
+	{
+		in >> et >> id;
+	}
+	if (ev == 'P')
+	{
+		in >> et >> id >> cost;
+	}
+}
+

@@ -13,15 +13,18 @@ class Linkedlist;
 class Company
 {
 private:
-	int  ns, ss, vs;
-	int nt, st, vt;
-	int NTC, STC, VTC;
+	int  ns, ss, vs;											// speed of each truck type
+	int nt, st, vt;												// number of each truck type
+	int NTC, STC, VTC;											// capacity of each truck
 	int J;
-	int CN, CS, CV;
-	int AutoP, MaxW;
-	int E;
-
+	int CN, CS, CV;												// time of checkup for normal,special,vip
+	int AutoP, MaxW;											
+	int E;														// number of events
+	char ev, typ;
+	string et;
+	int id, dist, lt, cost;
 	ifstream input;
+	ofstream output;
 	UI point;
 	string fileinname;
 
@@ -43,9 +46,10 @@ public:
 
 	void simulate();
 
-	
 	void openfile();
-	
+
+	void openfile2();
+
 	void writetofile();
 
 	void print();
@@ -55,4 +59,8 @@ public:
 	void filleventsdata();
 
 	void fillcargodata();
+
+	void readtruckdata();
+
+	void readevents();
 };
