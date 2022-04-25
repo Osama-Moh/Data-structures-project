@@ -14,7 +14,7 @@ PreparationEvent::PreparationEvent(int id, int day, int hour, char type, int loa
 void PreparationEvent::Execute(Company* C)
 {
 	Cargo* S=new Cargo(Type, Day, Hour, ID, Load, Dist, Cost);
-	//C->addCargo(Type, ID, Day, Hour, Load, Dist, Cost);
+	//C->addCargo(S);
 }
 void PreparationEvent::setType(char type)
 {
