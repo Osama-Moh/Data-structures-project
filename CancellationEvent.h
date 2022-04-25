@@ -6,6 +6,7 @@ class CancellationEvent: public Event
 {
 public:
 	CancellationEvent();
-	CancellationEvent(char type, int id, int day, int hour);
+	CancellationEvent(int id, int day, int hour);
+	void Execute(Company* C);
 	~CancellationEvent();
 };
