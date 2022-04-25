@@ -11,7 +11,7 @@ Company::Company()
 
 void Company::simulate()
 {	
-	openfile();
+	openinput();
 	point.print1();
 	point.print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW);
 	point.print3(E, ev, typ, et, id, dist, lt, cost);
@@ -31,17 +31,16 @@ void Company::simulate()
 			days++;
 		}
 	}
-	writetofile();
+	openoutput();
 }
 
 void Company::filltruckdata()
 {
 	for (int i = 1; i <= nt; i++)
 	{
-		//char N = N;
 		Truck pointern;
 		NT.enqueue(pointern);
-		//pointern->setTYP(N);
+		pointern.setTYP('N');
 		pointern.setN(J);
 		pointern.setV(ns);
 		pointern.setTC(NTC);
@@ -50,21 +49,19 @@ void Company::filltruckdata()
 	}
 	for (int j = 1; j <= st; j++)
 	{
-		//char S = S;
 		Truck pointers;
 		ST.enqueue(pointers);
 		pointers.setN(J);
-		//pointers->setTYP(S);
+		pointers.setTYP('S');
 		pointers.setV(ss);
 		pointers.setTC(STC);
 		pointers.setMT(CS);
 	}
 	for (int k = 1; k <= vt; k++)
 	{
-	//	char V = V;
 		Truck pointerv;
 		VT.enqueue(pointerv);
-		//pointerv->setTYP(V);
+		pointerv.setTYP('V');
 		pointerv.setN(J);
 		pointerv.setV(vs);
 		pointerv.setTC(VTC);
@@ -72,7 +69,7 @@ void Company::filltruckdata()
 	}
 }
 
-void Company::openfile()					
+void Company::openinput()					
 {													// the file name should be a user input
 	input.open("data.txt", ios::in);
 
@@ -110,7 +107,7 @@ void Company::readevents()
 	}
 }
 
-void Company::openfile2()
+void Company::openoutput()
 {
 	output.open("Output.txt", ios::out);
 	if (output.is_open() == true)
@@ -121,7 +118,6 @@ void Company::openfile2()
 
 void Company::writetofile()
 {
-	output << "The output function is working";
 }
 
 void Company::print()			// isa will be deleted

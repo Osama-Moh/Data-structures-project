@@ -46,9 +46,9 @@ public:
 
 	void simulate();
 
-	void openfile();
+	void openinput();
 
-	void openfile2();
+	void openoutput();
 
 	void writetofile();
 

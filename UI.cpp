@@ -147,12 +147,7 @@ void UI::print3(int e, char ev,char ty, string et,int id,int dist,int ly,int cos
 	cout << e << endl << ev << "  " << ty << "  " << et << "  " << id << "  " << dist << "  " << ly << "  " << cost << endl;
 }
 
-void UI::readtruckdata(int& nt, int& st, int& vt, int& ns, int& ss, int& vs, int &ntc, int &stc,int &vtc, int& j, int& cn, int& cs, int& cv, int &Auto, int &max, ifstream& input)
-{
-	// will be deleted
-	input >> nt >> st >> vt >> ns >> ss >> vs >> ntc >> stc >> vtc >> j >> cn >> cs >> cv >> Auto >> max;
 
-}
 
 void UI::readeventsnumber(int& e, char& ev, char& ty, int& et, int& id, int& dist, int& lt, int& cost, ifstream& in)
 {
