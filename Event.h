@@ -12,7 +12,7 @@ private:
 public:
 	Event();
 	Event(char type, int day, int hour, int id);
-	virtual void Execute(LinkedQueue<Cargo*> Q) = 0;
+	virtual void Execute(Company* C) = 0;
 	void setType(char type);
 	void setDay(int day);
 	void setHour(int hour);
