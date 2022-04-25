@@ -8,6 +8,9 @@ private:
 	int ExtraCost;
 public:
 	PromotionEvent();
-	PromotionEvent(char type, int id, int day, int hour, int extracost);
+	PromotionEvent(int id, int day, int hour, int extracost);
+	void Execute(Company* C);
+	void setExtraCost(int extracost);
+	int getExtraCost();
 	~PromotionEvent();
 };
