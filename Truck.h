@@ -17,7 +17,8 @@ private:
 public:
 	Truck();
 	Truck(char typ, int tc, int mt, int v);
-	void addCargo(Cargo* C);
+	void loadCargo(Cargo* C);
+	void unloadCargo(Cargo* C);
 	void setTYP(char typ);
 	void setTC(int tc);
 	void setMT(int mt);

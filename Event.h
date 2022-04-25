@@ -1,23 +1,20 @@
 #pragma once
-#include "LinkedQueue.h"
-#include "Cargo.h"
+#include "Company.h"
 
 class Event
 {
-private:
-	char Type;
+protected:
 	int Day;
 	int Hour;
 	int ID;
+
 public:
 	Event();
-	Event(char type, int day, int hour, int id);
-	virtual void Execute(LinkedQueue<Cargo*> Q) = 0;
-	void setType(char type);
+	Event(int day, int hour, int id);
+	virtual void Execute(Company* C) = 0;
 	void setDay(int day);
 	void setHour(int hour);
 	void setID(int id);
-	char getType();
 	int getDay();
 	int getHour();
 	int getID();

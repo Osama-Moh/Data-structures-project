@@ -16,39 +16,31 @@ public:
 		setNext(newNext);
 		setKey(newKey);
 	}
-
 	void setItem(T newItem)
 	{
 		Item=newItem;
 	}
-
 	void setNext(Node* newNext)
 	{
 		Next=newNext;
 	}
-
 	void setKey(int newKey)
 	{
 		Key=newKey>=1?newKey:1;
 	}
-
 	T getItem()
 	{
 		return Item;
 	}
-
 	Node* getNext()
 	{
 		return Next;
 	}
-
 	int getKey()
 	{
 		return Key;
 	}
-
 	~Node()
 	{
-
 	}
 };

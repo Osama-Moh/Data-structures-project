@@ -4,16 +4,11 @@
 Event::Event()
 {
 }
-Event::Event(char type, int day, int hour, int id)
+Event::Event(int day, int hour, int id)
 {
-	setType(type);
 	setDay(day);
 	setHour(hour);
 	setID(id);
-}
-void Event::setType(char type)
-{
-	Type=type;
 }
 void Event::setDay(int day)
 {
@@ -26,10 +21,6 @@ void Event::setHour(int hour)
 void Event::setID(int id)
 {
 	ID=id;
-}
-char Event::getType()
-{
-	return Type;
 }
 int Event::getDay()
 {

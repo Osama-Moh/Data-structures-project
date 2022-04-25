@@ -12,10 +12,15 @@ Truck::Truck(char typ, int tc, int mt, int v)
 	setV(v);								
 	setN(0);								
 }
-void Truck::addCargo(Cargo* C)
+void Truck::loadCargo(Cargo* C)
 {
 	Q.enqueue(C);
 	setN(++N);
+}
+void Truck::unloadCargo(Cargo* C)
+{
+	Q.dequeue(C);
+	setN(--N);
 }
 void Truck::setTYP(char typ)					
 {
