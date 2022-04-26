@@ -12,10 +12,8 @@ Company::Company()
 void Company::simulate()
 {	
 	openinput();
-	int np = rv.getcount();
-
 	point->print1();
-	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,np);
+	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,0);
 	point->print3(E, ev, typ, et, id, dist, lt, cost);
 
 	int hours = 00;
@@ -104,6 +102,7 @@ void Company::filleventsdata()
 	if (ev == 'R')
 	{
 		PreparationEvent* pointerr = new PreparationEvent;
+		rv.enqueue(pointerr);
 		pointerr->setCost(cost);
 		pointerr->setDist(dist);
 		pointerr->setID(id);
@@ -112,11 +111,14 @@ void Company::filleventsdata()
 	}
 	if (ev == 'X')
 	{
-
+		CancellationEvent* pointerc = new CancellationEvent;
+		cv.enqueue(pointerc);
+		pointerc->setID(id);
 	}
 	if (ev == 'P')
 	{
 		PromotionEvent* pointerp = new PromotionEvent;
+		pv.enqueue(pointerp);
 		pointerp->setExtraCost(cost);
 		pointerp->setID(id);
 	}
@@ -131,7 +133,6 @@ void Company::openinput()
 		readtruckdata();
 		filltruckdata();
 		readevents();
-		//filleventsdata();
 	}
 
 }

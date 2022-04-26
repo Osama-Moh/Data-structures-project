@@ -10,6 +10,7 @@ using namespace std;
 # include "LinkedList.h"
 # include "PreparationEvent.h"
 # include "PromotionEvent.h"
+# include "CancellationEvent.h"
 
 class Company
 {
@@ -41,6 +42,8 @@ private:
 	LinkedList <Cargo*> Nc;
 
 	LinkedQueue<Cargo*>VC;
+
+	LinkedQueue<CancellationEvent*>cv;
 
 	LinkedQueue<PreparationEvent*>rv;
 
