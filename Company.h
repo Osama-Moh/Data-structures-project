@@ -11,6 +11,7 @@ using namespace std;
 # include "LinkedList.h"
 # include "PreparationEvent.h"
 # include "PromotionEvent.h"
+# include "CancellationEvent.h"
 
 class Company
 {
