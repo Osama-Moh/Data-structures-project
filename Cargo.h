@@ -29,6 +29,7 @@ public:
 	int getLT();
 	int getDIST();
 	int getCOST();
+	int getPRIORITY();
 	~Cargo();
 
 };

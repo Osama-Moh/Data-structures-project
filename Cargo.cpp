@@ -69,6 +69,10 @@ int Cargo::getCOST()
 {
 	return COST;
 }
+int Cargo::getPRIORITY()
+{
+	return TYP == 'V' ? 1 : 0;
+}
 Cargo::~Cargo()
 {
 }

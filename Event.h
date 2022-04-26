@@ -1,4 +1,5 @@
 #pragma once
+#include "Cargo.h"
 class Company;
 
 class Event
