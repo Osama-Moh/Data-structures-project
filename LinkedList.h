@@ -2,6 +2,7 @@
 #define _LINKEDLIST
 
 #include "Node.h"
+#include "Cargo.h"
 
 template <typename T>
 class LinkedList
@@ -9,12 +10,29 @@ class LinkedList
 private:
 	Node<T> *Head;	//Pointer to the head of the list
 	//You can add tail pointer too (depending on your problem)
+
+	int count;
+
+	Node<T>* getPointerTo(const int& index)
+	{
+		int move=1;
+		Node<T>* temp=Head;
+		while (temp && move<index)
+		{
+			temp=temp->getNext();
+			move++;
+		}
+		return temp;
+	}
+
+
 public:
 
 
 	LinkedList()
 	{
 		Head = nullptr;
+		count=0;
 	}
 
 	//List is being desturcted ==> delete all items in the list
@@ -29,7 +47,7 @@ public:
 	*/
 	void PrintList()	const
 	{		
-		cout<<"\nprinting list contents:\n\n";
+		cout<<"\nPrinting list contents:\n\n";
 		Node<T> *p = Head;
 
 		while(p)
@@ -50,11 +68,13 @@ public:
 	*/
 	void InsertBeg(const T &data)
 	{
-		Node<T> *R = new Node<T>(data);
+		Node<T> *R = new Node<T>;
+		R->setItem(data);
 		R->setNext(Head);
 		Head = R;
-
+		count++;
 	}
+
 	////////////////////////////////////////////////////////////////////////
 	/*
 	* Function: DeleteAll.
@@ -69,9 +89,80 @@ public:
 			delete Head;
 			Head = P;
 		}
+		count=0;
 	}
 
+	int getCount()
+	{
+		return count;
+	}
 
+	bool insertNode(const T& newItem, const int& index)
+	{
+		if (index==1)
+		{
+			Node<T>* newNode=new Node<T>;
+			newNode->setItem(newItem);
+			newNode->setNext(Head);
+			Head=newNode;
+			count++;
+			return true;
+		}
+		Node<T>* prev=getPointerTo(index-1);
+		if (prev)
+		{
+			Node<T>* newNode=new Node<T>;
+			newNode->setItem(newItem);
+			newNode->setNext(temp->getNext());
+			temp->setNext(newNode);
+			count++;
+			return true;
+		}
+		return false;
+	}
+
+	bool removeNode(T& oldItem, const int& index)
+	{
+		if (index==1)
+		{
+			Node<T>* temp=Head;
+			Head=Head->getNext();
+			oldItem=temp->getItem();
+			delete temp;
+			temp=nullptr;
+			count--;
+			return true;
+		}
+		Node<T>* prev=getPointerTo(index-1);
+		Node<T>* temp=getPointerTo(index);
+		if (temp)
+		{
+			prev->setNext(temp->getNext());
+			oldItem=temp->getItem();
+			delete temp;
+			temp=nullptr;
+			count--;
+			return true;
+		}
+		return false;
+	}
+
+	Cargo* removeCargo(const int& ID)
+	{
+		int index=1;
+		Node<Cargo*>* reqCargo=Head;
+		while (reqCargo)
+		{
+			if (reqCargo->getItem()->getID()==ID)
+			{
+				removeNode(reqCargo, index);
+				return reqCargo;
+			}
+			reqCargo=reqCargo->getNext();
+			index++;
+		}
+		return reqCargo;
+	}
 
 	////////////////     Requirements   ///////////////////
 	//
@@ -103,25 +194,7 @@ public:
 	//deletes the first node with the given value (if found) and returns true
 	//if not found, returns false
 	//Note: List is not sorted
-	void DeleteNode(const T &value)
-	{
-		Node <T>* ptrprev = nullptr;
-		Node <T>* ptrmain = Head;
-
-		while (ptrmain)
-		{
-
-			//T valuein = ptrmain->getItem();
-			if (ptrmain->getItem() == value)
-			{
-				ptrprev->setNext(ptrmain->getNext());
-				delete ptrmain;
-			}
-			ptrmain = ptrmain->getNext();
-			ptrprev = ptrprev->getNext();
-		}
-
-	}
+	bool DeleteNode(const T &value);	
 
 	//[7] DeleteNodes
 	//deletes ALL node with the given value (if found) and returns true
@@ -138,36 +211,6 @@ public:
 	//Reverses the linked list (without allocating any new Nodes)
 	void Reverse();
 		
-	// Printcase and in case the list is empty the function will return nothing 
-	void printnode(int order)
-	{
-		int count = 0;
-		Node <T>* pointer = Head;
-		while (pointer)
-		{
-			count++;
-			if (count == order)
-			{
-				cout << "[" << pointer->getItem() << "]" << endl;
-			}
-			pointer = pointer->getNext();
-		}
-		cout << count << endl;
-		//if (count != 0 || count >=order)
-		//{
-		//	//int countorder = 1;
-		//	for (int i = 1; i <= count-1; i++)
-		//	{
-
-		//		if (i == order)
-		//		{
-		//			cout << "[" << pointer->getItem() << "]" << endl;
-		//		}
-		//		pointer = pointer->getNext();
-		//	}
-		//}
-	}
 };
 
 #endif	
-
