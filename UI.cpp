@@ -44,9 +44,16 @@ void UI::print1()
 	cout << "Please choose the printing mode you prefer by writing its number only: " << endl;
 	cout <<"1.interactive Mode" << endl << "2.Step by step Mode" << endl << "3.Silent Mode" << endl;
 	cout << "Number : ";
+
 	cin >> printtype;
 	setprinttype(printtype);
-	cout << "The printing mode will be the : ";
+
+	cout << "file name is: ";
+	cin >> filename;
+	
+
+	cout << endl << "The printing mode will be the : ";
+	
 	if (printtype == 1)
 	{
 		cout << "Interactive Mode" << endl;
@@ -77,28 +84,29 @@ void UI::printmode(int n, int t, int d)
 
 void UI::interactive(int n, int t, int d)
 {		
-		cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
-		cout << "--------------------------------" << endl << endl;
-		
-		cout << " " << "Waiting Cargos: " << endl << endl;
-		cout << "--------------------------------" << endl << endl;
-		
-		cout << " " << "Loading Trucks: " << endl << endl;
-		cout << "--------------------------------" << endl << endl;
-		
-		cout << n << " " << "Empty Trucks:" << endl << endl;
-		cout << "--------------------------------" << endl << endl;
+	detectenter();
 
-		cout << " " << "Moving Cargos: " << endl << endl;
-		cout << "--------------------------------" << endl << endl;
-
-		cout << " " << "In-Checkup Trucks: " << endl << endl;
-		cout << "--------------------------------" << endl << endl;
+	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
+	cout << "--------------------------------" << endl << endl;
 		
-		cout << " " << "Delivered Cargos: " << endl << endl;
-		cout << "--------------------------------" << endl << endl;
+	cout << " " << "Waiting Cargos: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+		
+	cout << " " << "Loading Trucks: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+		
+	cout << n << " " << "Empty Trucks:" << endl << endl;
+	cout << "--------------------------------" << endl << endl;
 
-		detectenter();
+	cout << " " << "Moving Cargos: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+
+	cout << " " << "In-Checkup Trucks: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+		
+	cout << " " << "Delivered Cargos: " << endl << endl;
+	cout << "--------------------------------" << endl << endl;
+
 }
 
 void UI::stepbystep(int n, int t, int d)
@@ -134,7 +142,6 @@ void UI::silent()
 void UI::print2(int n, int s, int v, int sn, int ss, int sv, int ntc, int stc, int vtc, int j, int cn, int cs, int cv, int Auto, int max)
 {		
 	// this function is used to test that the data from the file is loaded (should be deleted or not to be submited)
-	cout << "well done" << endl;
 	cout << n << "  " << s << "  " << v << endl;
 	cout << sn << "  " << ss << "  " << sv << endl;
 	cout << ntc << "  " << stc << "  " << vtc << endl;

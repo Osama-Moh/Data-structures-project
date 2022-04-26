@@ -7,7 +7,7 @@ using namespace std;
 # include "LinkedQueue.h"
 # include "Truck.h"
 # include "Cargo.h"
-class Linkedlist;
+# include "LinkedList.h"
 
 
 class Company
@@ -23,28 +23,29 @@ private:
 	char ev, typ;
 	string et;
 	int id, dist, lt, cost;
+	string fileinname;
+
 	ifstream input;
 	ofstream output;
-	UI point;
-	string fileinname;
+	UI* point = new UI;					// is this a correct way to 
 
 	LinkedQueue <Truck*> NT;
 	
-	LinkedQueue <Truck> ST;
+	LinkedQueue <Truck*> ST;
 	
-	LinkedQueue <Truck> VT;
+	LinkedQueue <Truck*> VT;
 	
-	LinkedQueue <Cargo> SC;
+	LinkedQueue <Cargo*> SC;
 	
-	//LinkedList <Cargo*> Nc;
+	LinkedList <Cargo*> Nc;
 
 
 public:
-
-
 	Company();
 
 	void simulate();
+
+	void setfilename(string name);
 
 	void openinput();
 
