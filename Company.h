@@ -5,6 +5,7 @@ using namespace std;
 # include <fstream>
 # include "UI.h" 
 # include "LinkedQueue.h"
+# include "PriorityQueue.h"
 # include "Truck.h"
 # include "Cargo.h"
 # include "LinkedList.h"
@@ -38,13 +39,13 @@ private:
 	
 	LinkedQueue <Cargo*> SC;
 	
-	LinkedList <Cargo*> Nc;
+	LinkedList <Cargo*> NC;
 
-	LinkedQueue<Cargo*>VC;
+	PriorityQueue <Cargo*> VC;
 
-	LinkedQueue<PreparationEvent*>rv;
+	LinkedQueue <PreparationEvent*> rv;
 
-	LinkedQueue<PromotionEvent*>pv;
+	LinkedQueue <PromotionEvent*> pv;
 public:
 	Company();
 
@@ -69,4 +70,10 @@ public:
 	void readtruckdata();
 
 	void readevents();
+
+	void addCargo(Cargo* S);
+
+	Cargo* removeCargo(int ID);
+
+	void promoteCargo(int ID, int ExtraCost);
 };

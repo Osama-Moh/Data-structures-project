@@ -16,7 +16,7 @@ public:
 	}
 
 	//Function that enqueues the elemtents sorted according to the key
-	bool enqueue(const T& newEntry, const int& newKey)
+	bool enqueue(const T& newEntry, int newKey)
 	{
 		//Creating the new node to be inserted 
 		Node<T>* temp = new Node<T>(newEntry, newKey);
@@ -58,7 +58,7 @@ public:
 	}
 
 	//Function the checks the first element.
-	bool peek(T& oldEntry)
+	bool peek(T& oldEntry) const
 	{
 		if (isEmpty())
 			return false;
@@ -69,7 +69,7 @@ public:
 	}
 
 	//Function that checks whether the queue is empty or not
-	bool isEmpty()
+	bool isEmpty() const
 	{
 		return (Head == nullptr);
 	}

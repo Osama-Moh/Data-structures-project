@@ -37,10 +37,11 @@ void Company::simulate()
 
 void Company::filltruckdata()
 {
+	int x;
 	for (int i = 1; i <= nt; i++)
 	{
 		Truck* pointern = new Truck;
-		NT.enqueue(pointern);
+		NT.enqueue(pointern,x);
 		pointern->setTYP('N');
 		pointern->setN(J);
 		pointern->setV(ns);
@@ -51,7 +52,7 @@ void Company::filltruckdata()
 	for (int j = 1; j <= st; j++)
 	{
 		Truck* pointers = new Truck;
-		ST.enqueue(pointers);
+		ST.enqueue(pointers,x);
 		pointers->setN(J);
 		pointers->setTYP('S');
 		pointers->setV(ss);
@@ -61,7 +62,7 @@ void Company::filltruckdata()
 	for (int k = 1; k <= vt; k++)
 	{
 		Truck* pointerv = new Truck;
-		VT.enqueue(pointerv);
+		VT.enqueue(pointerv,x);
 		pointerv->setTYP('V');
 		pointerv->setN(J);
 		pointerv->setV(vs);
@@ -152,4 +153,28 @@ void Company::writetofile()
 void Company::print()			// isa will be deleted
 {
 
+}
+
+void Company::addCargo(Cargo* S)
+{
+	if (S->getTYP() == 'N')
+		NC.InsertBeg(S);
+	if (S->getTYP() == 'S')
+		SC.enqueue(S,S->getPRIORITY());
+	if (S->getTYP() == 'V')
+		VC.enqueue(S,S->getPRIORITY());
+}
+
+Cargo* Company::removeCargo(int ID)
+{
+	return NC.removeCargo(ID);
+}
+
+void Company::promoteCargo(int ID, int ExtraCost)
+{
+	Cargo* S = removeCargo(ID);
+	S->setTYP('V');
+	int Cost = S->getCOST() + ExtraCost;
+	S->setCOST(Cost);
+	addCargo(S);
 }

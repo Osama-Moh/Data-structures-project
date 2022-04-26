@@ -10,7 +10,7 @@ PromotionEvent::PromotionEvent(int day, int hour, int id, int extracost): Event(
 }
 void PromotionEvent::Execute(Company* C)
 {
-	//C->promoteCargo(ID, ExtraCost);
+	C->promoteCargo(ID, ExtraCost);
 }
 void PromotionEvent::setExtraCost(int extracost)
 {
