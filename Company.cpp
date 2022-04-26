@@ -103,7 +103,7 @@ void Company::filleventsdata()
 	if (ev == 'R')
 	{
 		PreparationEvent* pointerr = new PreparationEvent;
-		rv.enqueue(pointerr);
+		rv.enqueue(pointerr,1);
 		pointerr->setCost(cost);
 		pointerr->setDist(dist);
 		pointerr->setID(id);
@@ -113,13 +113,13 @@ void Company::filleventsdata()
 	if (ev == 'X')
 	{
 		CancellationEvent* pointerc = new CancellationEvent;
-		cv.enqueue(pointerc);
+		cv.enqueue(pointerc,1);
 		pointerc->setID(id);
 	}
 	if (ev == 'P')
 	{
 		PromotionEvent* pointerp = new PromotionEvent;
-		pv.enqueue(pointerp);
+		pv.enqueue(pointerp,1);
 		pointerp->setExtraCost(cost);
 		pointerp->setID(id);
 	}

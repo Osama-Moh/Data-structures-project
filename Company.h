@@ -46,6 +46,8 @@ private:
 
 	LinkedQueue <PreparationEvent*> rv;
 
+	LinkedQueue <CancellationEvent*> cv;
+
 	LinkedQueue <PromotionEvent*> pv;
 public:
 	Company();

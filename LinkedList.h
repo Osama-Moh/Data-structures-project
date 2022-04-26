@@ -155,13 +155,14 @@ public:
 		{
 			if (reqCargo->getItem()->getID()==ID)
 			{
-				removeNode(reqCargo, index);
-				return reqCargo;
+				Cargo* temp = reqCargo->getItem();
+				removeNode(temp, index);
+				return temp;
 			}
 			reqCargo=reqCargo->getNext();
 			index++;
 		}
-		return reqCargo;
+		return reqCargo->getItem();
 	}
 
 	////////////////     Requirements   ///////////////////
