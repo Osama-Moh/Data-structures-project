@@ -226,5 +226,4 @@ LinkedQueue<T>::LinkedQueue(const LinkedQueue<T> & LQ)
 		NodePtr = NodePtr->getNext();
 	}
 }
-
 #endif

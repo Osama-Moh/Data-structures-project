@@ -39,7 +39,7 @@ void Company::filltruckdata()
 	for (int i = 1; i <= nt; i++)
 	{
 		Truck* pointern = new Truck;
-		NT.enqueue(pointern,x);
+		NT.enqueue(pointern,1);
 		pointern->setTYP('N');
 		pointern->setN(J);
 		pointern->setV(ns);
@@ -50,7 +50,7 @@ void Company::filltruckdata()
 	for (int j = 1; j <= st; j++)
 	{
 		Truck* pointers = new Truck;
-		ST.enqueue(pointers,x);
+		ST.enqueue(pointers,1);
 		pointers->setN(J);
 		pointers->setTYP('S');
 		pointers->setV(ss);
@@ -60,7 +60,7 @@ void Company::filltruckdata()
 	for (int k = 1; k <= vt; k++)
 	{
 		Truck* pointerv = new Truck;
-		VT.enqueue(pointerv,x);
+		VT.enqueue(pointerv,1);
 		pointerv->setTYP('V');
 		pointerv->setN(J);
 		pointerv->setV(vs);
@@ -88,11 +88,11 @@ void Company::readevents()
 		}
 		if (ev == 'X')
 		{
-			input >> et >> id;
+			//input >> et >> id;
 		}
 		if (ev == 'P')
 		{
-			input >> et >> id >> cost;
+			//input >> et >> id >> cost;
 		}
 		filleventsdata();
 	}

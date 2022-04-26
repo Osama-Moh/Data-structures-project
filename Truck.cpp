@@ -14,7 +14,7 @@ Truck::Truck(char typ, int tc, int mt, int v)
 }
 void Truck::loadCargo(Cargo* C)
 {
-	Q.enqueue(C);
+	Q.enqueue(C,1);
 	setN(++N);
 }
 void Truck::unloadCargo(Cargo* C)
