@@ -113,8 +113,8 @@ public:
 		{
 			Node<T>* newNode=new Node<T>;
 			newNode->setItem(newItem);
-			newNode->setNext(temp->getNext());
-			temp->setNext(newNode);
+			//newNode->setNext(temp->getNext());
+			//temp->setNext(newNode);
 			count++;
 			return true;
 		}
@@ -209,7 +209,23 @@ public:
 
 	//[9] Reverse
 	//Reverses the linked list (without allocating any new Nodes)
-	void Reverse();
+	void Reverse()
+	{
+		Node <T>* previous = NULL;
+		Node <T>* current = Head;
+		Node <T>* next = NULL;
+
+		while (current)
+		{
+			next = current->getNext();
+			current->setNext(previous);
+			previous = current;
+			current = next;
+		}
+
+		Head = previous;
+
+	}
 		
 };
 

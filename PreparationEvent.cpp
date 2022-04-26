@@ -1,5 +1,5 @@
 #include "PreparationEvent.h"
-
+# include "Cargo.h"
 
 PreparationEvent::PreparationEvent()
 {

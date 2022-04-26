@@ -8,12 +8,13 @@ using namespace std;
 # include "Truck.h"
 # include "Cargo.h"
 # include "LinkedList.h"
-
+# include "PreparationEvent.h"
+# include "PromotionEvent.h"
 
 class Company
 {
 private:
-	int  ns, ss, vs;											// speed of each truck type
+	int  ns, ss, vs;											// speed of each truck type (Normal,Special,VIP)
 	int nt, st, vt;												// number of each truck type
 	int NTC, STC, VTC;											// capacity of each truck
 	int J;
@@ -39,7 +40,11 @@ private:
 	
 	LinkedList <Cargo*> Nc;
 
+	LinkedQueue<Cargo*>VC;
 
+	LinkedQueue<PreparationEvent*>rv;
+
+	LinkedQueue<PromotionEvent*>pv;
 public:
 	Company();
 
@@ -53,13 +58,13 @@ public:
 
 	void writetofile();
 
-	void print();
+	void print();			// delete
 
 	void filltruckdata();
 
 	void filleventsdata();
 
-	void fillcargodata();
+	//void fillcargodata();
 
 	void readtruckdata();
 

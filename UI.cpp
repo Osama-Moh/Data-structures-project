@@ -48,10 +48,10 @@ void UI::print1()
 	cin >> printtype;
 	setprinttype(printtype);
 
-	cout << "file name is: ";
-	cin >> filename;
+	//cout << "file name is: ";
+	//cin >> filename;
 	
-
+	
 	cout << endl << "The printing mode will be the : ";
 	
 	if (printtype == 1)
@@ -139,7 +139,7 @@ void UI::silent()
 	cout << " Silent Mode" << endl << " Simulation Starts..." << endl << " Simulation ends, Output file created" << endl;
 }
 
-void UI::print2(int n, int s, int v, int sn, int ss, int sv, int ntc, int stc, int vtc, int j, int cn, int cs, int cv, int Auto, int max)
+void UI::print2(int n, int s, int v, int sn, int ss, int sv, int ntc, int stc, int vtc, int j, int cn, int cs, int cv, int Auto, int max,int nrv)
 {		
 	// this function is used to test that the data from the file is loaded (should be deleted or not to be submited)
 	cout << n << "  " << s << "  " << v << endl;
@@ -147,12 +147,24 @@ void UI::print2(int n, int s, int v, int sn, int ss, int sv, int ntc, int stc, i
 	cout << ntc << "  " << stc << "  " << vtc << endl;
 	cout << j << "  " << cn << "  " << cs << "  " << cv << endl;
 	cout << Auto << "  " << max << endl;
+	cout << nrv << endl;
 }
 
-void UI::print3(int e, char ev,char ty, string et,int id,int dist,int ly,int cost)
+void UI::print3(int e, char ev,char ty, string et,int id,int dist,int lt,int cost)
 {
 	// this function is used to test that the data from the file is loaded (should be deleted or not to be submited)
-	cout << e << endl << ev << "  " << ty << "  " << et << "  " << id << "  " << dist << "  " << ly << "  " << cost << endl;
+	if (ev == 'R')
+	{
+		cout << ev << "  " << ty << "  " << et << "  " << id << "  " << dist << "  " << lt << "  " << cost << endl;
+	}
+	else if (ev == 'P')
+	{
+		cout << ev << "  " << et << "  " << id << "  " << cost << endl;
+	}
+	else if (ev == 'X')
+	{
+		cout << ev << "  " << et << "  " << id << endl;
+	}
 }
 
 

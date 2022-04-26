@@ -12,10 +12,11 @@ Company::Company()
 void Company::simulate()
 {	
 	openinput();
+	int np = rv.getcount();
+
 	point->print1();
-	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW);
+	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,np);
 	point->print3(E, ev, typ, et, id, dist, lt, cost);
-	filltruckdata();
 
 	int hours = 00;
 	int days = 1;
@@ -69,17 +70,7 @@ void Company::filltruckdata()
 	}
 }
 
-void Company::openinput()					
-{													// the file name should be a user input
-	input.open("data.txt", ios::in);
 
-	if (input.is_open() == true)
-	{
-		readtruckdata();
-		readevents();
-	}
-	
-}
 
 void Company::readtruckdata()
 {
@@ -104,7 +95,45 @@ void Company::readevents()
 		{
 			input >> et >> id >> cost;
 		}
+		filleventsdata();
 	}
+}
+
+void Company::filleventsdata()
+{
+	if (ev == 'R')
+	{
+		PreparationEvent* pointerr = new PreparationEvent;
+		pointerr->setCost(cost);
+		pointerr->setDist(dist);
+		pointerr->setID(id);
+		pointerr->setLoad(lt);
+		pointerr->setType(typ);
+	}
+	if (ev == 'X')
+	{
+
+	}
+	if (ev == 'P')
+	{
+		PromotionEvent* pointerp = new PromotionEvent;
+		pointerp->setExtraCost(cost);
+		pointerp->setID(id);
+	}
+
+}
+void Company::openinput()
+{													// the file name should be a user input
+	input.open("data.txt", ios::in);
+
+	if (input.is_open() == true)
+	{
+		readtruckdata();
+		filltruckdata();
+		readevents();
+		//filleventsdata();
+	}
+
 }
 
 void Company::openoutput()
