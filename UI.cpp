@@ -150,20 +150,20 @@ void UI::print2(int n, int s, int v, int sn, int ss, int sv, int ntc, int stc, i
 	cout << nrv << endl;
 }
 
-void UI::print3(int e, char ev,char ty, string et,int id,int dist,int lt,int cost)
+void UI::print3(int e, char ev,char ty, int d, int h,int id,int dist,int lt,int cost)
 {
 	// this function is used to test that the data from the file is loaded (should be deleted or not to be submited)
 	if (ev == 'R')
 	{
-		cout << ev << "  " << ty << "  " << et << "  " << id << "  " << dist << "  " << lt << "  " << cost << endl;
+		cout << ev << "  " << ty << "  " << d << " "<< h << "  " << id << "  " << dist << "  " << lt << "  " << cost << endl;
 	}
 	else if (ev == 'P')
 	{
-		cout << ev << "  " << et << "  " << id << "  " << cost << endl;
+		//cout << ev << "  " << et << "  " << id << "  " << cost << endl;
 	}
 	else if (ev == 'X')
 	{
-		cout << ev << "  " << et << "  " << id << endl;
+	//	cout << ev << "  " << et << "  " << id << endl;
 	}
 }
 

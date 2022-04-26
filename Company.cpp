@@ -14,7 +14,7 @@ void Company::simulate()
 	openinput();
 	point->print1();
 	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,0);
-	point->print3(E, ev, typ, et, id, dist, lt, cost);
+	point->print3(E, ev, typ, day , hour, id, dist, lt, cost);
 
 	int hours = 00;
 	int days = 1;
@@ -83,7 +83,7 @@ void Company::readevents()
 		input >> ev;
 		if (ev == 'R')
 		{
-			input >> typ >> et >> id >> dist >> lt >> cost;
+			input >> typ >> day >> colon >> hour >> id >> dist >> lt >> cost;
 		}
 		if (ev == 'X')
 		{

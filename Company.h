@@ -22,9 +22,8 @@ private:
 	int CN, CS, CV;												// time of checkup for normal,special,vip
 	int AutoP, MaxW;											
 	int E;														// number of events
-	char ev, typ;
-	string et;
-	int id, dist, lt, cost;
+	char ev, typ, colon;
+	int id, dist, lt, cost, day, hour;
 	string fileinname;
 
 	ifstream input;
