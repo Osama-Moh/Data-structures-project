@@ -10,6 +10,10 @@ private:
 	int Key;
 
 public:
+	Node()
+	{
+
+	}
 	Node(T newItem, int newKey=1, Node* newNext=nullptr)
 	{
 		setItem(newItem);

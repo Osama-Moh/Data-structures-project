@@ -88,11 +88,11 @@ void Company::readevents()
 		}
 		if (ev == 'X')
 		{
-			//input >> et >> id;
+			input >> day >> colon >> hour >> id;
 		}
 		if (ev == 'P')
 		{
-			//input >> et >> id >> cost;
+			input >> day >> colon >> hour >> id >> cost;
 		}
 		filleventsdata();
 	}

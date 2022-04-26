@@ -1,5 +1,5 @@
 #include "PromotionEvent.h"
-
+# include "Company.h"
 
 PromotionEvent::PromotionEvent()
 {

@@ -1,6 +1,5 @@
 #include "CancellationEvent.h"
-class Company;
-
+# include "Company.h"
 CancellationEvent::CancellationEvent()
 {
 }
