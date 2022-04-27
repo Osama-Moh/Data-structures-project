@@ -11,18 +11,26 @@ Company::Company()
 
 void Company::simulate()
 {	
+	Event* ptr;
 	openinput();
+	//int nn = eve.getcount();
 	point->print1();
-	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,0);
-	point->print3(E, ev, typ, day , hour, id, dist, lt, cost);
+	//point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
+	//point->print3(E, ev, typ, day , hour, id, dist, lt, cost);
 
 	int hours = 00;
 	int days = 1;
-	while (days<2)					// while true (this condition will be changed but i make it this way in order to make basic tests
+	while (events.peek(ptr))					// while true (this condition will be changed but i make it this way in order to make basic tests
 	{
-		int n = NT.getcount() + ST.getcount() + VT.getcount();
-		point->printmode(n, hours, days);
+		if (ptr->getDay() == days && ptr->getHour() == hours)
+		{
+			events.dequeue(ptr);
+			ptr->Execute();
+			//int n = NT.getcount() + ST.getcount() + VT.getcount();
+			point->printmode(0, hours, days);
 
+
+		}
 		hours++;
 		if (hours == 24)
 		{
@@ -35,7 +43,6 @@ void Company::simulate()
 
 void Company::filltruckdata()
 {
-	int x;
 	for (int i = 1; i <= nt; i++)
 	{
 		Truck* pointern = new Truck;
@@ -69,8 +76,6 @@ void Company::filltruckdata()
 	}
 }
 
-
-
 void Company::readtruckdata()
 {
 	input >> nt >> st >> vt >> ns >> ss >> vs >> NTC >> STC >> VTC >> J >> CN >> CS >> CV >> AutoP >> MaxW;
@@ -100,60 +105,22 @@ void Company::readevents()
 
 void Company::filleventsdata()
 {
+	Event* pointer;
 	if (ev == 'R')
 	{
-		PreparationEvent* pointerr = new PreparationEvent;
-		rv.enqueue(pointerr,1);
-		pointerr->setCost(cost);
-		pointerr->setDist(dist);
-		pointerr->setID(id);
-		pointerr->setLoad(lt);
-		pointerr->setType(typ);
+		pointer = new PreparationEvent(id, day, hour, typ, lt, dist, cost);
+		events.enqueue(pointer,1);
 	}
 	if (ev == 'X')
 	{
-		CancellationEvent* pointerc = new CancellationEvent;
-		cv.enqueue(pointerc,1);
-		pointerc->setID(id);
+		pointer = new CancellationEvent(id, day, hour);
+		events.enqueue(pointer, 1);
 	}
 	if (ev == 'P')
 	{
-		PromotionEvent* pointerp = new PromotionEvent;
-		pv.enqueue(pointerp,1);
-		pointerp->setExtraCost(cost);
-		pointerp->setID(id);
+		pointer = new PromotionEvent(id, day, hour, cost);
+		events.enqueue(pointer, 1);
 	}
-
-}
-void Company::openinput()
-{													// the file name should be a user input
-	input.open("data.txt", ios::in);
-
-	if (input.is_open() == true)
-	{
-		readtruckdata();
-		filltruckdata();
-		readevents();
-	}
-
-}
-
-void Company::openoutput()
-{
-	output.open("Output.txt", ios::out);
-	if (output.is_open() == true)
-	{
-		writetofile();
-	}
-}
-
-void Company::writetofile()
-{
-}
-
-void Company::print()			// isa will be deleted
-{
-
 }
 
 void Company::addCargo(Cargo* S)
@@ -178,4 +145,30 @@ void Company::promoteCargo(int ID, int ExtraCost)
 	int Cost = S->getCOST() + ExtraCost;
 	S->setCOST(Cost);
 	addCargo(S);
+}
+
+void Company::openinput()
+{													// the file name should be a user input
+	input.open("data.txt", ios::in);
+
+	if (input.is_open() == true)
+	{
+		readtruckdata();
+		filltruckdata();
+		readevents();
+	}
+
+}
+
+void Company::openoutput()
+{
+	output.open("Output.txt", ios::out);
+	if (output.is_open() == true)
+	{
+		writetofile();
+	}
+}
+
+void Company::writetofile()
+{
 }
