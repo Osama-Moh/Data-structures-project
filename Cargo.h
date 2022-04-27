@@ -4,32 +4,32 @@
 class Cargo
 {
 private:
-	char TYP;
-	int ID;
-	int PTD;
-	int PTH;
-	int LT;
-	int DIST;
-	int COST;
+	char TYP;   // Cargo Type
+	int ID;   // Cargo ID
+	int PTD;   // Cargo Preparation Time in Days
+	int PTH;   // Cargo Preparation Time in Hours
+	int LT;   // Cargo Loading and Unloading Time
+	int DIST;   // Cargo Shipping Distance
+	int COST;   // Cargo Shipping Cost
 
 public:
-	Cargo();
-	Cargo(char typ, int id, int ptd, int pth, int lt, int dist, int cost);
-	void setTYP(char typ);
-	void setID(int id);
-	void setPTD(int ptd);
-	void setPTH(int pth);
-	void setLT(int lt);
-	void setDIST(int dist);
-	void setCOST(int cost);
-	char getTYP();
-	int getID();
-	int getPTD();
-	int getPTH();
-	int getLT();
-	int getDIST();
-	int getCOST();
-	int getPRIORITY();
-	~Cargo();
+	Cargo();   // No Arguments Constructor
+	Cargo(char typ, int id, int ptd, int pth, int lt, int dist, int cost);   // Arguments Constructor
+	void setTYP(char typ);   // Sets Cargo Type 
+	void setID(int id);   // Sets Cargo ID
+	void setPTD(int ptd);   // Sets Cargo Preparation Time in Days
+	void setPTH(int pth);   // Sets Cargo Preparation Time in Hours
+	void setLT(int lt);   // Sets Cargo Loading and Unloading Time
+	void setDIST(int dist);   // Sets Cargo Shipping Distance
+	void setCOST(int cost);   // Sets Cargo Shipping Cost
+	char getTYP();   // Returns Cargo Type
+	int getID();   // Returns Cargo ID
+	int getPTD();   // Returns Cargo Preparation Time in Days
+	int getPTH();   // Returns Cargo Preparation Time in Hours
+	int getLT();   // Returns Cargo Loading and Unloading Time
+	int getDIST();   // Returns Cargo Shipping Distance
+	int getCOST();   // Returns Cargo Shipping Cost
+	int getPRIORITY();   // Returns Cargo Priority
+	~Cargo();  // Destructor
 
 };
