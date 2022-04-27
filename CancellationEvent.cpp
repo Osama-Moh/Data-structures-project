@@ -3,7 +3,7 @@
 CancellationEvent::CancellationEvent()
 {
 }
-CancellationEvent::CancellationEvent(int day, int hour, int id): Event(day, hour, id)
+CancellationEvent::CancellationEvent(int id, int day, int hour): Event(id, day, hour)
 {
 }
 void CancellationEvent::Execute(Company* C)

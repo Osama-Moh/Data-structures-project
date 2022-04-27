@@ -18,17 +18,17 @@ void Company::simulate()
 	//point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
 	//point->print3(E, ev, typ, day , hour, id, dist, lt, cost);
 
-	int hours = 00;
+	int hours = 1;
 	int days = 1;
 	while (events.peek(ptr))					// while true (this condition will be changed but i make it this way in order to make basic tests
 	{
-		if (ptr->getDay() == days && ptr->getHour() == hours)
+		while (ptr->getDay() == days && ptr->getHour() == hours)
 		{
 			events.dequeue(ptr);
 			//ptr->Execute();
 			int n = NT.getcount() + ST.getcount() + VT.getcount();
 			point->printmode(n, hours, days);
-
+			events.peek(ptr);
 
 		}
 		hours++;

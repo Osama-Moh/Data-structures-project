@@ -4,7 +4,7 @@
 PromotionEvent::PromotionEvent()
 {
 }
-PromotionEvent::PromotionEvent(int day, int hour, int id, int extracost): Event(day, hour, id)
+PromotionEvent::PromotionEvent(int id, int day, int hour, int extracost): Event(id, day, hour)
 {
 	setExtraCost(extracost);
 }

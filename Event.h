@@ -11,7 +11,7 @@ protected:
 
 public:
 	Event();
-	Event(int day, int hour, int id);
+	Event(int id, int day, int hour);
 	virtual void Execute(Company* C) = 0;
 	void setDay(int day);
 	void setHour(int hour);

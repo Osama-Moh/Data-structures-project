@@ -4,7 +4,7 @@
 Event::Event()
 {
 }
-Event::Event(int day, int hour, int id)
+Event::Event(int id, int day, int hour)
 {
 	setDay(day);
 	setHour(hour);
