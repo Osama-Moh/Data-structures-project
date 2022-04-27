@@ -11,7 +11,7 @@ private:
 	int Cost;
 public:
 	PreparationEvent();
-	PreparationEvent(int id, int day, int hour, char type, int load, int dist, int cost);
+	PreparationEvent(char type, int id, int day, int hour, int load, int dist, int cost);
 	void Execute(Company* C);
 	void setType(char type);
 	void setLoad(int load);

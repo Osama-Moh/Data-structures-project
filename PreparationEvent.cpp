@@ -5,7 +5,7 @@
 PreparationEvent::PreparationEvent()
 {
 }
-PreparationEvent::PreparationEvent(int id, int day, int hour, char type, int load, int dist, int cost):Event(id, day, hour)
+PreparationEvent::PreparationEvent(char type, int id, int day, int hour, int load, int dist, int cost):Event(id, day, hour)
 {
 	setType(type);
 	setLoad(load);
