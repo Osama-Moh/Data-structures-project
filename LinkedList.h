@@ -113,8 +113,8 @@ public:
 		{
 			Node<T>* newNode=new Node<T>;
 			newNode->setItem(newItem);
-			//newNode->setNext(temp->getNext());
-			//temp->setNext(newNode);
+			newNode->setNext(prev->getNext());
+			prev->setNext(newNode);
 			count++;
 			return true;
 		}
