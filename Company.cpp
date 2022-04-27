@@ -16,7 +16,6 @@ void Company::simulate()
 	int nn = events.getcount();
 	point->print1();
 	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
-	//point->print3(E, ev, typ, day , hour, id, dist, lt, cost);
 	int hours = 00;
 	int days = 1;
 	while (events.peek(ptr))		
@@ -174,4 +173,9 @@ void Company::openoutput()
 void Company::writetofile()
 {
 
+}
+
+void Company::print()
+{
+	
 }

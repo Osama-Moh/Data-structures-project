@@ -13,6 +13,7 @@ private:
 	int DT;   // Truck Delievery Time
 	int V;   // Truck Speed
 	int N;   // Number Of Delieveries Before Checkup
+	int id;		// Truck ID
 
 public:
 	Truck();   // No Arguments Constructor
@@ -32,6 +33,8 @@ public:
 	int getV();   // Returns Truck Speed
 	int getN();   // Returns Number Of Delieveries Before Checkup
 	~Truck();   // Destructor
+	friend ostream& operator <<(ostream& print, const Truck& tr);		// operator overloading for the cout << function
+
 
 };
 

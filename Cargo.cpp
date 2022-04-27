@@ -1,4 +1,6 @@
 #include "Cargo.h"
+# include <iostream>
+using namespace std;
 
 Cargo::Cargo()
 {
@@ -73,6 +75,15 @@ int Cargo::getPRIORITY()
 {
 	return TYP == 'V' ? 1 : 0;
 }
+
+ostream& operator<<(ostream& outprint, const Cargo& ca)
+{
+	outprint << ca.ID << endl;
+	return outprint;
+}
+
 Cargo::~Cargo()
 {
+	
 }
+

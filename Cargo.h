@@ -1,5 +1,6 @@
 #pragma once
-
+# include <iostream>
+using namespace std;
 
 class Cargo
 {
@@ -31,5 +32,6 @@ public:
 	int getCOST();   // Returns Cargo Shipping Cost
 	int getPRIORITY();   // Returns Cargo Priority
 	~Cargo();  // Destructor
+	friend ostream& operator <<(ostream& printout, const Cargo& ca);		// operator overloading for the cout << function
 
 };

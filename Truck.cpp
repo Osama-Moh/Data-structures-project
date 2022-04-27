@@ -73,3 +73,9 @@ int Truck::getN()
 Truck::~Truck(void)
 {
 }
+
+ostream& operator<<(ostream& print, const Truck& tr)
+{
+	print << tr.id << endl;
+	return print;
+}
