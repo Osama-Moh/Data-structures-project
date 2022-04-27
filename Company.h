@@ -60,13 +60,11 @@ public:
 
 	void writetofile();
 
-	void print();			// delete
+	void print();			
 
 	void filltruckdata();
 
 	void filleventsdata();
-
-	//void fillcargodata();
 
 	void readtruckdata();
 

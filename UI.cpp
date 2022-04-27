@@ -88,14 +88,14 @@ void UI::interactive(int n, int ncn, int scs, int vcv, int t, int d)
 
 	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
 	cout << "--------------------------------" << endl << endl;
-		
-	cout << " " << "Waiting Cargos: " << vcv+scs+ncn << endl << endl;
+
+	cout << " " << "Waiting Cargos(VIP): " << vcv << endl << endl;
 	cout << "--------------------------------" << endl << endl;
-		
-	cout << " " << "Loading Trucks: " << endl << endl;
+
+	cout << " " << "Loading Trucks: (Normal)" << ncn << endl << endl;
 	cout << "--------------------------------" << endl << endl;
-		
-	cout << n << " " << "Empty Trucks:" << endl << endl;
+
+	cout << n << " " << "Empty Trucks(Special):" << scs << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
 	cout << " " << "Moving Cargos: " << endl << endl;
@@ -103,7 +103,7 @@ void UI::interactive(int n, int ncn, int scs, int vcv, int t, int d)
 
 	cout << " " << "In-Checkup Trucks: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
-		
+
 	cout << " " << "Delivered Cargos: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
