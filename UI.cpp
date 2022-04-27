@@ -131,7 +131,7 @@ void UI::stepbystep(int n, int t, int d)
 
 	cout << " " << "Delivered Cargos: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
-	//Sleep(1000);
+	Sleep(1000);
 }
 
 void UI::silent()

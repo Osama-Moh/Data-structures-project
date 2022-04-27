@@ -25,9 +25,9 @@ void Company::simulate()
 		if (ptr->getDay() == days && ptr->getHour() == hours)
 		{
 			events.dequeue(ptr);
-			ptr->Execute();
-			//int n = NT.getcount() + ST.getcount() + VT.getcount();
-			point->printmode(0, hours, days);
+			//ptr->Execute();
+			int n = NT.getcount() + ST.getcount() + VT.getcount();
+			point->printmode(n, hours, days);
 
 
 		}
