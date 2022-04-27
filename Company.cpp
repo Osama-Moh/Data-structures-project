@@ -25,7 +25,6 @@ void Company::simulate()
 		{
 			events.dequeue(ptr);
 			ptr->Execute(this);
-
 			events.peek(ptr);
 
 		}
@@ -111,7 +110,7 @@ void Company::filleventsdata()
 	Event* pointer;
 	if (ev == 'R')
 	{
-		pointer = new PreparationEvent(id, day, hour, typ, lt, dist, cost);
+		pointer = new PreparationEvent(typ, id, day, hour, lt, dist, cost);
 		events.enqueue(pointer,1);
 	}
 	if (ev == 'X')

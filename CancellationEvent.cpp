@@ -9,7 +9,8 @@ CancellationEvent::CancellationEvent(int id, int day, int hour): Event(id, day, 
 void CancellationEvent::Execute(Company* C)
 {
 	Cargo* S=C->removeCargo(ID);
-	delete S;
+	if (S != nullptr)
+		delete S;
 }
 CancellationEvent::~CancellationEvent()
 {
