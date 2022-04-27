@@ -7,7 +7,7 @@ class PriorityQueue: public QueueADT<T>
 {
 private:
 	Node<T>* Head;
-
+	int	count = 0;
 public:
 	//Constructor
 	PriorityQueue()
@@ -38,6 +38,7 @@ public:
 			temp->setNext(ptr->getNext());
 			ptr->setNext(temp);
 		}
+		count++;
 		return true;
 	}
 
@@ -53,10 +54,15 @@ public:
 
 		delete temp;
 		temp=nullptr;
+		count--;
 		return true;
 
 	}
 
+	int getcount()
+	{
+		return count;
+	}
 	//Function the checks the first element.
 	bool peek(T& oldEntry) const
 	{

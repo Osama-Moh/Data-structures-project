@@ -44,6 +44,8 @@ private:
 
 	PriorityQueue <Cargo*> VC;
 
+	PriorityQueue <Truck*> Check;
+
 	LinkedQueue<Event*>events;
 public:
 	Company();

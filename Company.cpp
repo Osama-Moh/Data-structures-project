@@ -13,24 +13,27 @@ void Company::simulate()
 {	
 	Event* ptr;
 	openinput();
-	//int nn = eve.getcount();
+	int nn = events.getcount();
 	point->print1();
-	//point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
+	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
 	//point->print3(E, ev, typ, day , hour, id, dist, lt, cost);
-
-	int hours = 1;
+	int hours = 00;
 	int days = 1;
-	while (events.peek(ptr))					// while true (this condition will be changed but i make it this way in order to make basic tests
+	while (events.peek(ptr))		
 	{
 		while (ptr->getDay() == days && ptr->getHour() == hours)
 		{
 			events.dequeue(ptr);
-			//ptr->Execute();
-			int n = NT.getcount() + ST.getcount() + VT.getcount();
-			point->printmode(n, hours, days);
+			ptr->Execute(this);
+
 			events.peek(ptr);
 
 		}
+		int nsn = SC.getcount();
+		int vsv = VC.getcount();
+		int ncc = NC.getCount();
+		int n = NT.getcount() + ST.getcount() + VT.getcount();
+		point->printmode(n,ncc,nsn,vsv, hours, days);
 		hours++;
 		if (hours == 24)
 		{
@@ -171,4 +174,5 @@ void Company::openoutput()
 
 void Company::writetofile()
 {
+
 }

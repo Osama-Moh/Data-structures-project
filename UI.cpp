@@ -69,11 +69,11 @@ void UI::print1()
 	}
 }
 
-void UI::printmode(int n, int t, int d)
+void UI::printmode(int n,int NnC,int Ssc,int Vvc, int t, int d)
 {
 	if (printtype == 1)
 	{
-		interactive(n,t,d);
+		interactive(n,NnC, Ssc, Vvc,t,d);
 	}
 	else if (printtype == 2)
 	{
@@ -82,14 +82,14 @@ void UI::printmode(int n, int t, int d)
 
 }
 
-void UI::interactive(int n, int t, int d)
+void UI::interactive(int n, int ncn, int scs, int vcv, int t, int d)
 {		
 	detectenter();
 
 	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 		
-	cout << " " << "Waiting Cargos: " << endl << endl;
+	cout << " " << "Waiting Cargos: " << vcv+scs+ncn << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 		
 	cout << " " << "Loading Trucks: " << endl << endl;
