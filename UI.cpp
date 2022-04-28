@@ -69,11 +69,11 @@ void UI::print1()
 	}
 }
 
-void UI::printmode(int n, int TNC, int TDC, int NnC, int Ssc, int Vvc, int t, int d)
+void UI::printmode(int n, int TNC, int TDC, int NnC, int Ssc, int Vvc, int t, int d, CargoLinkedList L)
 {
 	if (printtype == 1)
 	{
-		interactive(n, TNC, TDC, NnC, Ssc, Vvc, t, d);
+		interactive(n, TNC, TDC, NnC, Ssc, Vvc, t, d, L);
 	}
 	else if (printtype == 2)
 	{
@@ -82,20 +82,21 @@ void UI::printmode(int n, int TNC, int TDC, int NnC, int Ssc, int Vvc, int t, in
 
 }
 
-void UI::interactive(int n,int TNC,int TDC, int ncn, int scs, int vcv, int t, int d)
+void UI::interactive(int n,int TNC,int TDC, int ncn, int scs, int vcv, int t, int d, CargoLinkedList L)
 {		
 	detectenter();
 
-	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
+	cout << "Current Time (Day:Hour):" << d << ":" << t << endl;
+	L.print();
 	cout << "--------------------------------" << endl << endl;
 			
-	cout << TNC << " " << "Waiting Cargos(VIP): " << vcv << endl << endl;
+	cout << TNC << " " << "Waiting Cargos: " << ncn << scs << vcv << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << 0 << " " << "Loading Trucks: (Normal)" << ncn << endl << endl;
+	cout << 0 << " " << "Loading Trucks:" << ncn << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << n << " " << "Empty Trucks(Special):" << scs << endl << endl;
+	cout << n << " " << "Empty Trucks:" << scs << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
 	cout << 0 <<" " << "Moving Cargos: " << endl << endl;
@@ -103,6 +104,7 @@ void UI::interactive(int n,int TNC,int TDC, int ncn, int scs, int vcv, int t, in
 
 	cout << 0 <<" " << "In-Checkup Trucks: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
+
 	cout << TDC << " " << "Delivered Cargos: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 

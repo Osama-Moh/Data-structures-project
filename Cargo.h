@@ -31,7 +31,7 @@ public:
 	int getDIST();   // Returns Cargo Shipping Distance
 	int getCOST();   // Returns Cargo Shipping Cost
 	int getPRIORITY();   // Returns Cargo Priority
-	friend ostream& operator << (ostream& out,const Cargo*& C);
+	friend ostream& operator << (ostream& out,const Cargo& C);
 	~Cargo();  // Destructor
 	
 };

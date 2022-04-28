@@ -88,9 +88,9 @@ int Truck::getID() const
 Truck::~Truck()
 {
 }
-ostream& operator << (ostream& out, const Truck* T)
+ostream& operator << (ostream& out, const Truck& T)
 {
-	out << T->getID();
+	out << T.getID();
 	return out;
 }
 

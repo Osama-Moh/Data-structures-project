@@ -79,8 +79,8 @@ Cargo::~Cargo()
 {
 	
 }
-ostream& operator << (ostream& out,const Cargo*& C)
+ostream& operator << (ostream& out,const Cargo& C)
 {
-	out << C->getID();
+	out << C.getID();
 	return out;
 }

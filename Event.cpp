@@ -30,10 +30,15 @@ int Event::getHour()
 {
 	return Hour;
 }
-int Event::getID()
+int Event::getID() const
 {
 	return ID;
 }
 Event::~Event()
 {
+}
+ostream& operator << (ostream& out, const Event& E)
+{
+	out << E.getID();
+	return out;
 }

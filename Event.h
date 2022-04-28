@@ -1,5 +1,7 @@
 #pragma once
 #include "Cargo.h"
+#include <iostream>
+using namespace std;
 class Company;
 
 class Event
@@ -18,7 +20,8 @@ public:
 	void setID(int id);   // Sets Executed Cargo ID
 	int getDay();   // Returns Event Execution Day
 	int getHour();   // Returns Event Execution Hour
-	int getID();   // Returns Executed Cargo ID
+	int getID() const;   // Returns Executed Cargo ID
 	virtual ~Event();   // Destructor
+	friend ostream& operator << (ostream& out, const Event& E);
 };
 

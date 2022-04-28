@@ -37,7 +37,7 @@ public:
 	int getV();   // Returns Truck Speed
 	int getN();   // Returns Number Of Delieveries Before Checkup
 	int getID() const;  // Return Truck ID
-	friend ostream& operator << (ostream& out, const Truck* T);
+	friend ostream& operator << (ostream& out, const Truck& T);
 	~Truck();   // Destructor
 };
 

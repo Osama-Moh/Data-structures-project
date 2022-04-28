@@ -58,7 +58,7 @@ void Company::simulate()
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
-		point->printmode(n, nc, TDC, ncc, nsn, vsv, hours, days);
+		point->printmode(n, nc, TDC, ncc, nsn, vsv, hours, days, NC);
 		hours++;
 		if (hours == 24)
 		{

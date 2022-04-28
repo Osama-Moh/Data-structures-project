@@ -215,9 +215,10 @@ public:
 		while (ptr)
 		{
 			item = ptr->getItem();
-			cout << item;
+			cout << *item;
 			if (ptr->getNext())
 				cout << ",";
+			ptr = ptr->getNext();
 		}
 	}
 };
