@@ -1,5 +1,6 @@
 #pragma once
 #include "LinkedQueue.h"
+#include "PriorityQueue.h"
 #include "Cargo.h"
 
 
@@ -7,7 +8,7 @@ class Truck
 {
 private:
 	LinkedQueue<Cargo*> QL;   // Loaded Cargos
-	LinkedQueue<Cargo*> QM;   // Moving Cargos
+	PriorityQueue<Cargo*> QM;   // Moving Cargos
 	char TYP;   // Truck Type
 	int TC;   // Truck Capacity
 	int MT;   // Truck Maintainance Time
