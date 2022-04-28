@@ -7,7 +7,7 @@
 template <typename T>
 class LinkedList
 {
-private:
+protected:
 	Node<T> *Head;	//Pointer to the head of the list
 	//You can add tail pointer too (depending on your problem)
 
@@ -191,24 +191,6 @@ public:
 			return true;
 		}
 		return false;
-	}
-
-	Cargo* removeCargo(const int& ID)
-	{
-		int index=1;
-		Node<Cargo*>* reqCargo=Head;
-		while (reqCargo)
-		{
-			if (reqCargo->getItem()->getID()==ID)
-			{
-				Cargo* temp = reqCargo->getItem();
-				removeNode(temp, index);
-				return temp;
-			}
-			reqCargo=reqCargo->getNext();
-			index++;
-		}
-		return reqCargo->getItem();
 	}
 
 	void Reverse()
