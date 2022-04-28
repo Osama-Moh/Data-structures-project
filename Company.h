@@ -47,6 +47,13 @@ private:
 	PriorityQueue <Truck*> Check;
 
 	LinkedQueue<Event*>events;
+
+	LinkedQueue<Cargo*> DeliveredSC;
+
+	LinkedQueue<Cargo*> DeliveredNC;
+
+	LinkedQueue<Cargo*> DeliveredVC;
+
 public:
 	Company();
 
