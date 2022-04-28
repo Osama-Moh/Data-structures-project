@@ -69,11 +69,11 @@ void UI::print1()
 	}
 }
 
-void UI::printmode(int n, int TNC, int TDC, int NnC, int Ssc, int Vvc, int t, int d, CargoLinkedList L)
+void UI::printmode(int n, int TNC, int TDC, int NnC, int Ssc, int Vvc, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P)
 {
 	if (printtype == 1)
 	{
-		interactive(n, TNC, TDC, NnC, Ssc, Vvc, t, d, L);
+		interactive(n, TNC, TDC, NnC, Ssc, Vvc, t, d, L, Q, P);
 	}
 	else if (printtype == 2)
 	{
@@ -82,18 +82,20 @@ void UI::printmode(int n, int TNC, int TDC, int NnC, int Ssc, int Vvc, int t, in
 
 }
 
-void UI::interactive(int n,int TNC,int TDC, int ncn, int scs, int vcv, int t, int d, CargoLinkedList L)
+void UI::interactive(int n,int TNC,int TDC, int ncn, int scs, int vcv, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P)
 {		
 	detectenter();
 
-	cout << "Current Time (Day:Hour):" << d << ":" << t << endl;
-	L.print();
+	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 			
-	cout << TNC << " " << "Waiting Cargos: " << ncn << scs << vcv << endl << endl;
+	cout << TNC << " " << "Waiting Cargos: " << endl;
+	cout << "["; L->print(); cout << "]"<<" ";
+	cout << "("; Q->print(); cout << ")" << " ";
+	cout << "{"; P->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << 0 << " " << "Loading Trucks:" << ncn << endl << endl;
+	cout << 0 << " " << "Loading Trucks:" << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
 	cout << n << " " << "Empty Trucks:" << scs << endl << endl;
