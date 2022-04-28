@@ -3,24 +3,31 @@
 Truck::Truck()
 {
 }
-Truck::Truck(char typ, int tc, int mt, int v)
+Truck::Truck(char typ, int tc, int mt, int v, int n, int id)
 {
 	setTYP(typ);						
 	setTC(tc);								
 	setMT(mt);	   
 	setDT(0);
 	setV(v);								
-	setN(0);								
+	setN(n);
+	setID(id);
 }
 void Truck::loadCargo(Cargo* C)
 {
-	Q.enqueue(C,1);
-	setN(++N);
+	QL.enqueue(C,1);
+	if (QL.getcount() == TC)
+		while (QL.dequeue(C))
+			QM.enqueue(C,1);
+
 }
 void Truck::unloadCargo(Cargo* C)
 {
-	Q.dequeue(C);
-	setN(--N);
+	QM.dequeue(C);
+}
+bool Truck::hasCargo(Cargo* C)
+{
+	return true;
 }
 void Truck::setTYP(char typ)					
 {
@@ -36,7 +43,7 @@ void Truck::setMT(int mt)
 }
 void Truck::setDT(int dt)
 {
-	DT=dt;					// DT=(distance to deliver furthest cargo)/(V)+
+	DT=dt;
 }
 void Truck::setV(int v)
 {
@@ -48,7 +55,7 @@ void Truck::setN(int n)
 }
 void Truck::setID(int id)
 {
-	ID = id;
+	ID=id;
 }
 char Truck::getTYP()
 {
@@ -73,6 +80,10 @@ int Truck::getV()
 int Truck::getN()
 {
 	return N;
+}
+int Truck::getID()
+{
+	return ID;
 }
 Truck::~Truck(void)
 {

@@ -6,12 +6,12 @@ class Company;
 class PromotionEvent: public Event
 {
 private:
-	int ExtraCost;
+	int ExtraCost;   // Promoted Cargo Extra Cost
 public:
-	PromotionEvent();
-	PromotionEvent(int id, int day, int hour, int extracost);
-	void Execute(Company* C);
-	void setExtraCost(int extracost);
-	int getExtraCost();
-	~PromotionEvent();
+	PromotionEvent();   // No Arguments Constructor
+	PromotionEvent(int id, int day, int hour, int extracost);   // Arguments Constructor
+	void Execute(Company* C);   // Promotes A Cargo
+	void setExtraCost(int extracost);   // Sets Promoted Cargo Extra Cost
+	int getExtraCost();   // Returns Promoted Extra Cost
+	~PromotionEvent();   // Destructor
 };

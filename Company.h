@@ -17,12 +17,12 @@ using namespace std;
 class Company
 {
 private:
-	int  ns, ss, vs;											// speed of each truck type (Normal,Special,VIP)
-	int nt, st, vt;												// number of each truck type
+	int NTS, STS, VTS;											// speed of each truck type (Normal,Special,VIP)
+	int NTN, STN, VTN;										    // number of each truck type
 	int NTC, STC, VTC;											// capacity of each truck
-	int J;
 	int CN, CS, CV;												// time of checkup for normal,special,vip
-	int AutoP, MaxW;											
+	int AutoP, MaxW;
+	int J;
 	int E;														// number of events
 	char ev, typ, colon;
 	int id, dist, lt, cost, day, hour;

@@ -5,20 +5,20 @@ class Company;
 class Event
 {
 protected:
-	int Day;
-	int Hour;
-	int ID;
+	int Day;   // Event Execution Day
+	int Hour;   // Event Execution Hour
+	int ID;   // Executed Cargo ID
 
 public:
-	Event();
-	Event(int id, int day, int hour);
-	virtual void Execute(Company* C) = 0;
-	void setDay(int day);
-	void setHour(int hour);
-	void setID(int id);
-	int getDay();
-	int getHour();
-	int getID();
-	virtual ~Event();
+	Event();   // No Arguments Constructor
+	Event(int id, int day, int hour);   // Arguments Constructor
+	virtual void Execute(Company* C) = 0;   // Executes Event
+	void setDay(int day);   // Sets Event Execution Day
+	void setHour(int hour);   // Sets Event Execution Hour
+	void setID(int id);   // Sets Executed Cargo ID
+	int getDay();   // Returns Event Execution Day
+	int getHour();   // Returns Event Execution Hour
+	int getID();   // Returns Executed Cargo ID
+	virtual ~Event();   // Destructor
 };
 

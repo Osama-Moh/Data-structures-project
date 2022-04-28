@@ -5,8 +5,8 @@
 class CancellationEvent: public Event
 {
 public:
-	CancellationEvent();
-	CancellationEvent(int id, int day, int hour);
-	void Execute(Company* C);
-	~CancellationEvent();
+	CancellationEvent();   // No Arguments Constructor
+	CancellationEvent(int id, int day, int hour);   // Arguments Constructor
+	void Execute(Company* C);   // Cancels A Cargo
+	~CancellationEvent();   // Destructor
 };

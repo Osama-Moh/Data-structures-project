@@ -15,7 +15,7 @@ void Company::simulate()
 	openinput();
 	int nn = events.getcount();
 	point->print1();
-	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
+	point->print2(NTN, STN, VTN, NTS, STS, VTS, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
 	int hours = 00;
 	int days = 1;
 	while (events.peek(ptr))		
@@ -44,45 +44,26 @@ void Company::simulate()
 
 void Company::filltruckdata()
 {
-	for (int i = 1; i <= nt; i++)
+	for (int i = 1; i <= NTN; i++)
 	{
-		Truck* pointern = new Truck;
+		Truck* pointern = new Truck('N',NTC,CN,NTS,J,i);
 		NT.enqueue(pointern,1);
-		pointern->setID(i);
-		pointern->setTYP('N');
-		pointern->setN(J);
-		pointern->setV(ns);
-		pointern->setTC(NTC);
-		pointern->setMT(CN);
-		
 	}
-	for (int j = 1; j <= st; j++)
+	for (int j = 1; j <= STN; j++)
 	{
-		Truck* pointers = new Truck;
+		Truck* pointers = new Truck('S',STC,CS,STS,J,j);
 		ST.enqueue(pointers,1);
-		pointers->setN(J);
-		pointers->setID(j);
-		pointers->setTYP('S');
-		pointers->setV(ss);
-		pointers->setTC(STC);
-		pointers->setMT(CS);
 	}
-	for (int k = 1; k <= vt; k++)
+	for (int k = 1; k <= VTN; k++)
 	{
-		Truck* pointerv = new Truck;
+		Truck* pointerv = new Truck('V',VTC,CV,VTS,J,k);
 		VT.enqueue(pointerv,1);
-		pointerv->setTYP('V');
-		pointerv->setID(k);
-		pointerv->setN(J);
-		pointerv->setV(vs);
-		pointerv->setTC(VTC);
-		pointerv->setMT(CV);
 	}
 }
 
 void Company::readtruckdata()
 {
-	input >> nt >> st >> vt >> ns >> ss >> vs >> NTC >> STC >> VTC >> J >> CN >> CS >> CV >> AutoP >> MaxW;
+	input >> NTN >> STN >> VTN >> NTS >> STS >> VTS >> NTC >> STC >> VTC >> J >> CN >> CS >> CV >> AutoP >> MaxW;
 }
 
 void Company::readevents()
@@ -92,17 +73,11 @@ void Company::readevents()
 	{
 		input >> ev;
 		if (ev == 'R')
-		{
 			input >> typ >> day >> colon >> hour >> id >> dist >> lt >> cost;
-		}
 		if (ev == 'X')
-		{
 			input >> day >> colon >> hour >> id;
-		}
 		if (ev == 'P')
-		{
 			input >> day >> colon >> hour >> id >> cost;
-		}
 		filleventsdata();
 	}
 }
