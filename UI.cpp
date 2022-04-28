@@ -40,10 +40,10 @@ void UI::detectenter()
 void UI::print1()
 {
 	cout << endl;
-	cout << "					Welcom to My company system " << endl << endl;
+	cout << "					Welcom to My Company System " << endl << endl;
 	cout << "Please choose the printing mode you prefer by writing its number only: " << endl;
-	cout <<"1.interactive Mode" << endl << "2.Step by step Mode" << endl << "3.Silent Mode" << endl;
-	cout << "Number : ";
+	cout <<"1.Interactive Mode       2.Step By Step Mode               3.Silent Mode" << endl;
+	cout << "Number: ";
 
 	cin >> printtype;
 	setprinttype(printtype);

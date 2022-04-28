@@ -1,85 +1,69 @@
 #pragma once
 # include <iostream>
 using namespace std;
-# include <string>
 # include <fstream>
+# include <string>
 # include "UI.h" 
+# include "LinkedList.h"
+# include "CargoLinkedList.h"
 # include "LinkedQueue.h"
 # include "PriorityQueue.h"
-# include "Truck.h"
 # include "Cargo.h"
-# include "LinkedList.h"
+# include "Truck.h"
+# include "Event.h"
 # include "PreparationEvent.h"
 # include "PromotionEvent.h"
 # include "CancellationEvent.h"
-# include "Event.h"
+
 
 class Company
 {
 private:
-	int  ns, ss, vs;											// speed of each truck type (Normal,Special,VIP)
-	int nt, st, vt;												// number of each truck type
-	int NTC, STC, VTC;											// capacity of each truck
-	int J;
-	int CN, CS, CV;												// time of checkup for normal,special,vip
-	int AutoP, MaxW;											
-	int E;														// number of events
+	int NTS, STS, VTS;   // Speed Of Each Truck Type
+	int NTN, STN, VTN;   // Number Of Each Truck Type
+	int NTC, STC, VTC;	 // Capacity Of Each Truck Type
+	int CN, CS, CV;   // CheckUp Time Of Each Truck Type
+	int AutoP, MaxW;   // Automatic Promotion Time And Maximum Wait Time
+	int J;   // Number Of Delieveries Before CheckUp
+	int E;   // Number Of Events
+
 	char ev, typ, colon;
 	int id, dist, lt, cost, day, hour;
-	string fileinname;
 
-	ifstream input;
-	ofstream output;
-	UI* point = new UI;					// is this a correct way to 
-
-	LinkedQueue <Truck*> NT;
-	
-	LinkedQueue <Truck*> ST;
-	
-	LinkedQueue <Truck*> VT;
-	
-	LinkedQueue <Cargo*> SC;
-	
-	LinkedList <Cargo*> NC;
-
-	PriorityQueue <Cargo*> VC;
-
-	PriorityQueue <Truck*> Check;
-
-	LinkedQueue<Event*>events;
-
-	LinkedQueue<Cargo*> DeliveredSC;
-
-	LinkedQueue<Cargo*> DeliveredNC;
-
-	LinkedQueue<Cargo*> DeliveredVC;
+	string fileinname;   // File Name
+	ifstream input;   // Ifstream Object
+	ofstream output;   // Ofstream Object
+	UI* point = new UI;   // Pointer To UI Class
+	LinkedQueue <Event*> Events;   // List Of Events
+	CargoLinkedList NC;   // List Of Normal Waiting Cargos
+	LinkedQueue <Cargo*> SC;   // List Of Special Waiting Cargos
+	PriorityQueue <Cargo*> VC;   // List Of VIP Waiting Cargos
+	LinkedQueue <Truck*> NT;   // List Of Normal Waiting Trucks
+	LinkedQueue <Truck*> ST;   // List Of Special Waiting Trucks
+	LinkedQueue <Truck*> VT;   // List Of VIP Waiting VIP Trucks
+	PriorityQueue <Truck*> Check;   // List Of CheckUp Trucks
+	LinkedQueue <Cargo*> DeliveredNC;   // List Of Normal Delievered Cargos
+	LinkedQueue <Cargo*> DeliveredSC;   // List Of Special Delievered Cargos
+	LinkedQueue <Cargo*> DeliveredVC;   // List Of VIP Delievered Cargos
 
 public:
 	Company();
 
-	void simulate();
+	void simulate();   // Simulates The Program
+	void setfilename(string name);   // Sets The File Name
 
-	void setfilename(string name);
+	void openinput();   // Opens Input File
+	void openoutput();   // Opens Output File
+	void writetofile();   // Writes To File
+	void print();
 
-	void openinput();
+	void filltruckdata();   // Fills Trucks Data
+	void filleventsdata();   // Fills Events Data
+	void readtruckdata();   // Reads Trucks Data From The User
+	void readevents();   // Reads Events Data From The User
 
-	void openoutput();
+	void addCargo(Cargo* S);   // Adds A Cargo
+	Cargo* removeCargo(int ID);   // Removes A Cargo
+	void promoteCargo(int ID, int ExtraCost);   // Promotes A Cargo
 
-	void writetofile();
-
-	void print();			
-
-	void filltruckdata();
-
-	void filleventsdata();
-
-	void readtruckdata();
-
-	void readevents();
-
-	void addCargo(Cargo* S);
-
-	Cargo* removeCargo(int ID);
-
-	void promoteCargo(int ID, int ExtraCost);
 };
