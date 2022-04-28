@@ -64,7 +64,7 @@ public:
 	bool peek(T& frntEntry)  const;
 	int getcount();
 	~LinkedQueue();
-	void print();
+	void print() const;
 
 	//copy constructor
 	LinkedQueue(const LinkedQueue<T> & LQ);
@@ -154,15 +154,18 @@ bool LinkedQueue<T>::dequeue(T& frntEntry)
 
 }
 
-template < typename T>
-void LinkedQueue<T> ::print()
+template <typename T>
+void LinkedQueue<T>::print() const
 {
-	T x;
-	while (this->peek(x))
+	T item;
+	Node<T>* ptr = Head;
+	while (ptr)
 	{
-		cout << x << " ";
+		item = ptr->getItem();
+		cout << item;
+		if (ptr->getNext())
+			cout << ",";
 	}
-
 }
 
 // the function will return the number of elements in the queue

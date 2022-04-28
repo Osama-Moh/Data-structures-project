@@ -207,7 +207,19 @@ public:
 		}
 		Head = previous;
 	}
-		
+	
+	void print()
+	{
+		T item;
+		Node<T>* ptr = Head;
+		while (ptr)
+		{
+			item = ptr->getItem();
+			cout << item;
+			if (ptr->getNext())
+				cout << ",";
+		}
+	}
 };
 
 #endif	

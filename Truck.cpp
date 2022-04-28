@@ -81,12 +81,16 @@ int Truck::getN()
 {
 	return N;
 }
-int Truck::getID() const
+int Truck::getID()
 {
 	return ID;
 }
-Truck::~Truck(void)
+Truck::~Truck()
 {
 }
-
+ostream& operator << (ostream& out, Truck* T)
+{
+	out << T->getID();
+	return out;
+}
 

@@ -47,7 +47,7 @@ char Cargo::getTYP()
 {
 	return TYP;
 }
-int Cargo::getID() const
+int Cargo::getID()
 {
 	return ID;
 }
@@ -75,9 +75,12 @@ int Cargo::getPRIORITY()
 {
 	return TYP == 'V' ? 1 : 0;
 }
-
 Cargo::~Cargo()
 {
 	
 }
-
+ostream& operator << (ostream& out, Cargo*& C)
+{
+	out << C->getID();
+	return out;
+}

@@ -69,15 +69,15 @@ void UI::print1()
 	}
 }
 
-void UI::printmode(int n,int TNC,int TDC,int NnC,int Ssc,int Vvc, int t, int d)
+void UI::printmode(int n, int TNC, int TDC, int NnC, int Ssc, int Vvc, int t, int d)
 {
 	if (printtype == 1)
 	{
-		interactive(n,TNC,TDC,NnC, Ssc, Vvc,t,d);
+		interactive(n, TNC, TDC, NnC, Ssc, Vvc, t, d);
 	}
 	else if (printtype == 2)
 	{
-		stepbystep(n,t,d);
+		stepbystep(n, t, d);
 	}
 
 }

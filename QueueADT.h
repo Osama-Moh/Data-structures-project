@@ -10,6 +10,8 @@ template<class T>
 class QueueADT
 {
 public:
+
+    virtual void print() const = 0;
    /** Sees whether this queue is empty.
     @return  True if the queue is empty, or false if not. */
    virtual bool isEmpty() const = 0;

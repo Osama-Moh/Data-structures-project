@@ -36,13 +36,8 @@ public:
 	int getDT();   // Returns Truck Delievery time
 	int getV();   // Returns Truck Speed
 	int getN();   // Returns Number Of Delieveries Before Checkup
-	int getID() const;
+	int getID();   // Return Truck ID
+	friend ostream& operator << (ostream& out, const Truck* T);
 	~Truck();   // Destructor
-	friend ostream& operator <<(ostream& print, const Truck* tr)	// operator overloading for the cout << function
-	{
-		print << tr->getID() << endl;
-		return print;
-	}
-
 };
 

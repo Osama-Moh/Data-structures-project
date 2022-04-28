@@ -19,7 +19,7 @@ void Company::simulate()
 	//int nn = events.getcount();
 	point->print1();
 	//point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
-	int hours = 00;
+	int hours = 0;
 	int days = 1;
 	int count = 0;
 	while (Events.peek(ptr))		
@@ -58,11 +58,11 @@ void Company::simulate()
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
-		point->printmode(n,nc,TDC,ncc,nsn,vsv, hours, days);
+		point->printmode(n, nc, TDC, ncc, nsn, vsv, hours, days);
 		hours++;
 		if (hours == 24)
 		{
-			hours = 00;
+			hours = 0;
 			days++;
 		}
 	}

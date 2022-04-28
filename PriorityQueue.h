@@ -80,6 +80,18 @@ public:
 		return (Head == nullptr);
 	}
 
+	void print() const
+	{
+		T item;
+		Node<T>* ptr = Head;
+		while (ptr)
+		{
+			item = ptr->getItem();
+			cout << item;
+			if (ptr->getNext())
+				cout << ",";
+		}
+	}
 	
 	~PriorityQueue()
 	{
