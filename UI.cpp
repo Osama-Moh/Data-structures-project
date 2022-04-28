@@ -66,6 +66,7 @@ void UI::print1()
 	{
 		cout << "Silent" << endl;
 		silent();
+
 	}
 }
 
