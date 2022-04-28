@@ -58,7 +58,7 @@ void Company::simulate()
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
-		point->printmode(n, nc, TDC, ncc, nsn, vsv, hours, days, &NC, &SC, &VC);
+		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC);
 		hours++;
 		if (hours == 24)
 		{
@@ -132,7 +132,7 @@ void Company::filleventsdata()
 void Company::addCargo(Cargo* S)
 {
 	if (S->getTYP() == 'N')
-		NC.InsertBeg(S);
+		NC.InsertEnd(S);
 	if (S->getTYP() == 'S')
 		SC.enqueue(S,S->getPRIORITY());
 	if (S->getTYP() == 'V')

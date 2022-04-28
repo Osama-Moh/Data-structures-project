@@ -48,8 +48,8 @@ void UI::print1()
 	cin >> printtype;
 	setprinttype(printtype);
 
-	//cout << "file name is: ";
-	//cin >> filename;
+	cout << "file name is: ";
+	cin >> filename;
 	
 	
 	cout << endl << "The printing mode will be the : ";
@@ -69,11 +69,11 @@ void UI::print1()
 	}
 }
 
-void UI::printmode(int n, int TNC, int TDC, int NnC, int Ssc, int Vvc, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P)
+void UI::printmode(int n, int TNC, int TDC, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, LinkedQueue<Cargo*>* DNC, LinkedQueue<Cargo*>* DSC, LinkedQueue<Cargo*>* DVC)
 {
 	if (printtype == 1)
 	{
-		interactive(n, TNC, TDC, NnC, Ssc, Vvc, t, d, L, Q, P);
+		interactive(n, TNC, TDC, t, d, L, Q, P, NT, ST, VT, DNC, DSC, DVC);
 	}
 	else if (printtype == 2)
 	{
@@ -82,7 +82,7 @@ void UI::printmode(int n, int TNC, int TDC, int NnC, int Ssc, int Vvc, int t, in
 
 }
 
-void UI::interactive(int n,int TNC,int TDC, int ncn, int scs, int vcv, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P)
+void UI::interactive(int n ,int TNC, int TDC, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, LinkedQueue<Cargo*>* DNC, LinkedQueue<Cargo*>* DSC, LinkedQueue<Cargo*>* DVC)
 {		
 	detectenter();
 
@@ -95,19 +95,34 @@ void UI::interactive(int n,int TNC,int TDC, int ncn, int scs, int vcv, int t, in
 	cout << "{"; P->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << 0 << " " << "Loading Trucks:" << endl << endl;
+	cout << 0 << " " << "Loading Trucks:" << endl;
+	cout << "[" << "]" << " ";
+	cout << "(" << ")" << " ";
+	cout << "{" << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << n << " " << "Empty Trucks:" << scs << endl << endl;
+	cout << n << " " << "Empty Trucks:" << endl;
+	cout << "["; NT->print(); cout << "]" << " ";
+	cout << "("; ST->print(); cout << ")" << " ";
+	cout << "{"; VT->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << 0 <<" " << "Moving Cargos: " << endl << endl;
+	cout << 0 << " " << "Moving Cargos: " << endl;
+	cout << "[" << "]" << " ";
+	cout << "(" << ")" << " ";
+	cout << "{" << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << 0 <<" " << "In-Checkup Trucks: " << endl << endl;
+	cout << 0 << " " << "In-Checkup Trucks: " << endl;
+	cout << "[" << "]" << " ";
+	cout << "(" << ")" << " ";
+	cout << "{" << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << TDC << " " << "Delivered Cargos: " << endl << endl;
+	cout << TDC << " " << "Delivered Cargos: " << endl;
+	cout << "["; DNC->print(); cout << "]" << " ";
+	cout << "("; DSC->print(); cout << ")" << " ";
+	cout << "{"; DVC->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
 }
