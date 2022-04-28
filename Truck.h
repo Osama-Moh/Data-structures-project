@@ -2,7 +2,7 @@
 #include "LinkedQueue.h"
 #include "PriorityQueue.h"
 #include "Cargo.h"
-
+# include <iostream>
 
 class Truck
 {
@@ -36,7 +36,7 @@ public:
 	int getDT();   // Returns Truck Delievery time
 	int getV();   // Returns Truck Speed
 	int getN();   // Returns Number Of Delieveries Before Checkup
-	int getID();   // Return Truck ID
+	int getID() const;  // Return Truck ID
 	friend ostream& operator << (ostream& out, const Truck* T);
 	~Truck();   // Destructor
 };

@@ -47,7 +47,7 @@ char Cargo::getTYP()
 {
 	return TYP;
 }
-int Cargo::getID()
+int Cargo::getID() const
 {
 	return ID;
 }
@@ -79,7 +79,7 @@ Cargo::~Cargo()
 {
 	
 }
-ostream& operator << (ostream& out, Cargo*& C)
+ostream& operator << (ostream& out,const Cargo*& C)
 {
 	out << C->getID();
 	return out;

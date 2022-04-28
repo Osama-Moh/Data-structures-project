@@ -1,5 +1,5 @@
 #include "Truck.h"
-
+# include <iostream>
 Truck::Truck()
 {
 }
@@ -81,14 +81,14 @@ int Truck::getN()
 {
 	return N;
 }
-int Truck::getID()
+int Truck::getID() const
 {
 	return ID;
 }
 Truck::~Truck()
 {
 }
-ostream& operator << (ostream& out, Truck* T)
+ostream& operator << (ostream& out, const Truck* T)
 {
 	out << T->getID();
 	return out;

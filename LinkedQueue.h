@@ -64,7 +64,7 @@ public:
 	bool peek(T& frntEntry)  const;
 	int getcount();
 	~LinkedQueue();
-	void print() const;
+	void print();
 
 	//copy constructor
 	LinkedQueue(const LinkedQueue<T> & LQ);
@@ -155,10 +155,10 @@ bool LinkedQueue<T>::dequeue(T& frntEntry)
 }
 
 template <typename T>
-void LinkedQueue<T>::print() const
+void LinkedQueue<T>::print() 
 {
 	T item;
-	Node<T>* ptr = Head;
+	Node<T>* ptr = frontPtr;
 	while (ptr)
 	{
 		item = ptr->getItem();

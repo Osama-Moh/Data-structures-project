@@ -24,14 +24,14 @@ public:
 	void setDIST(int dist);   // Sets Cargo Shipping Distance
 	void setCOST(int cost);   // Sets Cargo Shipping Cost
 	char getTYP();   // Returns Cargo Type
-	int getID();   // Returns Cargo ID
+	int getID() const;   // Returns Cargo ID
 	int getPTD();   // Returns Cargo Preparation Time in Days
 	int getPTH();   // Returns Cargo Preparation Time in Hours
 	int getLT();   // Returns Cargo Loading and Unloading Time
 	int getDIST();   // Returns Cargo Shipping Distance
 	int getCOST();   // Returns Cargo Shipping Cost
 	int getPRIORITY();   // Returns Cargo Priority
-	friend ostream& operator << (ostream& out, Cargo*& C);
+	friend ostream& operator << (ostream& out,const Cargo*& C);
 	~Cargo();  // Destructor
 	
 };

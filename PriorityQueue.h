@@ -80,7 +80,7 @@ public:
 		return (Head == nullptr);
 	}
 
-	void print() const
+	void print() 
 	{
 		T item;
 		Node<T>* ptr = Head;

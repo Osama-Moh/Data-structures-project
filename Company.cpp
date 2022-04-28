@@ -14,7 +14,7 @@ void Company::simulate()
 	Event* ptr;
 	Cargo* pointerc;
 	Cargo* pointercv;
-	Cargo* pointern;
+	//Cargo* pointern;
 	openinput();
 	//int nn = events.getcount();
 	point->print1();
