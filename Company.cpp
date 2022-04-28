@@ -14,7 +14,7 @@ void Company::simulate()
 	Event* ptr;
 	Cargo* pointerc;
 	Cargo* pointercv;
-	//Truck* pointt = NT;
+	Cargo* pointern;
 	openinput();
 	//int nn = events.getcount();
 	point->print1();
@@ -46,15 +46,19 @@ void Company::simulate()
 		{
 			SC.dequeue(pointerc);
 			VC.dequeue(pointercv);
+			//NC.DeleteBeg(pointern);
 			DeliveredSC.enqueue(pointerc, 1);
 			DeliveredVC.enqueue(pointercv, 1);
+			//DeliveredNC.enqueue(pointern, 1);
 			count = 0;
 		}
 		int nsn = SC.getcount();					// delete this before submission 
 		int vsv = VC.getcount();
 		int ncc = NC.getCount();
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
-		point->printmode(n,ncc,nsn,vsv, hours, days);
+		int nc = SC.getcount() + VC.getcount() + NC.getCount();
+		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
+		point->printmode(n,nc,TDC,ncc,nsn,vsv, hours, days);
 		hours++;
 		if (hours == 24)
 		{

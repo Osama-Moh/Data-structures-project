@@ -69,11 +69,11 @@ void UI::print1()
 	}
 }
 
-void UI::printmode(int n,int NnC,int Ssc,int Vvc, int t, int d)
+void UI::printmode(int n,int TNC,int TDC,int NnC,int Ssc,int Vvc, int t, int d)
 {
 	if (printtype == 1)
 	{
-		interactive(n,NnC, Ssc, Vvc,t,d);
+		interactive(n,TNC,TDC,NnC, Ssc, Vvc,t,d);
 	}
 	else if (printtype == 2)
 	{
@@ -82,30 +82,28 @@ void UI::printmode(int n,int NnC,int Ssc,int Vvc, int t, int d)
 
 }
 
-void UI::interactive(int n, int ncn, int scs, int vcv, int t, int d)
+void UI::interactive(int n,int TNC,int TDC, int ncn, int scs, int vcv, int t, int d)
 {		
 	detectenter();
-	pointc = new Company;
 
 	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 			
-	cout << " " << "Waiting Cargos(VIP): " << vcv << endl << endl;
+	cout << TNC << " " << "Waiting Cargos(VIP): " << vcv << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << " " << "Loading Trucks: (Normal)" << ncn << endl << endl;
+	cout << 0 << " " << "Loading Trucks: (Normal)" << ncn << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
 	cout << n << " " << "Empty Trucks(Special):" << scs << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << " " << "Moving Cargos: " << endl << endl;
+	cout << 0 <<" " << "Moving Cargos: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << " " << "In-Checkup Trucks: " << endl << endl;
+	cout << 0 <<" " << "In-Checkup Trucks: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
-	pointc->print();
-	cout << endl << " " << "Delivered Cargos: " << endl << endl;
+	cout << TDC << " " << "Delivered Cargos: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
 }
