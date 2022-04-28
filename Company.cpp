@@ -13,18 +13,18 @@ void Company::simulate()
 {	
 	Event* ptr;
 	openinput();
-	int nn = events.getcount();
+	int nn = Events.getcount();
 	point->print1();
 	point->print2(NTN, STN, VTN, NTS, STS, VTS, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
-	int hours = 00;
+	int hours = 0;
 	int days = 1;
-	while (events.peek(ptr))		
+	while (Events.peek(ptr))		
 	{
 		while (ptr->getDay() == days && ptr->getHour() == hours)
 		{
-			events.dequeue(ptr);
+			Events.dequeue(ptr);
 			ptr->Execute(this);
-			events.peek(ptr);
+			Events.peek(ptr);
 
 		}
 		int nsn = SC.getcount();
@@ -88,17 +88,17 @@ void Company::filleventsdata()
 	if (ev == 'R')
 	{
 		pointer = new PreparationEvent(typ, id, day, hour, lt, dist, cost);
-		events.enqueue(pointer,1);
+		Events.enqueue(pointer,1);
 	}
 	if (ev == 'X')
 	{
 		pointer = new CancellationEvent(id, day, hour);
-		events.enqueue(pointer, 1);
+		Events.enqueue(pointer, 1);
 	}
 	if (ev == 'P')
 	{
 		pointer = new PromotionEvent(id, day, hour, cost);
-		events.enqueue(pointer, 1);
+		Events.enqueue(pointer, 1);
 	}
 }
 
@@ -127,7 +127,7 @@ void Company::promoteCargo(int ID, int ExtraCost)
 }
 
 void Company::openinput()
-{													// the file name should be a user input
+{
 	input.open("data.txt", ios::in);
 
 	if (input.is_open() == true)
