@@ -66,7 +66,6 @@ void UI::print1()
 	{
 		cout << "Silent" << endl;
 		silent();
-
 	}
 }
 
@@ -86,10 +85,11 @@ void UI::printmode(int n,int NnC,int Ssc,int Vvc, int t, int d)
 void UI::interactive(int n, int ncn, int scs, int vcv, int t, int d)
 {		
 	detectenter();
+	pointc = new Company;
 
 	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
 	cout << "--------------------------------" << endl << endl;
-
+			
 	cout << " " << "Waiting Cargos(VIP): " << vcv << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
@@ -104,8 +104,8 @@ void UI::interactive(int n, int ncn, int scs, int vcv, int t, int d)
 
 	cout << " " << "In-Checkup Trucks: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
-
-	cout << " " << "Delivered Cargos: " << endl << endl;
+	pointc->print();
+	cout << endl << " " << "Delivered Cargos: " << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
 }

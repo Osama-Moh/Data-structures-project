@@ -3,12 +3,14 @@
 using namespace std;
 # include <string>
 # include <fstream>;
+class Company;
+
 class UI
 {
 private:
 	string filename;
 	int printtype;
-
+	Company* pointc;
 
 public:
 	UI();

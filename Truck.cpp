@@ -74,12 +74,13 @@ int Truck::getN()
 {
 	return N;
 }
+
+int Truck::getID() const
+{
+	return ID;
+}
 Truck::~Truck(void)
 {
 }
 
-ostream& operator<<(ostream& print, const Truck& tr)
-{
-	print << tr.ID << endl;
-	return print;
-}
+

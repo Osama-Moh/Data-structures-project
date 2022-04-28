@@ -158,7 +158,7 @@ template < typename T>
 void LinkedQueue<T> ::print()
 {
 	T x;
-	while (this->dequeue(x))
+	while (this->peek(x))
 	{
 		cout << x << " ";
 	}

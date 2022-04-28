@@ -12,22 +12,49 @@ Company::Company()
 void Company::simulate()
 {	
 	Event* ptr;
+	Cargo* pointerc;
+	Cargo* pointercv;
+	//Truck* pointt = NT;
 	openinput();
-	int nn = events.getcount();
+	//int nn = events.getcount();
 	point->print1();
-	point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
+	//point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
 	int hours = 00;
 	int days = 1;
+	int count = 0;
 	while (events.peek(ptr))		
-	{
+	{	
+		if (hours >= 5 && hours <= 23)
+		{
+			count++;
+		}
 		while (ptr->getDay() == days && ptr->getHour() == hours)
 		{
-			events.dequeue(ptr);
-			ptr->Execute(this);
-			events.peek(ptr);
+			if (hours < 5)
+			{
+				ptr->setHour(05);
+			}
+			else
+			{
+				events.dequeue(ptr);
+				ptr->Execute(this);
+				events.peek(ptr);
+			}
 
 		}
-		int nsn = SC.getcount();
+		//while (SC.peek(pointerc) || VC.peek(pointercv))
+		//{
+
+			if (count == 5)
+			{
+				SC.dequeue(pointerc);
+				VC.dequeue(pointercv);
+				DeliveredSC.enqueue(pointerc,1);
+				DeliveredVC.enqueue(pointercv, 1);
+				count = 0;
+			}
+		//}
+		int nsn = SC.getcount();					// delete this before submission 
 		int vsv = VC.getcount();
 		int ncc = NC.getCount();
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
@@ -180,5 +207,5 @@ void Company::writetofile()
 
 void Company::print()
 {
-	
+	SC.print();
 }
