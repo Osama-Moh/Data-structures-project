@@ -46,6 +46,10 @@ void Truck::setN(int n)
 {
 	N=n;
 }
+void Truck::setID(int id)
+{
+	ID = id;
+}
 char Truck::getTYP()
 {
 	return TYP;
@@ -76,6 +80,6 @@ Truck::~Truck(void)
 
 ostream& operator<<(ostream& print, const Truck& tr)
 {
-	print << tr.id << endl;
+	print << tr.ID << endl;
 	return print;
 }

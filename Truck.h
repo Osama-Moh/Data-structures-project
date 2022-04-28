@@ -13,7 +13,7 @@ private:
 	int DT;   // Truck Delievery Time
 	int V;   // Truck Speed
 	int N;   // Number Of Delieveries Before Checkup
-	int id;		// Truck ID
+	int ID;		// Truck ID
 
 public:
 	Truck();   // No Arguments Constructor
@@ -26,6 +26,7 @@ public:
 	void setDT(int dt);   // Sets Truck Delievery time
 	void setV(int v);   // Sets Truck Speed
 	void setN(int n);   // Sets Number Of Delieveries Before Checkup
+	void setID(int id);	// sets the truck id
 	char getTYP();   // Returns Truck Type
 	int getTC();   // Returns Truck Capacity
 	int getMT();   // Returns Truck Maintainance Time

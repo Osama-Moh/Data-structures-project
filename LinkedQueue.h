@@ -63,6 +63,7 @@ public:
 	bool peek(T& frntEntry)  const;
 	int getcount();
 	~LinkedQueue();
+	void print();
 
 	//copy constructor
 	LinkedQueue(const LinkedQueue<T> & LQ);
@@ -149,6 +150,17 @@ bool LinkedQueue<T>::dequeue(T& frntEntry)
 	delete nodeToDeletePtr;
 	count--;
 	return true;
+
+}
+
+template < typename T>
+void LinkedQueue<T> ::print()
+{
+	T x;
+	while (this->dequeue(x))
+	{
+		cout << x << " ";
+	}
 
 }
 

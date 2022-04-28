@@ -48,6 +48,7 @@ void Company::filltruckdata()
 	{
 		Truck* pointern = new Truck;
 		NT.enqueue(pointern,1);
+		pointern->setID(i);
 		pointern->setTYP('N');
 		pointern->setN(J);
 		pointern->setV(ns);
@@ -60,6 +61,7 @@ void Company::filltruckdata()
 		Truck* pointers = new Truck;
 		ST.enqueue(pointers,1);
 		pointers->setN(J);
+		pointers->setID(j);
 		pointers->setTYP('S');
 		pointers->setV(ss);
 		pointers->setTC(STC);
@@ -70,6 +72,7 @@ void Company::filltruckdata()
 		Truck* pointerv = new Truck;
 		VT.enqueue(pointerv,1);
 		pointerv->setTYP('V');
+		pointerv->setID(k);
 		pointerv->setN(J);
 		pointerv->setV(vs);
 		pointerv->setTC(VTC);
