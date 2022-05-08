@@ -30,6 +30,11 @@ private:
 	char ev, typ, colon;
 	int id, dist, lt, cost, day, hour;
 
+	int TNOC, TNOSC, TNOVC, TNONC;
+	int averagehours, averagedays;
+	int TNOT, TNONT, TNOST, TNOVT;
+	int avgactivetime, avgutilt, avgutilc;				//Avgactive for trucks, Avg utilization for trucks, average utilization for cargos
+
 	string fileinname;   // File Name
 	ifstream input;   // Ifstream Object
 	ofstream output;   // Ofstream Object
@@ -41,10 +46,15 @@ private:
 	LinkedQueue <Truck*> NT;   // List Of Normal Waiting Trucks
 	LinkedQueue <Truck*> ST;   // List Of Special Waiting Trucks
 	LinkedQueue <Truck*> VT;   // List Of VIP Waiting VIP Trucks
-	PriorityQueue <Truck*> Check;   // List Of CheckUp Trucks
 	LinkedQueue <Cargo*> DeliveredNC;   // List Of Normal Delievered Cargos
 	LinkedQueue <Cargo*> DeliveredSC;   // List Of Special Delievered Cargos
 	LinkedQueue <Cargo*> DeliveredVC;   // List Of VIP Delievered Cargos
+	PriorityQueue <Truck*> Checkspecial;   // List Of CheckUp Trucks
+	PriorityQueue <Truck*> Checkvip;   // List Of CheckUp Trucks
+	PriorityQueue <Truck*> Checknormal;   // List Of CheckUp Trucks
+	PriorityQueue <Truck*> movingnormal;   // List Of CheckUp Trucks
+	PriorityQueue <Truck*> movingspecial;   // List Of CheckUp Trucks
+	PriorityQueue <Truck*> movingvip;   // List Of CheckUp Trucks
 
 public:
 	Company();

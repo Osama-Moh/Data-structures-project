@@ -77,7 +77,7 @@ void UI::printmode(int n, int TNC, int TDC, int t, int d, CargoLinkedList* L, Li
 	}
 	else if (printtype == 2)
 	{
-		stepbystep(n, t, d);
+		stepbystep(n, TNC, TDC, t, d, L, Q, P, NT, ST, VT, DNC, DSC, DVC);
 	}
 
 }
@@ -127,27 +127,45 @@ void UI::interactive(int n ,int TNC, int TDC, int t, int d, CargoLinkedList* L, 
 
 }
 
-void UI::stepbystep(int n, int t, int d)
+void UI::stepbystep(int n, int TNC, int TDC, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, LinkedQueue<Cargo*>* DNC, LinkedQueue<Cargo*>* DSC, LinkedQueue<Cargo*>* DVC)
 {
 	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << " " << "Waiting Cargos: " << endl << endl;
+	cout << TNC << " " << "Waiting Cargos: " << endl;
+	cout << "["; L->print(); cout << "]" << " ";
+	cout << "("; Q->print(); cout << ")" << " ";
+	cout << "{"; P->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << " " << "Loading Trucks: " << endl << endl;
+	cout << 0 << " " << "Loading Trucks:" << endl;
+	cout << "[" << "]" << " ";
+	cout << "(" << ")" << " ";
+	cout << "{" << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << n << " " << "Empty Trucks:" << endl << endl;
+	cout << n << " " << "Empty Trucks:" << endl;
+	cout << "["; NT->print(); cout << "]" << " ";
+	cout << "("; ST->print(); cout << ")" << " ";
+	cout << "{"; VT->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << " " << "Moving Cargos: " << endl << endl;
+	cout << 0 << " " << "Moving Cargos: " << endl;
+	cout << "[" << "]" << " ";
+	cout << "(" << ")" << " ";
+	cout << "{" << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << " " << "In-Checkup Trucks: " << endl << endl;
+	cout << 0 << " " << "In-Checkup Trucks: " << endl;
+	cout << "[" << "]" << " ";
+	cout << "(" << ")" << " ";
+	cout << "{" << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << " " << "Delivered Cargos: " << endl << endl;
+	cout << TDC << " " << "Delivered Cargos: " << endl;
+	cout << "["; DNC->print(); cout << "]" << " ";
+	cout << "("; DSC->print(); cout << ")" << " ";
+	cout << "{"; DVC->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 	Sleep(1000);
 }

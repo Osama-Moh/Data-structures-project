@@ -3,6 +3,7 @@ using namespace std;
 # include <string>
 # include "Company.h"
 # include "Truck.h"
+# include "Cargo.h"
 
 Company::Company()
 {
@@ -12,13 +13,11 @@ Company::Company()
 void Company::simulate()
 {	
 	Event* ptr;
-	Cargo* pointerc;
-	Cargo* pointercv;
-	//Cargo* pointern;
+	Cargo* pointercs = new Cargo;
+	Cargo* pointercv = new Cargo;
+	Cargo* pointern = new Cargo;
 	openinput();
-	//int nn = events.getcount();
 	point->print1();
-	//point->print2(nt, st, vt, ns, ss, vs, NTC, STC, VTC, J, CN, CS, CV, AutoP, MaxW,nn);
 	int hours = 0;
 	int days = 1;
 	int count = 0;
@@ -44,11 +43,19 @@ void Company::simulate()
 
 		if (count == 5)
 		{
-			SC.dequeue(pointerc);
-			VC.dequeue(pointercv);
+			if (SC.peek(pointercs))
+			{
+				SC.dequeue(pointercs);
+				DeliveredSC.enqueue(pointercs, 1);
+
+			}
+			if (VC.peek(pointercv))
+			{
+				VC.dequeue(pointercv);
+				DeliveredVC.enqueue(pointercv, 1);
+
+			}
 			//NC.DeleteBeg(pointern);
-			DeliveredSC.enqueue(pointerc, 1);
-			DeliveredVC.enqueue(pointercv, 1);
 			//DeliveredNC.enqueue(pointern, 1);
 			count = 0;
 		}
@@ -58,7 +65,7 @@ void Company::simulate()
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
-		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC);
+		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT,&DeliveredNC,&DeliveredSC,&DeliveredVC);
 		hours++;
 		if (hours == 24)
 		{
