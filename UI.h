@@ -12,20 +12,25 @@ class Company;
 class UI
 {
 private:
-	string filename;
+	string fileinname;
+	string fileoutname;
 	int printtype;
 	Company* pointc;
 
 public:
 	UI();
 
-	void setfilename(string filename);
+	void setfileoutname(string fileoutname);
+
+	void setfileinname(string fileinname);
 
 	void setprinttype(int value);
 
 	int getprinttype();
 	
-	string getfilename();
+	string getfileinname();
+
+	string getfileoutname();
 
 	void print1();
 

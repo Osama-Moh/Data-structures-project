@@ -12,9 +12,9 @@ UI::UI()
 }
 
 
-void UI::setfilename(string name)
+void UI::setfileinname(string name)
 {
-	filename = name;
+	fileinname = name;
 }
 
 void UI::setprinttype(int x)
@@ -22,14 +22,24 @@ void UI::setprinttype(int x)
 	printtype = x;
 }
 
+void UI::setfileoutname(string nameout)
+{
+	fileoutname = nameout;
+}
+
 int UI::getprinttype()
 {
 	return printtype;
 }
 
-string UI::getfilename()
+string UI::getfileinname()
 {
-	return filename;
+	return fileinname;
+}
+
+string UI::getfileoutname()
+{
+	return fileoutname;
 }
 
 void UI::detectenter()
@@ -48,8 +58,9 @@ void UI::print1()
 	cin >> printtype;
 	setprinttype(printtype);
 
-	cout << "file name is: ";
-	cin >> filename;
+	cout << "Data file name is: ";
+	cin >> fileinname;
+	setfileinname(fileinname);
 	
 	
 	cout << endl << "The printing mode will be the : ";

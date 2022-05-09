@@ -162,6 +162,7 @@ void Company::promoteCargo(int ID, int ExtraCost)
 
 void Company::openinput()
 {
+	string name = point->getfileinname();
 	input.open("data.txt", ios::in);
 
 	if (input.is_open() == true)
@@ -175,6 +176,7 @@ void Company::openinput()
 
 void Company::openoutput()
 {
+	string fileour = point->getfileoutname();
 	output.open("Output.txt", ios::out);
 	if (output.is_open() == true)
 	{
