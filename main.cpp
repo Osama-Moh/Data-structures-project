@@ -6,5 +6,7 @@ int main()
 {
 	Company C;
 	C.simulate();
+
+	system("pause");
 }
 

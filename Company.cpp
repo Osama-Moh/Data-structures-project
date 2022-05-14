@@ -171,25 +171,41 @@ void Company::openinput()
 		filltruckdata();
 		readevents();
 	}
-
+	input.close();
 }
 
 void Company::openoutput()
 {
-	string fileour = point->getfileoutname();
+	string fileout = point->getfileoutname();
 	output.open("Output.txt", ios::out);
 	if (output.is_open() == true)
 	{
 		writetofile();
 	}
+	output.close();
 }
 
 void Company::writetofile()
 {
+	output << "CDT" << "    " << "ID" << "    " << "PT" << "    " << "WT" << "    " << "TID" << endl;
+	
+
+
+	output << "------------------------------------------------------------" << endl;
+	output << "Cargos: " << endl;
 
 }
 
 void Company::print()
 {
 	SC.print();
+}
+
+bool Company::check()
+{
+	Truck* ptrn, * ptrv, * ptrs;
+	while (movingnormal.dequeue(ptrn) || movingspecial.dequeue(ptrs) || movingvip.dequeue(ptrv))
+	{
+
+	}
 }
