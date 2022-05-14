@@ -16,6 +16,8 @@ private:
 	int V;   // Truck Speed
 	int N;   // Number Of Delieveries Before Checkup
 	int ID;		// Truck ID
+	int Count;
+
 
 public:
 	Truck();   // No Arguments Constructor
@@ -30,6 +32,7 @@ public:
 	void setV(int v);   // Sets Truck Speed
 	void setN(int n);   // Sets Number Of Delieveries Before Checkup
 	void setID(int id);	// Sets Truck ID
+	void setCount(int count);
 	char getTYP();   // Returns Truck Type
 	int getTC();   // Returns Truck Capacity
 	int getMT();   // Returns Truck Maintainance Time
@@ -37,6 +40,7 @@ public:
 	int getV();   // Returns Truck Speed
 	int getN();   // Returns Number Of Delieveries Before Checkup
 	int getID() const;  // Return Truck ID
+	int getCount();
 	friend ostream& operator << (ostream& out, const Truck& T);
 	~Truck();   // Destructor
 };

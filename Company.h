@@ -52,9 +52,13 @@ private:
 	PriorityQueue <Truck*> Checkspecial;   // List Of CheckUp Trucks
 	PriorityQueue <Truck*> Checkvip;   // List Of CheckUp Trucks
 	PriorityQueue <Truck*> Checknormal;   // List Of CheckUp Trucks
-	PriorityQueue <Truck*> movingnormal;   // List Of CheckUp Trucks
-	PriorityQueue <Truck*> movingspecial;   // List Of CheckUp Trucks
-	PriorityQueue <Truck*> movingvip;   // List Of CheckUp Trucks
+	//PriorityQueue <Truck*> movingnormal;   // List Of CheckUp Trucks
+	//PriorityQueue <Truck*> movingspecial;   // List Of CheckUp Trucks
+	//PriorityQueue <Truck*> movingvip;   // List Of CheckUp Trucks
+	
+	PriorityQueue<Truck*>moving;
+
+
 
 public:
 	Company();
@@ -76,5 +80,5 @@ public:
 	Cargo* removeCargo(int ID);   // Removes A Cargo
 	void promoteCargo(int ID, int ExtraCost);   // Promotes A Cargo
 
-	bool check();
+	void check();
 };

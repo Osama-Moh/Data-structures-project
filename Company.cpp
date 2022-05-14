@@ -201,11 +201,12 @@ void Company::print()
 	SC.print();
 }
 
-bool Company::check()
+void Company::check()
 {
-	Truck* ptrn, * ptrv, * ptrs;
-	while (movingnormal.dequeue(ptrn) || movingspecial.dequeue(ptrs) || movingvip.dequeue(ptrv))
+	Truck* ptrt;
+	while (moving.dequeue(ptrt))
 	{
-
+		//ptrt->getN();
 	}
 }
+
