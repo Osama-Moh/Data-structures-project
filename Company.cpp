@@ -203,10 +203,74 @@ void Company::print()
 
 void Company::check()
 {
+
 	Truck* ptrt;
-	while (moving.dequeue(ptrt))
+	while (moving.peek(ptrt))
 	{
-		//ptrt->getN();
+		//if (ptrt->getRT()==time)	
+		{
+			if (ptrt->getCount() == ptrt->getN())
+			{
+				int finishtime = 0;
+				int duration = 0;
+				//duration = ptrt->getMT() + time;
+				// we have to add data member to truck that will have the truck check finish time
+				if (duration <= 24)
+				{
+					finishtime = 24 - duration;
+				}
+				else if (duration>24)
+				{
+					finishtime = 24 - (duration - 24);
+					// 24-duration will be a negative number 
+					// at time 00 
+					// will deque all elements found and if finish time is smaller than 0 then add 24 to it 
+					// if we apply this strategy then we will delete the if condition here and add it anither place 
+				}
+				moving.dequeue(ptrt);
+				if (ptrt->getTYP() == 'N')
+				{
+					Checknormal.enqueue(ptrt,finishtime);
+					ptrt->setCount(0);
+				}
+				else if (ptrt->getTYP() == 'V')
+				{
+					Checkvip.enqueue(ptrt, finishtime);
+					ptrt->setCount(0);
+				}
+				else if (ptrt->getTYP() == 'S')
+				{
+					Checkspecial.enqueue(ptrt, finishtime);
+					ptrt->setCount(0);
+				}
+			}
+			else
+			{
+				gotowait();
+			}
+		}
 	}
 }
 
+void Company::gotowait()
+{
+	Truck* ptrw;
+	moving.dequeue(ptrw);
+	if (ptrw->getTYP() == 'N')
+	{
+		NT.enqueue(ptrw, 1);
+	}
+	else if (ptrw->getTYP() == 'V')
+	{
+		VT.enqueue(ptrw, 1);
+	}
+	else if (ptrw->getTYP() == 'S')
+	{
+		ST.enqueue(ptrw, 1);
+	}
+}
+
+void Company::finishcheck()
+{
+
+}

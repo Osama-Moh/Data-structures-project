@@ -216,7 +216,7 @@ void UI::print3(int e, char ev,char ty, int d, int h,int id,int dist,int lt,int 
 
 
 
-void UI::readeventsnumber(int& e, char& ev, char& ty, int& et, int& id, int& dist, int& lt, int& cost, ifstream& in)
+void UI::readeventsnumber(int& e, char& ev, char& ty, int& et, int& id, int& dist, int& lt, int& cost, ifstream& in)	//delete
 {
 	in >> e;
 	for (int i = 1; i <= e; i++)
@@ -237,7 +237,7 @@ void UI::readeventsnumber(int& e, char& ev, char& ty, int& et, int& id, int& dis
 	}
 }
 
-void UI::readevents(char &ev, char &ty, int &et, int &id, int &dist, int &lt, int &cost, ifstream& in)
+void UI::readevents(char &ev, char &ty, int &et, int &id, int &dist, int &lt, int &cost, ifstream& in)		// delete 
 {
 	in >> ev;
 	if (ev == 'R')

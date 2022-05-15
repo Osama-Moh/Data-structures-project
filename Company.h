@@ -81,4 +81,6 @@ public:
 	void promoteCargo(int ID, int ExtraCost);   // Promotes A Cargo
 
 	void check();
+	void gotowait();
+	void finishcheck();
 };

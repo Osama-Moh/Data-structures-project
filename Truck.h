@@ -16,7 +16,7 @@ private:
 	int V;   // Truck Speed
 	int N;   // Number Of Delieveries Before Checkup
 	int ID;		// Truck ID
-	int Count;
+	int Count;		// Number of trips completed 
 
 
 public:
