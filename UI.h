@@ -1,12 +1,12 @@
 #pragma once
 # include <iostream>
-using namespace std;
+# include <fstream>
 # include <string>
-# include <fstream>;
-# include "Truck.h";
+# include "Truck.h"
 # include "CargoLinkedList.h"
 # include "LinkedQueue.h"
 # include "PriorityQueue.h"
+using namespace std;
 class Company;
 
 class UI
@@ -14,8 +14,8 @@ class UI
 private:
 	string fileinname;
 	string fileoutname;
-	int printtype;
 	Company* pointc;
+	int printtype;
 
 public:
 	UI();

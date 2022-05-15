@@ -1,9 +1,9 @@
 # include <iostream>
-using namespace std;
 # include <string>
 # include "Company.h"
 # include "Truck.h"
 # include "Cargo.h"
+using namespace std;
 
 Company::Company()
 {
@@ -15,7 +15,7 @@ void Company::simulate()
 	Event* ptr;
 	Cargo* pointercs = new Cargo;
 	Cargo* pointercv = new Cargo;
-	Cargo* pointern = new Cargo;
+	Cargo* pointercn = new Cargo;
 	openinput();
 	point->print1();
 	int hours = 0;
@@ -35,7 +35,8 @@ void Company::simulate()
 			}
 			else
 			{
-				Events.dequeue(ptr);
+				if (!Events.dequeue(ptr))
+					break;
 				ptr->Execute(this);
 				Events.peek(ptr);
 			}
@@ -55,8 +56,11 @@ void Company::simulate()
 				DeliveredVC.enqueue(pointercv, 1);
 
 			}
-			//NC.DeleteBeg(pointern);
-			//DeliveredNC.enqueue(pointern, 1);
+			if (NC.getCount())
+			{
+				NC.DeleteBeg(pointercn);
+				DeliveredNC.enqueue(pointercn, 1);
+			}
 			count = 0;
 		}
 		int nsn = SC.getcount();					// delete this before submission 
@@ -139,7 +143,7 @@ void Company::filleventsdata()
 void Company::addCargo(Cargo* S)
 {
 	if (S->getTYP() == 'N')
-		NC.InsertEnd(S);
+		NC.InsertBeg(S);
 	if (S->getTYP() == 'S')
 		SC.enqueue(S,S->getPRIORITY());
 	if (S->getTYP() == 'V')

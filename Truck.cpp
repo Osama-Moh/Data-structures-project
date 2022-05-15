@@ -57,9 +57,9 @@ void Truck::setID(int id)
 {
 	ID=id;
 }
-void Truck::setCount(int count)
+void Truck::setCOUNT(int count)
 {
-	Count = count;
+	COUNT = count;
 }
 char Truck::getTYP()
 {
@@ -89,9 +89,9 @@ int Truck::getID() const
 {
 	return ID;
 }
-int Truck::getCount()
+int Truck::getCOUNT()
 {
-	return Count;
+	return COUNT;
 }
 Truck::~Truck()
 {
