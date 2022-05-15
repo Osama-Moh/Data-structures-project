@@ -213,7 +213,7 @@ void Company::check()
 	{
 		//if (ptrt->getRT()==time)	
 		{
-			if (ptrt->getCount() == ptrt->getN())
+			if (ptrt->getCOUNT() == ptrt->getN())
 			{
 				int finishtime = 0;
 				int duration = 0;
@@ -235,17 +235,17 @@ void Company::check()
 				if (ptrt->getTYP() == 'N')
 				{
 					Checknormal.enqueue(ptrt,finishtime);
-					ptrt->setCount(0);
+					ptrt->setCOUNT(0);
 				}
 				else if (ptrt->getTYP() == 'V')
 				{
 					Checkvip.enqueue(ptrt, finishtime);
-					ptrt->setCount(0);
+					ptrt->setCOUNT(0);
 				}
 				else if (ptrt->getTYP() == 'S')
 				{
 					Checkspecial.enqueue(ptrt, finishtime);
-					ptrt->setCount(0);
+					ptrt->setCOUNT(0);
 				}
 			}
 			else
