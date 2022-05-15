@@ -77,21 +77,19 @@ public:
 
 	void InsertEnd(const T& data)
 	{
-		Node<T>* R = new Node<T>;
+		Node <T>* R = new Node<T>;
 		R->setItem(data);
-		R->setNext(Head);
-		if (!Head)
-		{
+		R->setNext(nullptr);
+		if (Head == nullptr)
 			Head = R;
-			count++;
-			return;
+		else
+		{
+			Node<T>* P = Head;
+			while (P->getNext())
+				P = P->getNext();
+			P->setNext(R);
 		}
-		Node<T>* P = Head;
-		while (P->getNext())
-			P = P->getNext();
-		P->setNext(R);
 		count++;
-		return;
 	}
 
 	////////////////////////////////////////////////////////////////////////

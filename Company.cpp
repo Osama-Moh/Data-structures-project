@@ -143,7 +143,7 @@ void Company::filleventsdata()
 void Company::addCargo(Cargo* S)
 {
 	if (S->getTYP() == 'N')
-		NC.InsertBeg(S);
+		NC.InsertEnd(S);
 	if (S->getTYP() == 'S')
 		SC.enqueue(S,S->getPRIORITY());
 	if (S->getTYP() == 'V')
