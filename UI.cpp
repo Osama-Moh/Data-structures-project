@@ -80,11 +80,11 @@ void UI::print1()
 	}
 }
 
-void UI::printmode(int n, int TNC, int TDC, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, LinkedQueue<Cargo*>* DNC, LinkedQueue<Cargo*>* DSC, LinkedQueue<Cargo*>* DVC)
+void UI::printmode(int n, int TNC, int TDC, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, LinkedQueue<Cargo*>* DNC, LinkedQueue<Cargo*>* DSC, LinkedQueue<Cargo*>* DVC, PriorityQueue<Truck*>*NCT)
 {
 	if (printtype == 1)
 	{
-		interactive(n, TNC, TDC, t, d, L, Q, P, NT, ST, VT, DNC, DSC, DVC);
+		interactive(n, TNC, TDC, t, d, L, Q, P, NT, ST, VT, DNC, DSC, DVC,NCT);
 	}
 	else if (printtype == 2)
 	{
@@ -93,7 +93,7 @@ void UI::printmode(int n, int TNC, int TDC, int t, int d, CargoLinkedList* L, Li
 
 }
 
-void UI::interactive(int n ,int TNC, int TDC, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, LinkedQueue<Cargo*>* DNC, LinkedQueue<Cargo*>* DSC, LinkedQueue<Cargo*>* DVC)
+void UI::interactive(int n ,int TNC, int TDC, int t, int d, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, LinkedQueue<Cargo*>* DNC, LinkedQueue<Cargo*>* DSC, LinkedQueue<Cargo*>* DVC, PriorityQueue<Truck*>*NCT)
 {		
 	detectenter();
 
@@ -125,7 +125,7 @@ void UI::interactive(int n ,int TNC, int TDC, int t, int d, CargoLinkedList* L, 
 	cout << "--------------------------------" << endl << endl;
 
 	cout << 0 << " " << "In-Checkup Trucks: " << endl;
-	cout << "[" << "]" << " ";
+	cout << "["; NCT->print(); cout << "]" << " ";
 	cout << "(" << ")" << " ";
 	cout << "{" << "}" << endl;
 	cout << "--------------------------------" << endl << endl;

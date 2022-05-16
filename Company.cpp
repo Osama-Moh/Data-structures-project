@@ -16,6 +16,7 @@ void Company::simulate()
 	Cargo* pointercs = new Cargo;
 	Cargo* pointercv = new Cargo;
 	Cargo* pointercn = new Cargo;
+	Truck* pointt = new Truck;
 	openinput();
 	point->print1();
 	int hours = 0;
@@ -63,13 +64,14 @@ void Company::simulate()
 			}
 			count = 0;
 		}
+		
 		int nsn = SC.getcount();					// delete this before submission 
 		int vsv = VC.getcount();
 		int ncc = NC.getCount();
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
-		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT,&DeliveredNC,&DeliveredSC,&DeliveredVC);
+		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT,&DeliveredNC,&DeliveredSC,&DeliveredVC,&Checknormal);
 		hours++;
 		if (hours == 24)
 		{
