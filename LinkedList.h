@@ -109,7 +109,7 @@ public:
 			return false;
 		Node<T>* R = Head;
 		Head = Head->getNext();
-		T = R->getItem();
+		data = R->getItem();
 		delete R;
 		R = nullptr;
 		count--;
