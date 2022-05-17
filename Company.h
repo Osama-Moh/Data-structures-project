@@ -34,6 +34,8 @@ private:
 	int averagehours, averagedays;
 	int TNOT, TNONT, TNOST, TNOVT;
 	int avgactivetime, avgutilt, avgutilc;				//Avgactive for trucks, Avg utilization for trucks, average utilization for cargos
+	int hours = 0;
+	int days = 1;
 
 	string fileinname;   // File Name
 	ifstream input;   // Ifstream Object
@@ -80,7 +82,7 @@ public:
 	Cargo* removeCargo(int ID);   // Removes A Cargo
 	void promoteCargo(int ID, int ExtraCost);   // Promotes A Cargo
 
-	void check();
+	void checkup();
 	void gotowait();
-	void finishcheck();
+	void finishcheckup();
 };

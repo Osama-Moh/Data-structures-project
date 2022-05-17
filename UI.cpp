@@ -47,7 +47,7 @@ void UI::detectenter()
 	cin.get() == '\n';
 }
 
-void UI::print1()
+void UI::mainprint()
 {
 	cout << endl;
 	cout << "					Welcom to My Company System " << endl << endl;
@@ -183,7 +183,13 @@ void UI::stepbystep(int n, int TNC, int TDC, int t, int d, CargoLinkedList* L, L
 
 void UI::silent()
 {
-	cout << " Silent Mode" << endl << " Simulation Starts..." << endl << " Simulation ends, Output file created" << endl;
+	cout << " Silent Mode" << endl << " Simulation Starts..." << endl << " Simulation Ends, Output file created" << endl;
+}
+
+void UI::printend()
+{
+
+	cout << "Simulation Ends, Output file created" << endl;
 }
 
 void UI::print2(int n, int s, int v, int sn, int ss, int sv, int ntc, int stc, int vtc, int j, int cn, int cs, int cv, int Auto, int max,int nrv)

@@ -102,3 +102,51 @@ ostream& operator << (ostream& out, const Truck& T)
 	return out;
 }
 
+void Truck::setRTIME(int sd,int sh, int dt)
+{
+		RDAY = sd + ((sh+dt)/24);
+		RHOUR = sh + (dt % 24);
+}
+
+int Truck::getRDAY()
+{
+	return RDAY;
+}
+
+int Truck::getRHOUR()
+{
+	return RHOUR;
+}
+
+void Truck::setFTIME(int duration, int sd, int sh)
+{
+	if ((duration+sh)<  24)
+	{
+		FDAY = sd;
+		FHOUR = duration + sh;
+	}
+	else if ((duration+sh) == 24)
+	{
+		FHOUR = 00;
+		FDAY = sd + 1;
+	}
+	else if ((duration + sh) > 24)
+	{
+		FHOUR = (duration + sh) - 24;
+		FDAY = sd + 1;
+	}
+}
+
+int Truck::getFDAY()
+{
+	return FDAY;
+}
+
+int Truck::getFHOUR()
+{
+	return FHOUR;
+}
+
+
+
+
