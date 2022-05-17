@@ -19,7 +19,7 @@ void Company::simulate()
 	Truck* ptrnt = new Truck;
 
 	openinput();
-	point->print1();
+	point->mainprint();
 
 	int count = 0;
 	while (Events.peek(ptr) || Checknormal.peek(ptrnt) || moving.peek(ptrnt) || Checkspecial.peek(ptrnt))		
@@ -65,11 +65,11 @@ void Company::simulate()
 			count = 0;
 		}
 
-		if (NT.getcount() > 3 && hours == 7)
-		{
-			NT.dequeue(ptrnt);
-			moving.enqueue(ptrnt, 1);
-		}
+		//if (NT.getcount() > 3 && hours == 7)
+		//{
+		//	NT.dequeue(ptrnt);
+		//	moving.enqueue(ptrnt, 1);
+		//}
 		checkup();
 		finishcheckup();
 		int nsn = SC.getcount();					// delete this before submission 
@@ -86,6 +86,7 @@ void Company::simulate()
 			days++;
 		}
 	}
+	point->printend();
 	openoutput();
 }
 
@@ -317,6 +318,4 @@ void Company::finishcheckup()
 			break;
 		}
 	}
-
-	
 }
