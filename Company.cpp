@@ -16,13 +16,13 @@ void Company::simulate()
 	Cargo* pointercs = new Cargo;
 	Cargo* pointercv = new Cargo;
 	Cargo* pointercn = new Cargo;
-	Truck* pointt = new Truck;
+	Truck* ptrnt = new Truck;
+
 	openinput();
 	point->print1();
-	int hours = 0;
-	int days = 1;
+
 	int count = 0;
-	while (Events.peek(ptr))		
+	while (Events.peek(ptr) || Checknormal.peek(ptrnt) || moving.peek(ptrnt) || Checkspecial.peek(ptrnt))		
 	{
 		if (hours >= 5 && hours <= 23)
 		{
@@ -64,7 +64,14 @@ void Company::simulate()
 			}
 			count = 0;
 		}
-		
+
+		if (NT.getcount() > 3 && hours == 7)
+		{
+			NT.dequeue(ptrnt);
+			moving.enqueue(ptrnt, 1);
+		}
+		checkup();
+		finishcheckup();
 		int nsn = SC.getcount();					// delete this before submission 
 		int vsv = VC.getcount();
 		int ncc = NC.getCount();
@@ -207,53 +214,60 @@ void Company::print()
 	SC.print();
 }
 
-void Company::check()
+void Company::checkup()
 {
 
 	Truck* ptrt;
 	while (moving.peek(ptrt))
 	{
-		//if (ptrt->getRT()==time)	
+		if (ptrt->getRDAY()==days && ptrt->getRHOUR()==hours)	
 		{
 			if (ptrt->getCOUNT() == ptrt->getN())
 			{
 				int finishtime = 0;
 				int duration = 0;
-				//duration = ptrt->getMT() + time;
-				// we have to add data member to truck that will have the truck check finish time
-				if (duration <= 24)
+				duration = ptrt->getMT();
+				if ((duration+hours) <= 24)
 				{
 					finishtime = 24 - duration;
 				}
-				else if (duration>24)
+				else if ((duration+hours) > 24)
 				{
 					finishtime = 24 - (duration - 24);
-					// 24-duration will be a negative number 
-					// at time 00 
-					// will deque all elements found and if finish time is smaller than 0 then add 24 to it 
-					// if we apply this strategy then we will delete the if condition here and add it anither place 
 				}
+				//	// 24-duration will be a negative number 
+				//	// at time 00 
+				//	// will deque all elements found and if finish time is smaller than 0 then add 24 to it 
+				//	// if we apply this strategy then we will delete the if condition here and add it anither place 
+				//}
 				moving.dequeue(ptrt);
 				if (ptrt->getTYP() == 'N')
 				{
 					Checknormal.enqueue(ptrt,finishtime);
 					ptrt->setCOUNT(0);
+					ptrt->setFTIME(duration, days, hours);
 				}
 				else if (ptrt->getTYP() == 'V')
 				{
 					Checkvip.enqueue(ptrt, finishtime);
 					ptrt->setCOUNT(0);
+					ptrt->setFTIME(duration, days, hours);
 				}
 				else if (ptrt->getTYP() == 'S')
 				{
 					Checkspecial.enqueue(ptrt, finishtime);
 					ptrt->setCOUNT(0);
+					ptrt->setFTIME(duration, days, hours);
 				}
 			}
 			else
 			{
 				gotowait();
 			}
+		}
+		else
+		{
+			break;
 		}
 	}
 }
@@ -276,7 +290,33 @@ void Company::gotowait()
 	}
 }
 
-void Company::finishcheck()
+void Company::finishcheckup()
 {
+	Truck* ptrfn = new Truck;
+	Truck* ptrfs = new Truck;
+	Truck* ptrfv = new Truck;
+	while (Checknormal.peek(ptrfn) || Checkspecial.peek(ptrfs) || Checkvip.peek(ptrfv))
+	{
+		if (ptrfn->getFDAY() == days && ptrfn->getFHOUR() == hours)
+		{
+			Checknormal.dequeue(ptrfn);
+			NT.enqueue(ptrfn,1);
+		}
+		if (ptrfs->getFDAY() == days && ptrfs->getFHOUR() == hours)
+		{
+			Checkspecial.dequeue(ptrfs);
+			ST.enqueue(ptrfs,1);
+		}
+		if (ptrfv->getFDAY() == days && ptrfv->getFHOUR() == hours)
+		{
+			Checkvip.dequeue(ptrfv);
+			VT.enqueue(ptrfv,1);
+		}
+		else
+		{
+			break;
+		}
+	}
 
+	
 }

@@ -18,6 +18,8 @@ private:
 	int ID;		// Truck ID
 	int COUNT;   // Truck Delivery Count
 
+	int RDAY, RHOUR;
+	int FDAY, FHOUR;
 
 public:
 	Truck();   // No Arguments Constructor
@@ -33,6 +35,13 @@ public:
 	void setN(int n);   // Sets Number Of Delieveries Before Checkup
 	void setID(int id);	  // Sets Truck ID
 	void setCOUNT(int count);   // Sets Truck Delievery Count
+	
+	void setRTIME(int sday, int shour, int dt);
+	void setFTIME(int duration, int day, int hour);
+	int getRDAY();
+	int getRHOUR();
+	int getFHOUR();
+	int getFDAY();
 	char getTYP();   // Returns Truck Type
 	int getTC();   // Returns Truck Capacity
 	int getMT();   // Returns Truck Maintainance Time
