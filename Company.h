@@ -80,6 +80,10 @@ public:
 	Cargo* removeCargo(int ID);   // Removes A Cargo
 	void promoteCargo(int ID, int ExtraCost);   // Promotes A Cargo
 
+	Truck* checkVIPWaiting();
+	Truck* checkSpecialWaiting();
+	Truck* checkNormalWaiting();
+
 	void check();
 	void gotowait();
 	void finishcheck();

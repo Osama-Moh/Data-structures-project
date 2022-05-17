@@ -147,6 +147,14 @@ public:
 		return count;
 	}
 
+	bool peekFront(T& item)
+	{
+		if (!Head)
+			return false;
+		item = Head->getItem();
+		return true;
+	}
+
 	bool insertNode(const T& newItem, const int& index)
 	{
 		if (index==1)

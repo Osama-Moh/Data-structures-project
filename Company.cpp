@@ -12,66 +12,108 @@ Company::Company()
 
 void Company::simulate()
 {	
-	Event* ptr;
-	Cargo* pointercs = new Cargo;
-	Cargo* pointercv = new Cargo;
-	Cargo* pointercn = new Cargo;
-	Truck* pointt = new Truck;
+	Event* pEvent;
+	Cargo* pCargo = new Cargo;
+	Truck* pTruckN = new Truck;
+	Truck* pTruckS = new Truck;
+	Truck* pTruckV = new Truck;
+	int hoursN = -1;
+	int hoursS = -1;
+	int hoursV = -1;
 	openinput();
 	point->print1();
 	int hours = 0;
 	int days = 1;
 	int count = 0;
-	while (Events.peek(ptr))		
+	while (Events.peek(pEvent))		
 	{
 		if (hours >= 5 && hours <= 23)
-		{
 			count++;
-		}
-		while (ptr->getDay() == days && ptr->getHour() == hours)
+		while (pEvent->getDay() == days && pEvent->getHour() == hours)
 		{
 			if (hours < 5)
-			{
-				ptr->setHour(5);
-			}
+				pEvent->setHour(5);
 			else
 			{
-				if (!Events.dequeue(ptr))
+				if (!Events.dequeue(pEvent))
 					break;
-				ptr->Execute(this);
-				Events.peek(ptr);
+				pEvent->Execute(this);
+				Events.peek(pEvent);
 			}
 		}
 
 		if (count == 5)
 		{
-			if (SC.peek(pointercs))
+			if (SC.peek(pCargo))
 			{
-				SC.dequeue(pointercs);
-				DeliveredSC.enqueue(pointercs, 1);
-
+				SC.dequeue(pCargo);
+				DeliveredSC.enqueue(pCargo, 1);
 			}
-			if (VC.peek(pointercv))
+			if (VC.peek(pCargo))
 			{
-				VC.dequeue(pointercv);
-				DeliveredVC.enqueue(pointercv, 1);
-
+				VC.dequeue(pCargo);
+				DeliveredVC.enqueue(pCargo, 1);
 			}
 			if (NC.getCount())
 			{
-				NC.DeleteBeg(pointercn);
-				DeliveredNC.enqueue(pointercn, 1);
+				NC.DeleteBeg(pCargo);
+				DeliveredNC.enqueue(pCargo, 1);
 			}
 			count = 0;
 		}
+
+		if (hoursV > 0)
+		{
+			hoursV++;
+			VC.peek(pCargo);
+			if (pCargo->getLT() == hoursV)
+			{
+				VC.dequeue(pCargo);
+				pTruckV->loadCargo(pCargo);
+			}
+		if (hoursS > 0)
+		{
+			hoursS++;
+			SC.peek(pCargo);
+			if (pCargo->getLT() == hoursS)
+			{
+				SC.dequeue(pCargo);
+				pTruckS->loadCargo(pCargo);
+			}
+		if (hoursN > 0)
+		{
+			hoursN++;
+			NC.peekFront(pCargo);
+			if (pCargo->getLT() == hoursN)
+			{
+				NC.DeleteBeg(pCargo);
+				pTruckV->loadCargo(pCargo);
+			}
+		if (!pTruckV)
+		{
+			pTruckV = checkVIPWaiting();
+			hoursV++;
+		}
+		if (!pTruckS)
+		{
+			pTruckS = checkSpecialWaiting();
+			hoursS++;
+		}
+		if (!pTruckN)
+		{
+			pTruckN = checkNormalWaiting();
+			hoursN++;
+		}
 		
+
+
 		int nsn = SC.getcount();					// delete this before submission 
 		int vsv = VC.getcount();
 		int ncc = NC.getCount();
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
-		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT,&DeliveredNC,&DeliveredSC,&DeliveredVC,&Checknormal);
+		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC,&Checknormal);
 		hours++;
 		if (hours == 24)
 		{
@@ -205,6 +247,60 @@ void Company::writetofile()
 void Company::print()
 {
 	SC.print();
+}
+
+Truck* Company::checkVIPWaiting()
+{
+	Truck* pTruck = nullptr;
+	if (VT.peek(pTruck))
+		if (VC.getcount() >= pTruck->getTC())
+		{
+			VT.dequeue(pTruck);
+			return pTruck;
+		}
+	if (NT.peek(pTruck))
+		if (VC.getcount() >= pTruck->getTC())
+		{
+			VT.dequeue(pTruck);
+			return pTruck;
+		}
+	if (ST.peek(pTruck))
+		if (VC.getcount() >= pTruck->getTC())
+		{
+			VT.dequeue(pTruck);
+			return pTruck;
+		}
+	return nullptr;
+}
+
+Truck* Company::checkSpecialWaiting()
+{
+	Truck* pTruck = nullptr;
+	if (ST.peek(pTruck))
+		if (SC.getcount() >= pTruck->getTC())
+		{
+			ST.dequeue(pTruck);
+			return pTruck;
+		}
+	return nullptr;
+}
+
+Truck* Company::checkNormalWaiting()
+{
+	Truck* pTruck = nullptr;
+	if (NT.peek(pTruck))
+		if (NC.getCount() >= pTruck->getTC())
+		{
+			NT.dequeue(pTruck);
+			return pTruck;
+		}
+	if (VT.peek(pTruck))
+		if (NC.getCount() >= pTruck->getTC())
+		{
+			VT.dequeue(pTruck);
+			return pTruck;
+		}
+	return nullptr;
 }
 
 void Company::check()
