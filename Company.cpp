@@ -12,58 +12,73 @@ Company::Company()
 
 void Company::simulate()
 {	
-	Event* ptr;
-	Cargo* pointercs = new Cargo;
-	Cargo* pointercv = new Cargo;
-	Cargo* pointercn = new Cargo;
-	Truck* ptrnt = new Truck;
+	Event* pEvent;
+	Cargo* pCargo = new Cargo;
+	Truck* pTruck = new Truck;
+	Truck* pTruckV = new Truck;
+	Truck* ptruckS = new Truck;
+	Truck* pTruckN = new Truck;
 
 	openinput();
 	point->mainprint();
 
+	int hourV = 0;
+	int hourS = 0;
+	int hourN = 0;
+
 	int count = 0;
-	while (Events.peek(ptr) || Checknormal.peek(ptrnt) || moving.peek(ptrnt) || Checkspecial.peek(ptrnt))		
+	while (Events.peek(pEvent) || Checknormal.peek(pTruck) || moving.peek(pTruck) || Checkspecial.peek(pTruck))		
 	{
 		if (hours >= 5 && hours <= 23)
-		{
 			count++;
-		}
-		while (ptr->getDay() == days && ptr->getHour() == hours)
+		while (pEvent->getDay() == days && pEvent->getHour() == hours)
 		{
 			if (hours < 5)
-			{
-				ptr->setHour(5);
-			}
+				pEvent->setHour(5);
 			else
 			{
-				if (!Events.dequeue(ptr))
+				if (!Events.dequeue(pEvent))
 					break;
-				ptr->Execute(this);
-				Events.peek(ptr);
+				pEvent->Execute(this);
+				Events.peek(pEvent);
 			}
 		}
 
 		if (count == 5)
 		{
-			if (SC.peek(pointercs))
+			if (SC.peek(pCargo))
 			{
-				SC.dequeue(pointercs);
-				DeliveredSC.enqueue(pointercs, 1);
-
+				SC.dequeue(pCargo);
+				DeliveredSC.enqueue(pCargo, 1);
 			}
-			if (VC.peek(pointercv))
+			if (VC.peek(pCargo))
 			{
-				VC.dequeue(pointercv);
-				DeliveredVC.enqueue(pointercv, 1);
-
+				VC.dequeue(pCargo);
+				DeliveredVC.enqueue(pCargo, 1);
 			}
 			if (NC.getCount())
 			{
-				NC.DeleteBeg(pointercn);
-				DeliveredNC.enqueue(pointercn, 1);
+				NC.DeleteBeg(pCargo);
+				DeliveredNC.enqueue(pCargo, 1);
 			}
 			count = 0;
 		}
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		//if (NT.getcount() > 3 && hours == 7)
 		//{
@@ -150,6 +165,18 @@ void Company::filleventsdata()
 	}
 }
 
+void Company::moveTruck(Truck* pTruck)
+{
+	if (pTruck->getTYP() == 'N')
+		NT.dequeue(pTruck);
+	if (pTruck->getTYP() == 'S')
+		ST.dequeue(pTruck);
+	if (pTruck->getTYP() == 'V')
+		VT.dequeue(pTruck);
+	pTruck->Move();
+	moving.enqueue(pTruck, 1); //Needs To Be Implemented
+}
+
 void Company::addCargo(Cargo* S)
 {
 	if (S->getTYP() == 'N')
@@ -213,6 +240,81 @@ void Company::writetofile()
 void Company::print()
 {
 	SC.print();
+}
+
+Truck* Company::assignVIPCargos()
+{
+	Truck* pTruck = nullptr;
+	if (VT.peek(pTruck))
+		if (VC.getcount() >= pTruck->getTC())
+		{
+			VT.dequeue(pTruck);
+			return pTruck;
+		}
+	else if (NT.peek(pTruck))
+		if (VC.getcount() >= pTruck->getTC())
+		{
+			NT.dequeue(pTruck);
+			return pTruck;
+		}
+	else if (ST.peek(pTruck))
+		if (VC.getcount() >= pTruck->getTC())
+		{
+			ST.dequeue(pTruck);
+			return pTruck;
+		}
+	return nullptr;
+}
+
+Truck* Company::assignSpecialCargos()
+{
+	Truck* pTruck = nullptr;
+	if (ST.peek(pTruck))
+		if (SC.getcount() >= pTruck->getTC())
+		{
+			ST.dequeue(pTruck);
+			return pTruck;
+		}
+	return nullptr;
+}
+
+Truck* Company::assignNormalCargos()
+{
+	Truck* pTruck = nullptr;
+	if (NT.peek(pTruck))
+		if (NC.getCount() >= pTruck->getTC())
+		{
+			NT.dequeue(pTruck);
+			return pTruck;
+		}
+	else if (VT.peek(pTruck))
+		if (NC.getCount() >= pTruck->getTC())
+		{
+			VT.dequeue(pTruck);
+			return pTruck;
+		}
+	return nullptr;
+}
+
+Truck* Company::assignMaxwCargo()
+{
+	Truck* pTruck = nullptr;
+	if (NT.peek(pTruck))
+		return pTruck;
+	if (VT.peek(pTruck))
+		return pTruck;
+}
+
+void Company::loadCargos(Truck* pTruck, int hour)
+{
+	Cargo* pCargo = nullptr;
+	VC.peek(pCargo);
+	if (pCargo->getLT() == hour)
+	{
+		VC.dequeue(pCargo);
+		pTruck->loadCargo(pCargo);
+		hour = 0;
+	}
 }
 
 void Company::checkup()

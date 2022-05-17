@@ -50,6 +50,7 @@ public:
 	int getN();   // Returns Number Of Delieveries Before Checkup
 	int getID() const;  // Return Truck ID
 	int getCOUNT();   // Returns Truck Delievery Count
+	void Move();
 	friend ostream& operator << (ostream& out, const Truck& T);
 	~Truck();   // Destructor
 };

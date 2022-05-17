@@ -17,8 +17,7 @@ void Truck::loadCargo(Cargo* C)
 {
 	QL.enqueue(C,1);
 	if (QL.getcount() == TC)
-		while (QL.dequeue(C))
-			QM.enqueue(C,1);
+		Move();
 
 }
 void Truck::unloadCargo(Cargo* C)
@@ -95,6 +94,12 @@ int Truck::getCOUNT()
 }
 Truck::~Truck()
 {
+}
+void Truck::Move()
+{
+	Cargo* C = nullptr;
+	while (QL.dequeue(C))
+		QM.enqueue(C, C->getDIST());
 }
 ostream& operator << (ostream& out, const Truck& T)
 {

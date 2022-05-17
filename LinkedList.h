@@ -147,6 +147,11 @@ public:
 		return count;
 	}
 
+	bool isEmpty()
+	{
+		return count == 0;
+	}
+
 	bool insertNode(const T& newItem, const int& index)
 	{
 		if (index==1)
@@ -210,6 +215,14 @@ public:
 			current = next;
 		}
 		Head = previous;
+	}
+
+	bool peekFront(T& item)
+	{
+		if (isEmpty())
+			return false;
+		item = Head->getItem();
+		return true;
 	}
 	
 	void print()

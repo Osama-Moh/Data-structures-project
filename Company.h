@@ -58,7 +58,7 @@ private:
 	//PriorityQueue <Truck*> movingspecial;   // List Of CheckUp Trucks
 	//PriorityQueue <Truck*> movingvip;   // List Of CheckUp Trucks
 	
-	PriorityQueue<Truck*>moving;
+	PriorityQueue<Truck*> moving;
 
 
 
@@ -78,9 +78,17 @@ public:
 	void readtruckdata();   // Reads Trucks Data From The User
 	void readevents();   // Reads Events Data From The User
 
+	void moveTruck(Truck* pTruck);
 	void addCargo(Cargo* S);   // Adds A Cargo
 	Cargo* removeCargo(int ID);   // Removes A Cargo
 	void promoteCargo(int ID, int ExtraCost);   // Promotes A Cargo
+
+	Truck* assignVIPCargos();
+	Truck* assignSpecialCargos();
+	Truck* assignNormalCargos();
+	Truck* assignMaxwCargo();
+
+	void loadCargos(Truck* pTruck, int hour);
 
 	void checkup();
 	void gotowait();
