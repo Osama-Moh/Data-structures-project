@@ -51,6 +51,7 @@ public:
 	int getID() const;  // Return Truck ID
 	int getCOUNT();   // Returns Truck Delievery Count
 	void Move();
+	bool isFull();
 	friend ostream& operator << (ostream& out, const Truck& T);
 	~Truck();   // Destructor
 };

@@ -15,9 +15,9 @@ void Company::simulate()
 	Event* pEvent;
 	Cargo* pCargo = new Cargo;
 	Truck* pTruck = new Truck;
-	Truck* pTruckV = new Truck;
-	Truck* ptruckS = new Truck;
-	Truck* pTruckN = new Truck;
+	Truck* pTruckV = nullptr;
+	Truck* pTruckS = nullptr;
+	Truck* pTruckN = nullptr;
 
 	openinput();
 	point->mainprint();
@@ -64,8 +64,12 @@ void Company::simulate()
 			count = 0;
 		}
 
-		
-
+		VC.peek(pCargo);
+		manageLoading(pTruckV, pCargo, hourV);
+		SC.peek(pCargo);
+		manageLoading(pTruckS, pCargo, hourS);
+		NC.peekFront(pCargo);
+		manageLoading(pTruckV, pCargo, hourN);
 
 
 
@@ -174,7 +178,7 @@ void Company::moveTruck(Truck* pTruck)
 	if (pTruck->getTYP() == 'V')
 		VT.dequeue(pTruck);
 	pTruck->Move();
-	moving.enqueue(pTruck, 1); //Needs To Be Implemented
+	moving.enqueue(pTruck, 1); // Priority Needs To Be Implemented
 }
 
 void Company::addCargo(Cargo* S)
@@ -331,12 +335,17 @@ void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
 {
 	if (pTruck)
 	{
-
+		hourL++;
+		if (pCargo->getLT() == hourL)
+		{
+			loadCargo(pTruck, pCargo);
+			hourL = 0;
+			if (pTruck->isFull())
+				moveTruck(pTruck);
+		}
 	}
 	if (!pTruck)
-	{
-
-	}
+		pTruck = assignCargos(pCargo->getTYP());
 }
 
 void Company::checkup()

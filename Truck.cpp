@@ -16,9 +16,6 @@ Truck::Truck(char typ, int tc, int mt, int v, int n, int id)
 void Truck::loadCargo(Cargo* C)
 {
 	QL.enqueue(C,1);
-	if (QL.getcount() == TC)
-		Move();
-
 }
 void Truck::unloadCargo(Cargo* C)
 {
@@ -101,6 +98,12 @@ void Truck::Move()
 	while (QL.dequeue(C))
 		QM.enqueue(C, C->getDIST());
 }
+
+bool Truck::isFull()
+{
+	return getTC() == QL.getcount();
+}
+
 ostream& operator << (ostream& out, const Truck& T)
 {
 	out << T.getID();
