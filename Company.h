@@ -37,6 +37,7 @@ private:
 	int hours = 0;
 	int days = 1;
 	int totalcargos, totalnormal, totalvip, totalspecial;
+	int totalwait = 0;
 
 	string fileinname;   // File Name
 	ifstream input;   // Ifstream Object
@@ -60,7 +61,7 @@ private:
 	//PriorityQueue <Truck*> movingvip;   // List Of CheckUp Trucks
 	
 	PriorityQueue<Truck*> moving;
-
+	LinkedQueue<Cargo*> Deliveredcargos;
 
 
 public:

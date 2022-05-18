@@ -30,7 +30,7 @@ void Company::simulate()
 	while (Events.peek(pEvent) || Checknormal.peek(pTruck) || moving.peek(pTruck) || Checkspecial.peek(pTruck))		
 	{
 		if (hours >= 5 && hours <= 23)
-		//	count++;
+			count++;
 		while (pEvent->getDay() == days && pEvent->getHour() == hours)
 		{
 			if (hours < 5)
@@ -48,31 +48,34 @@ void Company::simulate()
 			}
 		}
 
-		//if (count == 5)
-		//{
-		//	if (SC.peek(pCargo))
-		//	{
-		//		SC.dequeue(pCargo);
-		//		DeliveredSC.enqueue(pCargo, 1);
-		//	}
-		//	if (VC.peek(pCargo))
-		//	{
-		//		VC.dequeue(pCargo);
-		//		DeliveredVC.enqueue(pCargo, 1);
-		//	}
-		//	if (NC.getCount())
-		//	{
-		//		NC.DeleteBeg(pCargo);
-		//		DeliveredNC.enqueue(pCargo, 1);
-		//	}
-		//	count = 0;
-		//}
-		VC.peek(pCargo);
+		if (count == 5)
+		{
+			if (SC.peek(pCargo))
+			{
+				SC.dequeue(pCargo);
+				DeliveredSC.enqueue(pCargo, 1);
+				Deliveredcargos.enqueue(pCargo, 1);
+			}
+			if (VC.peek(pCargo))
+			{
+				VC.dequeue(pCargo);
+				DeliveredVC.enqueue(pCargo, 1);
+				Deliveredcargos.enqueue(pCargo, 1);
+			}
+			if (NC.getCount())
+			{
+				NC.DeleteBeg(pCargo);
+				DeliveredNC.enqueue(pCargo, 1);
+				Deliveredcargos.enqueue(pCargo, 1);
+			}
+			count = 0;
+		}
+	/*	VC.peek(pCargo);
 		manageLoading(pTruckV, pCargo, hourV);
 		SC.peek(pCargo);
 		manageLoading(pTruckS, pCargo, hourS);
 		NC.peekFront(pCargo);
-		manageLoading(pTruckV, pCargo, hourN);
+		manageLoading(pTruckV, pCargo, hourN);*/
 
 
 
@@ -227,14 +230,21 @@ void Company::openoutput()
 
 void Company::writetofile()
 {
+	Cargo* print;
 	output << "CDT" << "    " << "ID" << "    " << "PT" << "    " << "WT" << "    " << "TID" << endl;
-	
-
+	totalcargos = Deliveredcargos.getcount();
+	while (Deliveredcargos.dequeue(print))
+	{
+		output << "    " << print->getID() << "    " << print->getPTD() << ":" << print->getPTH() << "    " << endl;
+		
+	}
 	output << "------------------------------------------------------------" << endl;
 	output << "------------------------------------------------------------" << endl;
 	output << "Cargos: " << totalcargos << "   [N: " << totalnormal<< ", S: " << totalspecial << ", V: " << totalvip <<"]" << endl;
 	output << "Trucks: " << NT.getcount() + ST.getcount() + VT.getcount();
 	output << "   " << "[" << "N: " << NT.getcount() << ", S: " << ST.getcount() << ", V: " << VT.getcount() << "]" << endl;
+	int avgwait = totalwait / totalcargos;
+	output << "AVG WT:  " << avgwait;
 }
 
 void Company::print()
