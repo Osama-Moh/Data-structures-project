@@ -36,6 +36,7 @@ private:
 	int avgactivetime, avgutilt, avgutilc;				//Avgactive for trucks, Avg utilization for trucks, average utilization for cargos
 	int hours = 0;
 	int days = 1;
+	int totalcargos, totalnormal, totalvip, totalspecial;
 
 	string fileinname;   // File Name
 	ifstream input;   // Ifstream Object
