@@ -296,6 +296,16 @@ Truck* Company::assignNormalCargos()
 	return nullptr;
 }
 
+Truck* Company::assignCargos(char Type)
+{
+	if (Type == 'N')
+		return assignNormalCargos();
+	if (Type == 'S')
+		return assignSpecialCargos();
+	if (Type == 'V')
+		return assignVIPCargos();
+}
+
 Truck* Company::assignMaxwCargo()
 {
 	Truck* pTruck = nullptr;
@@ -317,9 +327,16 @@ void Company::loadCargo(Truck* pTruck, Cargo* pCargo)
 }
 
 
-void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour)
+void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
 {
-	
+	if (pTruck)
+	{
+
+	}
+	if (!pTruck)
+	{
+
+	}
 }
 
 void Company::checkup()

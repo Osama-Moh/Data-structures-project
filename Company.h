@@ -87,6 +87,7 @@ public:
 	Truck* assignSpecialCargos();
 	Truck* assignNormalCargos();
 	Truck* assignMaxwCargo();
+	Truck* assignCargos(char Type);
 
 	void loadCargo(Truck* pTruck, Cargo* pCargo);
 	void manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour);
