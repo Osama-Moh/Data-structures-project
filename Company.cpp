@@ -305,16 +305,21 @@ Truck* Company::assignMaxwCargo()
 		return pTruck;
 }
 
-void Company::loadCargos(Truck* pTruck, int hour)
+void Company::loadCargo(Truck* pTruck, Cargo* pCargo)
 {
-	Cargo* pCargo = nullptr;
-	VC.peek(pCargo);
-	if (pCargo->getLT() == hour)
-	{
+	if (pCargo->getTYP() == 'N')
+		NC.DeleteBeg(pCargo);
+	if (pCargo->getTYP() == 'S')
+		SC.dequeue(pCargo);
+	if (pCargo->getTYP() == 'V')
 		VC.dequeue(pCargo);
-		pTruck->loadCargo(pCargo);
-		hour = 0;
-	}
+	pTruck->loadCargo(pCargo);
+}
+
+
+void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour)
+{
+	
 }
 
 void Company::checkup()

@@ -78,7 +78,7 @@ public:
 	void readtruckdata();   // Reads Trucks Data From The User
 	void readevents();   // Reads Events Data From The User
 
-	void moveTruck(Truck* pTruck);
+	void moveTruck(Truck* pTruck);   // Needs Implementation
 	void addCargo(Cargo* S);   // Adds A Cargo
 	Cargo* removeCargo(int ID);   // Removes A Cargo
 	void promoteCargo(int ID, int ExtraCost);   // Promotes A Cargo
@@ -88,7 +88,8 @@ public:
 	Truck* assignNormalCargos();
 	Truck* assignMaxwCargo();
 
-	void loadCargos(Truck* pTruck, int hour);
+	void loadCargo(Truck* pTruck, Cargo* pCargo);
+	void manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour);
 
 	void checkup();
 	void gotowait();
