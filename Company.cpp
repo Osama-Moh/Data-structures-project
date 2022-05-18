@@ -30,7 +30,7 @@ void Company::simulate()
 	while (Events.peek(pEvent) || Checknormal.peek(pTruck) || moving.peek(pTruck) || Checkspecial.peek(pTruck))		
 	{
 		if (hours >= 5 && hours <= 23)
-			count++;
+		//	count++;
 		while (pEvent->getDay() == days && pEvent->getHour() == hours)
 		{
 			if (hours < 5)
@@ -44,25 +44,25 @@ void Company::simulate()
 			}
 		}
 
-		if (count == 5)
-		{
-			if (SC.peek(pCargo))
-			{
-				SC.dequeue(pCargo);
-				DeliveredSC.enqueue(pCargo, 1);
-			}
-			if (VC.peek(pCargo))
-			{
-				VC.dequeue(pCargo);
-				DeliveredVC.enqueue(pCargo, 1);
-			}
-			if (NC.getCount())
-			{
-				NC.DeleteBeg(pCargo);
-				DeliveredNC.enqueue(pCargo, 1);
-			}
-			count = 0;
-		}
+		//if (count == 5)
+		//{
+		//	if (SC.peek(pCargo))
+		//	{
+		//		SC.dequeue(pCargo);
+		//		DeliveredSC.enqueue(pCargo, 1);
+		//	}
+		//	if (VC.peek(pCargo))
+		//	{
+		//		VC.dequeue(pCargo);
+		//		DeliveredVC.enqueue(pCargo, 1);
+		//	}
+		//	if (NC.getCount())
+		//	{
+		//		NC.DeleteBeg(pCargo);
+		//		DeliveredNC.enqueue(pCargo, 1);
+		//	}
+		//	count = 0;
+		//}
 
 		VC.peek(pCargo);
 		manageLoading(pTruckV, pCargo, hourV);
