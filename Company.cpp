@@ -7,7 +7,6 @@ using namespace std;
 
 Company::Company()
 {
-
 }
 
 void Company::simulate()
@@ -29,8 +28,8 @@ void Company::simulate()
 	int count = 0;
 	while (Events.peek(pEvent) || Checknormal.peek(pTruck) || moving.peek(pTruck) || Checkspecial.peek(pTruck))		
 	{
-		if (hours >= 5 && hours <= 23)
-			count++;
+		//if (hours >= 5 && hours <= 23)
+			//count++;
 		while (pEvent->getDay() == days && pEvent->getHour() == hours)
 		{
 			if (hours < 5)
@@ -71,7 +70,21 @@ void Company::simulate()
 			count = 0;
 		}
 
-	
+
+
+
+		pCargo = nullptr;
+		VC.peek(pCargo);
+		manageLoading(pTruckV, pCargo, hourV);
+		pCargo = nullptr;
+		SC.peek(pCargo);
+		manageLoading(pTruckS, pCargo, hourS);
+		pCargo = nullptr;
+		NC.peekFront(pCargo);
+		manageLoading(pTruckN, pCargo, hourN);
+
+
+
 
 		//if (NT.getcount() > 3 && hours == 7)
 		//{
@@ -86,27 +99,13 @@ void Company::simulate()
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
-		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT,&DeliveredNC,&DeliveredSC,&DeliveredVC,&Checknormal);
+		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC, &Checknormal);
 		hours++;
 		if (hours == 24)
 		{
 			hours = 0;
 			days++;
 		}
-
-
-
-		pCargo = nullptr;
-		VC.peek(pCargo);
-		manageLoading(pTruckV, pCargo, hourV);
-		pCargo = nullptr;
-		SC.peek(pCargo);
-		manageLoading(pTruckS, pCargo, hourS);
-		pCargo = nullptr;
-		NC.peekFront(pCargo);
-		manageLoading(pTruckV, pCargo, hourN);
-
-
 
 	}
 	point->printend();
@@ -349,7 +348,10 @@ void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
 			loadCargo(pTruck, pCargo);
 			hourL = 0;
 			if (pTruck->isFull())
+			{
 				moveTruck(pTruck);
+				pTruck = nullptr;
+			}
 		}
 	}
 	if (pTruck == nullptr)
