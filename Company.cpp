@@ -34,11 +34,15 @@ void Company::simulate()
 		while (pEvent->getDay() == days && pEvent->getHour() == hours)
 		{
 			if (hours < 5)
+			{
 				pEvent->setHour(5);
+			}
 			else
 			{
 				if (!Events.dequeue(pEvent))
+				{
 					break;
+				}
 				pEvent->Execute(this);
 				Events.peek(pEvent);
 			}
@@ -50,19 +54,34 @@ void Company::simulate()
 			{
 				SC.dequeue(pCargo);
 				DeliveredSC.enqueue(pCargo, 1);
+				Deliveredcargos.enqueue(pCargo, 1);
 			}
 			if (VC.peek(pCargo))
 			{
 				VC.dequeue(pCargo);
 				DeliveredVC.enqueue(pCargo, 1);
+				Deliveredcargos.enqueue(pCargo, 1);
 			}
 			if (NC.getCount())
 			{
 				NC.DeleteBeg(pCargo);
 				DeliveredNC.enqueue(pCargo, 1);
+				Deliveredcargos.enqueue(pCargo, 1);
 			}
 			count = 0;
 		}
+	/*	VC.peek(pCargo);
+		manageLoading(pTruckV, pCargo, hourV);
+		SC.peek(pCargo);
+		manageLoading(pTruckS, pCargo, hourS);
+		NC.peekFront(pCargo);
+		manageLoading(pTruckV, pCargo, hourN);*/
+
+
+
+
+
+
 
 		//if (NT.getcount() > 3 && hours == 7)
 		//{
@@ -221,13 +240,21 @@ void Company::openoutput()
 
 void Company::writetofile()
 {
+	Cargo* print;
 	output << "CDT" << "    " << "ID" << "    " << "PT" << "    " << "WT" << "    " << "TID" << endl;
-	
-
-
+	totalcargos = Deliveredcargos.getcount();
+	while (Deliveredcargos.dequeue(print))
+	{
+		output << "    " << print->getID() << "    " << print->getPTD() << ":" << print->getPTH() << "    " << endl;
+		
+	}
 	output << "------------------------------------------------------------" << endl;
-	output << "Cargos: " << endl;
-
+	output << "------------------------------------------------------------" << endl;
+	output << "Cargos: " << totalcargos << "   [N: " << totalnormal<< ", S: " << totalspecial << ", V: " << totalvip <<"]" << endl;
+	output << "Trucks: " << NT.getcount() + ST.getcount() + VT.getcount();
+	output << "   " << "[" << "N: " << NT.getcount() << ", S: " << ST.getcount() << ", V: " << VT.getcount() << "]" << endl;
+	int avgwait = totalwait / totalcargos;
+	output << "AVG WT:  " << avgwait;
 }
 
 void Company::print()
@@ -322,6 +349,7 @@ void Company::loadCargo(Truck* pTruck, Cargo* pCargo)
 
 void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
 {
+	if (pTruck!=nullptr)
 	if (!pCargo)
 		return;
 	if (pTruck)
@@ -335,8 +363,11 @@ void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
 				moveTruck(pTruck);
 		}
 	}
-	if (!pTruck)
+	if (pTruck == nullptr)
+	{
 		pTruck = assignCargos(pCargo->getTYP());
+	}
+
 }
 
 void Company::checkup()
@@ -360,11 +391,6 @@ void Company::checkup()
 				{
 					finishtime = 24 - (duration - 24);
 				}
-				//	// 24-duration will be a negative number 
-				//	// at time 00 
-				//	// will deque all elements found and if finish time is smaller than 0 then add 24 to it 
-				//	// if we apply this strategy then we will delete the if condition here and add it anither place 
-				//}
 				moving.dequeue(ptrt);
 				if (ptrt->getTYP() == 'N')
 				{
