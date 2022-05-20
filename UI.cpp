@@ -84,7 +84,7 @@ void UI::printmode(int n, int TNC, int TDC, int t, int d, CargoLinkedList* L, Li
 {
 	if (printtype == 1)
 	{
-		interactive(n, TNC, TDC, t, d, L, Q, P, NT, ST, VT, DNC, DSC, DVC,NCT);
+		interactive(n, TNC, TDC, t, d, L, Q, P, NT, ST, VT, DNC, DSC, DVC, NCT);
 	}
 	else if (printtype == 2)
 	{

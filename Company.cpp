@@ -64,26 +64,6 @@ void Company::simulate()
 			count = 0;
 		}
 
-		VC.peek(pCargo);
-		manageLoading(pTruckV, pCargo, hourV);
-		SC.peek(pCargo);
-		manageLoading(pTruckS, pCargo, hourS);
-		NC.peekFront(pCargo);
-		manageLoading(pTruckV, pCargo, hourN);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		//if (NT.getcount() > 3 && hours == 7)
 		//{
 		//	NT.dequeue(ptrnt);
@@ -104,6 +84,21 @@ void Company::simulate()
 			hours = 0;
 			days++;
 		}
+
+
+
+		pCargo = nullptr;
+		VC.peek(pCargo);
+		manageLoading(pTruckV, pCargo, hourV);
+		pCargo = nullptr;
+		SC.peek(pCargo);
+		manageLoading(pTruckS, pCargo, hourS);
+		pCargo = nullptr;
+		NC.peekFront(pCargo);
+		manageLoading(pTruckV, pCargo, hourN);
+
+
+
 	}
 	point->printend();
 	openoutput();
@@ -171,12 +166,6 @@ void Company::filleventsdata()
 
 void Company::moveTruck(Truck* pTruck)
 {
-	if (pTruck->getTYP() == 'N')
-		NT.dequeue(pTruck);
-	if (pTruck->getTYP() == 'S')
-		ST.dequeue(pTruck);
-	if (pTruck->getTYP() == 'V')
-		VT.dequeue(pTruck);
 	pTruck->Move();
 	moving.enqueue(pTruck, 1); // Priority Needs To Be Implemented
 }
@@ -333,6 +322,8 @@ void Company::loadCargo(Truck* pTruck, Cargo* pCargo)
 
 void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
 {
+	if (!pCargo)
+		return;
 	if (pTruck)
 	{
 		hourL++;
