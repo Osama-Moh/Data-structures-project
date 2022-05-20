@@ -28,11 +28,10 @@ void Company::simulate()
 	int count = 0;
 	while (Events.peek(pEvent) || Checknormal.peek(pTruck) || moving.peek(pTruck) || Checkspecial.peek(pTruck))		
 	{
-		/*if (hours >= 5 && hours <= 23)
-			count++;*/
+	
 		while (pEvent->getDay() == days && pEvent->getHour() == hours)
 		{
-			if (hours < 5)
+			if (hours < 5 && hours>=0)
 			{
 				pEvent->setHour(5);
 			}
@@ -47,41 +46,19 @@ void Company::simulate()
 			}
 		}
 
-		/*if (count == 5)
+		if (hours >= 5 && hours <= 23)
 		{
-			if (SC.peek(pCargo))
-			{
-				SC.dequeue(pCargo);
-				DeliveredSC.enqueue(pCargo, 1);
-				Deliveredcargos.enqueue(pCargo, 1);
-			}
-			if (VC.peek(pCargo))
-			{
-				VC.dequeue(pCargo);
-				DeliveredVC.enqueue(pCargo, 1);
-				Deliveredcargos.enqueue(pCargo, 1);
-			}
-			if (NC.getCount())
-			{
-				NC.DeleteBeg(pCargo);
-				DeliveredNC.enqueue(pCargo, 1);
-				Deliveredcargos.enqueue(pCargo, 1);
-			}
-			count = 0;
-		}*/
+			pCargo = nullptr;
+			VC.peek(pCargo);
+			manageLoading(pTruckV, pCargo, hourV);
+			pCargo = nullptr;
+			SC.peek(pCargo);
+			manageLoading(pTruckS, pCargo, hourS);
+			pCargo = nullptr;
+			NC.peekFront(pCargo);
+			manageLoading(pTruckN, pCargo, hourN);
+		}
 
-
-
-
-		pCargo = nullptr;
-		VC.peek(pCargo);
-		manageLoading(pTruckV, pCargo, hourV);
-		pCargo = nullptr;
-		SC.peek(pCargo);
-		manageLoading(pTruckS, pCargo, hourS);
-		pCargo = nullptr;
-		NC.peekFront(pCargo);
-		manageLoading(pTruckN, pCargo, hourN);
 
 
 
@@ -157,18 +134,27 @@ void Company::filleventsdata()
 	Event* pointer;
 	if (ev == 'R')
 	{
-		pointer = new PreparationEvent(typ, id, day, hour, lt, dist, cost);
-		Events.enqueue(pointer,1);
+		if (hour <= 23 && hour >= 0)
+		{
+			pointer = new PreparationEvent(typ, id, day, hour, lt, dist, cost);
+			Events.enqueue(pointer, 1);
+		}
 	}
 	if (ev == 'X')
 	{
-		pointer = new CancellationEvent(id, day, hour);
-		Events.enqueue(pointer, 1);
+		if (hour <= 23 && hour >= 0)
+		{
+			pointer = new CancellationEvent(id, day, hour);
+			Events.enqueue(pointer, 1);
+		}
 	}
 	if (ev == 'P')
 	{
-		pointer = new PromotionEvent(id, day, hour, cost);
-		Events.enqueue(pointer, 1);
+		if (hour <= 23 && hour >= 0)
+		{
+			pointer = new PromotionEvent(id, day, hour, cost);
+			Events.enqueue(pointer, 1);
+		}
 	}
 }
 
@@ -260,13 +246,13 @@ Truck* Company::assignVIPCargos()
 			VT.dequeue(pTruck);
 			return pTruck;
 		}
-	else if (NT.peek(pTruck))
+	else if (NT.peek(pTruck) && VT.getcount()==0)
 		if (VC.getcount() >= pTruck->getTC())
 		{
 			NT.dequeue(pTruck);
 			return pTruck;
 		}
-	else if (ST.peek(pTruck))
+	else if (ST.peek(pTruck) && VT.getcount()== 0 && NT.getcount()== 0)
 		if (VC.getcount() >= pTruck->getTC())
 		{
 			ST.dequeue(pTruck);
