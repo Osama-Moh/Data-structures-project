@@ -20,6 +20,8 @@ private:
 
 	int RDAY, RHOUR;
 	int FDAY, FHOUR;
+	int totalunloading;
+	int furthercargo;
 
 public:
 	Truck();   // No Arguments Constructor
@@ -35,9 +37,11 @@ public:
 	void setN(int n);   // Sets Number Of Delieveries Before Checkup
 	void setID(int id);	  // Sets Truck ID
 	void setCOUNT(int count);   // Sets Truck Delievery Count
-	
+	void settotalunloading(int l);
+	void setfurthercargo(int fc);
 	void setRTIME(int sday, int shour, int dt);
 	void setFTIME(int duration, int day, int hour);
+
 	int getRDAY();
 	int getRHOUR();
 	int getFHOUR();
@@ -50,6 +54,8 @@ public:
 	int getN();   // Returns Number Of Delieveries Before Checkup
 	int getID() const;  // Return Truck ID
 	int getCOUNT();   // Returns Truck Delievery Count
+	int gettotalunloading();
+	int getfurthercargo();
 	void Move();
 	bool isFull();
 	friend ostream& operator << (ostream& out, const Truck& T);

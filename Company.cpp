@@ -283,7 +283,7 @@ Truck* Company::assignNormalCargos()
 			NT.dequeue(pTruck);
 			return pTruck;
 		}
-	else if (VT.peek(pTruck))
+	else if (VT.peek(pTruck) && NT.getcount()==0)
 		if (NC.getCount() >= pTruck->getTC())
 		{
 			VT.dequeue(pTruck);

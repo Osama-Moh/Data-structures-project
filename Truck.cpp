@@ -155,6 +155,26 @@ int Truck::getFHOUR()
 	return FHOUR;
 }
 
+void Truck::settotalunloading(int l)
+{
+	totalunloading = totalunloading + l;
+}
 
+int Truck::gettotalunloading()
+{
+	return totalunloading;
+}
 
+void Truck::setfurthercargo(int fc)
+{
+	if (fc > furthercargo)
+	{
+		furthercargo = fc;
+	}
+}
+
+int Truck::getfurthercargo()
+{
+	return furthercargo;
+}
 
