@@ -91,6 +91,7 @@ public:
 	Truck* assignMaxwCargo();
 	Truck* assignCargos(char Type);
 
+	bool reachedMaxW(Cargo* pCargo);
 	void loadCargo(Truck* pTruck, Cargo* pCargo);
 	void manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour);
 

@@ -21,9 +21,9 @@ void Company::simulate()
 	openinput();
 	point->mainprint();
 
-	int hourV = 0;
-	int hourS = 0;
-	int hourN = 0;
+	int hourV = 1;
+	int hourS = 1;
+	int hourN = 1;
 
 	int count = 0;
 	while (Events.peek(pEvent) || Checknormal.peek(pTruck) || moving.peek(pTruck) || Checkspecial.peek(pTruck))		
@@ -46,21 +46,6 @@ void Company::simulate()
 			}
 		}
 
-		if (hours >= 5 && hours <= 23)
-		{
-			pCargo = nullptr;
-			VC.peek(pCargo);
-			manageLoading(pTruckV, pCargo, hourV);
-			pCargo = nullptr;
-			SC.peek(pCargo);
-			manageLoading(pTruckS, pCargo, hourS);
-			pCargo = nullptr;
-			NC.peekFront(pCargo);
-			manageLoading(pTruckN, pCargo, hourN);
-		}
-
-
-
 
 
 		//if (NT.getcount() > 3 && hours == 7)
@@ -77,6 +62,22 @@ void Company::simulate()
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
 		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC, &Checknormal);
+
+
+		if (hours >= 5 && hours <= 23)
+		{
+			pCargo = nullptr;
+			VC.peek(pCargo);
+			manageLoading(pTruckV, pCargo, hourV);
+			pCargo = nullptr;
+			SC.peek(pCargo);
+			manageLoading(pTruckS, pCargo, hourS);
+			pCargo = nullptr;
+			NC.peekFront(pCargo);
+			manageLoading(pTruckN, pCargo, hourN);
+		}
+
+
 		hours++;
 		if (hours == 24)
 		{
@@ -322,6 +323,15 @@ void Company::loadCargo(Truck* pTruck, Cargo* pCargo)
 }
 
 
+bool Company::reachedMaxW(Cargo* pCargo)
+{
+	if (pCargo->getTYP() == 'V')
+		return false;
+	if ((24 * (days - pCargo->getPTD()) + (hours - pCargo->getPTH())) >= MaxW)
+		return true;
+	return false;
+}
+
 void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
 {
 	if (!pCargo)
@@ -333,16 +343,32 @@ void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
 		{
 			loadCargo(pTruck, pCargo);
 			hourL = 0;
-			if (pTruck->isFull())
+			if (pTruck->isFull() || reachedMaxW(pCargo))
 			{
+				hourL = 1;
 				moveTruck(pTruck);
 				pTruck = nullptr;
+				return;
 			}
 		}
 	}
 	if (pTruck == nullptr)
 	{
 		pTruck = assignCargos(pCargo->getTYP());
+		if (!pTruck && reachedMaxW(pCargo))
+			pTruck = assignMaxwCargo();
+		if (pCargo->getLT() == hourL)
+		{
+			loadCargo(pTruck, pCargo);
+			hourL = 0;
+			if (pTruck->isFull() || reachedMaxW(pCargo))
+			{
+				hourL = 1;
+				moveTruck(pTruck);
+				pTruck = nullptr;
+				return;
+			}
+		}
 	}
 
 }
