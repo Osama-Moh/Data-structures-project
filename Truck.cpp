@@ -113,7 +113,7 @@ ostream& operator << (ostream& out, const Truck& T)
 void Truck::setRTIME(int sd,int sh, int dt)
 {
 		RDAY = sd + ((sh+dt)/24);
-		RHOUR = sh + (dt % 24);
+		RHOUR = (sh + (dt % 24))%24;
 }
 
 int Truck::getRDAY()

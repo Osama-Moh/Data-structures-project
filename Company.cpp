@@ -17,6 +17,7 @@ void Company::simulate()
 	Truck* pTruckV = nullptr;
 	Truck* pTruckS = nullptr;
 	Truck* pTruckN = nullptr;
+	Cargo* wCargo = nullptr;
 
 	openinput();
 	point->mainprint();
@@ -26,7 +27,7 @@ void Company::simulate()
 	int hourN = 1;
 
 	int count = 0;
-	while (Events.peek(pEvent) || Checknormal.peek(pTruck) || moving.peek(pTruck) || Checkspecial.peek(pTruck))		
+	while (Events.peek(pEvent) || SC.peek(wCargo) || VC.peek(wCargo) || !(NC.isEmpty()))		
 	{
 	
 		while (pEvent->getDay() == days && pEvent->getHour() == hours)
