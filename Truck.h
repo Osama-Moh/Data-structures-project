@@ -32,7 +32,7 @@ public:
 	void setTYP(char typ);   // Sets Truck Type
 	void setTC(int tc);   // Sets Truck Capacity
 	void setMT(int mt);   // Sets Truck Maintainance Time
-	void setDT(int dt);   // Sets Truck Delievery time
+	void setDT();   // Sets Truck Delievery time
 	void setV(int v);   // Sets Truck Speed
 	void setN(int n);   // Sets Number Of Delieveries Before Checkup
 	void setID(int id);	  // Sets Truck ID

@@ -8,7 +8,7 @@ Truck::Truck(char typ, int tc, int mt, int v, int n, int id)
 	setTYP(typ);						
 	setTC(tc);								
 	setMT(mt);	   
-	setDT(0);
+	//setDT(0);
 	setV(v);								
 	setN(n);
 	setID(id);
@@ -37,9 +37,9 @@ void Truck::setMT(int mt)
 {
 	MT=mt;
 }
-void Truck::setDT(int dt)
+void Truck::setDT()
 {
-	DT=dt;
+	DT = (furthercargo / V) * 2 + totalunloading;
 }
 void Truck::setV(int v)
 {
