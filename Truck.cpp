@@ -96,7 +96,10 @@ void Truck::Move()
 {
 	Cargo* C = nullptr;
 	while (QL.dequeue(C))
+	{
 		QM.enqueue(C, C->getDIST());
+		C->setCDT(V);
+	}
 }
 
 bool Truck::isFull()
@@ -178,3 +181,7 @@ int Truck::getfurthercargo()
 	return furthercargo;
 }
 
+void Truck::getpeek( Cargo* & C1)
+{
+	QM.peek(C1);
+}

@@ -43,6 +43,10 @@ void Cargo::setCOST(int cost)
 {
 	COST=cost;
 }
+void Cargo::setCDT(int speed)
+{
+	CDT = DIST / speed + LT;
+}
 char Cargo::getTYP()
 {
 	return TYP;
@@ -83,4 +87,8 @@ ostream& operator << (ostream& out,const Cargo& C)
 {
 	out << C.getID();
 	return out;
+}
+int Cargo::getCDT()
+{
+	return CDT;
 }

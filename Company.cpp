@@ -62,7 +62,9 @@ void Company::simulate()
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
-		point->printmode(n, nc, TDC, hours, days, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC, &Checknormal);
+		int TMT = Checknormal.getcount() + Checkspecial.getcount() + Checkvip.getcount();
+
+		point->printmode(n, nc, TDC, hours, days,TMT, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC, &Checknormal, &Checkspecial, &Checkvip, &moving);
 
 
 		if (hours >= 5 && hours <= 23)
@@ -98,7 +100,7 @@ void Company::filltruckdata()
 		Truck* pointern = new Truck('N',NTC,CN,NTS,J,i);
 		NT.enqueue(pointern,1);
 	}
-	for (int j = 1; j <= STN; j++)
+	for (int j = 2; j <= STN+1; j++)
 	{
 		Truck* pointers = new Truck('S',STC,CS,STS,J,j);
 		ST.enqueue(pointers,1);
@@ -158,12 +160,6 @@ void Company::filleventsdata()
 			Events.enqueue(pointer, 1);
 		}
 	}
-}
-
-void Company::moveTruck(Truck* pTruck)
-{
-	pTruck->Move();
-	moving.enqueue(pTruck, 1); // Priority Needs To Be Implemented
 }
 
 void Company::addCargo(Cargo* S)
@@ -323,7 +319,6 @@ void Company::loadCargo(Truck* pTruck, Cargo* pCargo)
 	pTruck->loadCargo(pCargo);
 }
 
-
 bool Company::reachedMaxW(Cargo* pCargo)
 {
 	if (pCargo->getTYP() == 'V')
@@ -473,3 +468,17 @@ void Company::finishcheckup()
 		}
 	}
 }
+
+void Company::moveTruck(Truck* pTruck)
+{
+	int xxx = 0;
+	Cargo* C = nullptr;
+	pTruck->Move();
+	pTruck->getpeek(C);
+	if (C != nullptr)
+	{
+		xxx = C->getCDT();
+		moving.enqueue(pTruck, xxx); // Priority Needs To Be Implemented
+	}
+}
+

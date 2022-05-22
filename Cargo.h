@@ -12,6 +12,8 @@ private:
 	int LT;   // Cargo Loading and Unloading Time
 	int DIST;   // Cargo Shipping Distance
 	int COST;   // Cargo Shipping Cost
+	int Dd, Dh;
+	int CDT;
 
 public:
 	Cargo();   // No Arguments Constructor
@@ -23,6 +25,8 @@ public:
 	void setLT(int lt);   // Sets Cargo Loading and Unloading Time
 	void setDIST(int dist);   // Sets Cargo Shipping Distance
 	void setCOST(int cost);   // Sets Cargo Shipping Cost
+	void setCDT(int speed);
+
 	char getTYP();   // Returns Cargo Type
 	int getID() const;   // Returns Cargo ID
 	int getPTD();   // Returns Cargo Preparation Time in Days
@@ -31,6 +35,7 @@ public:
 	int getDIST();   // Returns Cargo Shipping Distance
 	int getCOST();   // Returns Cargo Shipping Cost
 	int getPRIORITY();   // Returns Cargo Priority
+	int getCDT();
 	friend ostream& operator << (ostream& out,const Cargo& C);
 	~Cargo();  // Destructor
 	

@@ -41,7 +41,7 @@ public:
 	void setfurthercargo(int fc);
 	void setRTIME(int sday, int shour, int dt);
 	void setFTIME(int duration, int day, int hour);
-
+	
 	int getRDAY();
 	int getRHOUR();
 	int getFHOUR();
@@ -58,6 +58,7 @@ public:
 	int getfurthercargo();
 	void Move();
 	bool isFull();
+	void getpeek(Cargo* & C);
 	friend ostream& operator << (ostream& out, const Truck& T);
 	~Truck();   // Destructor
 };
