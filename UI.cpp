@@ -61,7 +61,9 @@ void UI::mainprint()
 	cout << "Data file name is: ";
 	cin >> fileinname;
 	setfileinname(fileinname);
-	
+	cout << "Output file name is: ";
+	cin >> fileoutname;
+
 	
 	cout << endl << "The printing mode will be the : ";
 	

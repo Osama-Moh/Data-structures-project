@@ -19,8 +19,8 @@ void Company::simulate()
 	Truck* pTruckN = nullptr;
 	Cargo* wCargo = nullptr;
 
-	openinput();
 	point->mainprint();
+	openinput();
 
 	int hourV = 1;
 	int hourS = 1;
@@ -188,8 +188,8 @@ void Company::promoteCargo(int ID, int ExtraCost)
 
 void Company::openinput()
 {
-	string name = point->getfileinname();
-	input.open("data.txt", ios::in);
+	fileinname = point->getfileinname();
+	input.open(fileinname, ios::in);
 
 	if (input.is_open() == true)
 	{
@@ -202,8 +202,8 @@ void Company::openinput()
 
 void Company::openoutput()
 {
-	string fileout = point->getfileoutname();
-	output.open("Output.txt", ios::out);
+	fileoutname = point->getfileoutname();
+	output.open(fileoutname, ios::out);
 	if (output.is_open() == true)
 	{
 		writetofile();

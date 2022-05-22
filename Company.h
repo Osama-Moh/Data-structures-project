@@ -39,10 +39,14 @@ private:
 	int totalcargos, totalnormal, totalvip, totalspecial;
 	int totalwait = 0;
 
-	string fileinname;   // File Name
+	string fileinname;   // input File Name
+	string fileoutname;	//Output file name
+
 	ifstream input;   // Ifstream Object
 	ofstream output;   // Ofstream Object
+	
 	UI* point = new UI;   // Pointer To UI Class
+	
 	LinkedQueue <Event*> Events;   // List Of Events
 	CargoLinkedList NC;   // List Of Normal Waiting Cargos
 	LinkedQueue <Cargo*> SC;   // List Of Special Waiting Cargos
