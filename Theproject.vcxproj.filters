@@ -30,9 +30,6 @@
     <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="QueueADT.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="StackADT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -61,6 +58,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CargoLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PriorityQueueADT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QueueADT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -101,6 +104,9 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="data1.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Output1.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

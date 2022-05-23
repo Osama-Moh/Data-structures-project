@@ -16,7 +16,7 @@ public:
 	}
 
 	//Function that enqueues the elemtents sorted according to the key
-	bool enqueue(const T& newEntry, int newKey)
+	bool enqueue(const T& newEntry, float newKey)
 	{
 		//Creating the new node to be inserted 
 		Node<T>* temp = new Node<T>(newEntry, newKey);

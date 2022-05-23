@@ -151,6 +151,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="PreparationEvent.h" />
     <ClInclude Include="PriorityQueue.h" />
+    <ClInclude Include="PriorityQueueADT.h" />
     <ClInclude Include="PromotionEvent.h" />
     <ClInclude Include="QueueADT.h" />
     <ClInclude Include="StackADT.h" />
@@ -172,6 +173,7 @@
     <Text Include="data.txt" />
     <Text Include="data1.txt" />
     <Text Include="Output.txt" />
+    <Text Include="Output1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

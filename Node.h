@@ -7,14 +7,14 @@ class Node
 private:
 	T Item;
 	Node<T>* Next;
-	int Key;
+	float Key;
 
 public:
 	Node()
 	{
 
 	}
-	Node(T newItem, int newKey=1, Node* newNext=nullptr)
+	Node(T newItem, float newKey=1, Node* newNext=nullptr)
 	{
 		setItem(newItem);
 		setNext(newNext);
@@ -28,9 +28,9 @@ public:
 	{
 		Next=newNext;
 	}
-	void setKey(int newKey)
+	void setKey(float newKey)
 	{
-		Key=newKey>=1?newKey:1;
+		Key = newKey;
 	}
 	T getItem()
 	{
@@ -40,7 +40,7 @@ public:
 	{
 		return Next;
 	}
-	int getKey()
+	float getKey()
 	{
 		return Key;
 	}
