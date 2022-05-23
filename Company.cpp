@@ -167,7 +167,7 @@ void Company::addCargo(Cargo* S)
 	if (S->getTYP() == 'N')
 		NC.InsertEnd(S);
 	if (S->getTYP() == 'S')
-	//	SC.enqueue(S,S->getPRIORITY());
+		SC.enqueue(S);
 	if (S->getTYP() == 'V')
 		VC.enqueue(S,S->getPRIORITY());
 }
@@ -226,8 +226,8 @@ void Company::writetofile()
 	output << "Cargos: " << totalcargos << "   [N: " << totalnormal<< ", S: " << totalspecial << ", V: " << totalvip <<"]" << endl;
 	output << "Trucks: " << NT.getcount() + ST.getcount() + VT.getcount();
 	output << "   " << "[" << "N: " << NT.getcount() << ", S: " << ST.getcount() << ", V: " << VT.getcount() << "]" << endl;
-	int avgwait = totalwait / totalcargos;
-	output << "AVG WT:  " << avgwait;
+	//int avgwait = totalwait / totalcargos;
+	//output << "AVG WT:  " << avgwait;
 }
 
 void Company::print()
@@ -479,6 +479,10 @@ void Company::moveTruck(Truck* pTruck)
 	{
 		xxx = C->getCDT();
 		moving.enqueue(pTruck, xxx); // Priority Needs To Be Implemented
+	}
+	if (C->getCDT() == (days * 24 + hours))
+	{
+		moving.dequeue(pTruck);
 	}
 }
 
