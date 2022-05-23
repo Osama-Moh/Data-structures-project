@@ -92,12 +92,15 @@ public:
 	Truck* assignVIPCargos();
 	Truck* assignSpecialCargos();
 	Truck* assignNormalCargos();
-	Truck* assignMaxwCargo();
+	Truck* assignMaxWNormalCargos();
+	Truck* assignMaxWSpecialCargos();
+	Truck* assignMaxwCargo(char Type);
 	Truck* assignCargos(char Type);
 
 	bool reachedMaxW(Cargo* pCargo);
 	void loadCargo(Truck* pTruck, Cargo* pCargo);
-	void manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour);
+	void getNext(Cargo*& pCargo);
+	void manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour, bool& isMaxW);
 
 	void checkup();
 	void gotowait();

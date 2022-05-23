@@ -22,9 +22,13 @@ void Company::simulate()
 	point->mainprint();
 	openinput();
 
-	int hourV = 1;
-	int hourS = 1;
-	int hourN = 1;
+	int hourV = 0;
+	int hourS = 0;
+	int hourN = 0;
+
+	bool isMaxWN = false;
+	bool isMaxWS = false;
+	bool isMaxWV = false;
 
 	int count = 0;
 	while (Events.peek(pEvent) || SC.peek(wCargo) || VC.peek(wCargo) || !(NC.isEmpty()))		
@@ -49,6 +53,31 @@ void Company::simulate()
 
 
 
+
+		if (hours >= 5 && hours <= 23)
+		{
+			pCargo = nullptr;
+			VC.peek(pCargo);
+			manageLoading(pTruckV, pCargo, hourV, isMaxWV);
+			pCargo = nullptr;
+			SC.peek(pCargo);
+			manageLoading(pTruckS, pCargo, hourS, isMaxWS);
+			pCargo = nullptr;
+			NC.peekFront(pCargo);
+			manageLoading(pTruckN, pCargo, hourN, isMaxWN);
+		}
+
+
+
+
+
+
+
+
+
+
+
+
 		//if (NT.getcount() > 3 && hours == 7)
 		//{
 		//	NT.dequeue(ptrnt);
@@ -65,20 +94,6 @@ void Company::simulate()
 		int TMT = Checknormal.getcount() + Checkspecial.getcount() + Checkvip.getcount();
 
 		point->printmode(n, nc, TDC, hours, days,TMT, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC, &Checknormal, &Checkspecial, &Checkvip, &moving);
-
-
-		if (hours >= 5 && hours <= 23)
-		{
-			pCargo = nullptr;
-			VC.peek(pCargo);
-			manageLoading(pTruckV, pCargo, hourV);
-			pCargo = nullptr;
-			SC.peek(pCargo);
-			manageLoading(pTruckS, pCargo, hourS);
-			pCargo = nullptr;
-			NC.peekFront(pCargo);
-			manageLoading(pTruckN, pCargo, hourN);
-		}
 
 
 		hours++;
@@ -100,7 +115,7 @@ void Company::filltruckdata()
 		Truck* pointern = new Truck('N',NTC,CN,NTS,J,i);
 		NT.enqueue(pointern);
 	}
-	for (int j = 2; j <= STN+1; j++)
+	for (int j = 1; j <= STN+1; j++)
 	{
 		Truck* pointers = new Truck('S',STC,CS,STS,J,j);
 		ST.enqueue(pointers);
@@ -299,13 +314,37 @@ Truck* Company::assignCargos(char Type)
 		return assignVIPCargos();
 }
 
-Truck* Company::assignMaxwCargo()
+Truck* Company::assignMaxWNormalCargos()
 {
 	Truck* pTruck = nullptr;
 	if (NT.peek(pTruck))
+	{
+		NT.dequeue(pTruck);
 		return pTruck;
+	}
 	if (VT.peek(pTruck))
+	{
+		VT.dequeue(pTruck);
 		return pTruck;
+	}
+}
+
+Truck* Company::assignMaxWSpecialCargos()
+{
+	Truck* pTruck = nullptr;
+	if (ST.peek(pTruck))
+	{
+		ST.dequeue(pTruck);
+		return pTruck;
+	}
+}
+
+Truck* Company::assignMaxwCargo(char Type)
+{
+	if (Type == 'N')
+		return assignMaxWNormalCargos();
+	if (Type == 'S')
+		return assignMaxWSpecialCargos();
 }
 
 void Company::loadCargo(Truck* pTruck, Cargo* pCargo)
@@ -328,7 +367,29 @@ bool Company::reachedMaxW(Cargo* pCargo)
 	return false;
 }
 
-void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
+void Company::getNext(Cargo*& pCargo)
+{
+	if (pCargo->getTYP() == 'N')
+		if (!NC.peekFront(pCargo))
+		{
+			pCargo = nullptr;
+			return;
+		}
+	if (pCargo->getTYP() == 'S')
+		if (!SC.peek(pCargo))
+		{
+			pCargo = nullptr;
+			return;
+		}
+	if (pCargo->getTYP() == 'V')
+		if (!VC.peek(pCargo))
+		{
+			pCargo = nullptr;
+			return;
+		}
+}
+
+void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL, bool& isMaxW)
 {
 	if (!pCargo)
 		return;
@@ -339,31 +400,25 @@ void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL)
 		{
 			loadCargo(pTruck, pCargo);
 			hourL = 0;
-			if (pTruck->isFull() || reachedMaxW(pCargo))
+			if (pTruck->isFull() || isMaxW)
 			{
-				hourL = 1;
 				moveTruck(pTruck);
 				pTruck = nullptr;
-				return;
+				isMaxW = false;
 			}
 		}
 	}
 	if (pTruck == nullptr)
 	{
+		getNext(pCargo);
+		if (!pCargo)
+			return;
 		pTruck = assignCargos(pCargo->getTYP());
 		if (!pTruck && reachedMaxW(pCargo))
-			pTruck = assignMaxwCargo();
-		if (pCargo->getLT() == hourL)
 		{
-			loadCargo(pTruck, pCargo);
-			hourL = 0;
-			if (pTruck->isFull() || reachedMaxW(pCargo))
-			{
-				hourL = 1;
-				moveTruck(pTruck);
-				pTruck = nullptr;
-				return;
-			}
+			pTruck = assignMaxwCargo(pCargo->getTYP());
+			if (pTruck)
+				isMaxW = true;
 		}
 	}
 
