@@ -59,7 +59,7 @@ private:
 public:
 	LinkedQueue();
 	bool isEmpty() const;
-	bool enqueue(const T& newEntry, int newKey);
+	bool enqueue(const T& newEntry);
 	bool dequeue(T& frntEntry);
 	bool peek(T& frntEntry)  const;
 	int getcount();
@@ -109,7 +109,7 @@ Output: True if the operation is successful; otherwise false.
 */
 
 template <typename T>
-bool LinkedQueue<T>::enqueue(const T& newEntry, int newKey)
+bool LinkedQueue<T>::enqueue(const T& newEntry)
 {
 	Node<T>* newNodePtr = new Node<T>(newEntry);
 	// Insert the new node

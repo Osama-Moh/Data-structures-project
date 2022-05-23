@@ -1,9 +1,9 @@
 #pragma once
 #include "Node.h"
-
+# include "PriorityQueueADT.h"
 
 template <typename T>
-class PriorityQueue: public QueueADT<T>
+class PriorityQueue : public PriorityQueueADT <T>
 {
 private:
 	Node<T>* Head;

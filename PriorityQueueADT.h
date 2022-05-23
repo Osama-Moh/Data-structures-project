@@ -3,11 +3,11 @@
 //  Copyright (c) 2017 Pearson Education, Hoboken, New Jersey.
 
 /** @file QueueADT.h */
-#ifndef QUEUE_ADT_
-#define QUEUE_ADT_
+#ifndef PriorityQUEUE_ADT_
+#define PriorityQUEUE_ADT_
 
 template<class T>
-class QueueADT
+class PriorityQueueADT
 {
 public:
 
@@ -37,6 +37,6 @@ public:
    virtual bool peek(T& FrontEntry) const = 0;
    
    /** Destroys this queue and frees its memory. */
-   virtual ~QueueADT() { }
+   virtual ~PriorityQueueADT() { }
 }; // end QueueADT
 #endif

@@ -15,7 +15,7 @@ Truck::Truck(char typ, int tc, int mt, int v, int n, int id)
 }
 void Truck::loadCargo(Cargo* C)
 {
-	QL.enqueue(C,1);
+	QL.enqueue(C);
 }
 void Truck::unloadCargo(Cargo* C)
 {

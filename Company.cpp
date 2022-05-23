@@ -98,17 +98,17 @@ void Company::filltruckdata()
 	for (int i = 1; i <= NTN; i++)
 	{
 		Truck* pointern = new Truck('N',NTC,CN,NTS,J,i);
-		NT.enqueue(pointern,1);
+		NT.enqueue(pointern);
 	}
 	for (int j = 2; j <= STN+1; j++)
 	{
 		Truck* pointers = new Truck('S',STC,CS,STS,J,j);
-		ST.enqueue(pointers,1);
+		ST.enqueue(pointers);
 	}
 	for (int k = 1; k <= VTN; k++)
 	{
 		Truck* pointerv = new Truck('V',VTC,CV,VTS,J,k);
-		VT.enqueue(pointerv,1);
+		VT.enqueue(pointerv);
 	}
 }
 
@@ -141,7 +141,7 @@ void Company::filleventsdata()
 		if (hour <= 23 && hour >= 0)
 		{
 			pointer = new PreparationEvent(typ, id, day, hour, lt, dist, cost);
-			Events.enqueue(pointer, 1);
+			Events.enqueue(pointer);
 		}
 	}
 	if (ev == 'X')
@@ -149,7 +149,7 @@ void Company::filleventsdata()
 		if (hour <= 23 && hour >= 0)
 		{
 			pointer = new CancellationEvent(id, day, hour);
-			Events.enqueue(pointer, 1);
+			Events.enqueue(pointer);
 		}
 	}
 	if (ev == 'P')
@@ -157,7 +157,7 @@ void Company::filleventsdata()
 		if (hour <= 23 && hour >= 0)
 		{
 			pointer = new PromotionEvent(id, day, hour, cost);
-			Events.enqueue(pointer, 1);
+			Events.enqueue(pointer);
 		}
 	}
 }
@@ -167,7 +167,7 @@ void Company::addCargo(Cargo* S)
 	if (S->getTYP() == 'N')
 		NC.InsertEnd(S);
 	if (S->getTYP() == 'S')
-		SC.enqueue(S,S->getPRIORITY());
+	//	SC.enqueue(S,S->getPRIORITY());
 	if (S->getTYP() == 'V')
 		VC.enqueue(S,S->getPRIORITY());
 }
@@ -428,15 +428,15 @@ void Company::gotowait()
 	moving.dequeue(ptrw);
 	if (ptrw->getTYP() == 'N')
 	{
-		NT.enqueue(ptrw, 1);
+		NT.enqueue(ptrw);
 	}
 	else if (ptrw->getTYP() == 'V')
 	{
-		VT.enqueue(ptrw, 1);
+		VT.enqueue(ptrw);
 	}
 	else if (ptrw->getTYP() == 'S')
 	{
-		ST.enqueue(ptrw, 1);
+		ST.enqueue(ptrw);
 	}
 }
 
@@ -450,17 +450,17 @@ void Company::finishcheckup()
 		if (ptrfn->getFDAY() == days && ptrfn->getFHOUR() == hours)
 		{
 			Checknormal.dequeue(ptrfn);
-			NT.enqueue(ptrfn,1);
+			NT.enqueue(ptrfn);
 		}
 		if (ptrfs->getFDAY() == days && ptrfs->getFHOUR() == hours)
 		{
 			Checkspecial.dequeue(ptrfs);
-			ST.enqueue(ptrfs,1);
+			ST.enqueue(ptrfs);
 		}
 		if (ptrfv->getFDAY() == days && ptrfv->getFHOUR() == hours)
 		{
 			Checkvip.dequeue(ptrfv);
-			VT.enqueue(ptrfv,1);
+			VT.enqueue(ptrfv);
 		}
 		else
 		{
