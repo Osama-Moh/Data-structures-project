@@ -186,9 +186,16 @@ int Truck::getLoadedCount()
 	return QL.getcount();
 }
 
-void Truck::getpeek(Cargo* & C1)
+bool Truck::getpeek(Cargo* & C1)
 {
-	QM.peek(C1);
+	if (QM.peek(C1))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void Truck::printloadingcargos()

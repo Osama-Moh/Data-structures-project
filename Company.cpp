@@ -561,3 +561,43 @@ void Company::moveTruck(Truck* pTruck)
 	}
 }
 
+void Company::moveTruck(Truck* pTruck)
+{
+	int xxx = 0;
+	int ttt = 0;
+	Cargo* C = nullptr;
+	pTruck->Move();
+	pTruck->getpeek(C);
+
+	//int count=moving.getcount()
+	while (pTruck->getpeek(C))
+	{
+		int idd = C->getID();
+		if (C->getCDT() == (days * 24 + hours))
+		{
+			moving.dequeue(pTruck);
+			// call dilevered 
+		}
+		else //if (C->getCDT() > (days * 24 + hours) )      // && moving.peek() != pTruck && moving .getcount() !=count
+		{			
+			xxx = C->getCDT();
+			moving.enqueue(pTruck, xxx);
+			break;
+		}
+
+	}
+	if (C == nullptr)
+	{
+		if ((pTruck->getRDAY() * 24 + pTruck->getRHOUR()) == (days * 24 + hours))
+		{
+			moving.dequeue(pTruck);
+		}
+		else
+		{
+			ttt = pTruck->getRHOUR() + pTruck->getRDAY() * 24;
+			moving.enqueue(pTruck, ttt);
+		}
+
+	}
+	int com = moving.getcount();
+}
