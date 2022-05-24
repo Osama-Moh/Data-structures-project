@@ -547,23 +547,6 @@ void Company::finishcheckup()
 void Company::moveTruck(Truck* pTruck)
 {
 	int xxx = 0;
-	Cargo* C = nullptr;
-	pTruck->Move();
-	pTruck->getpeek(C);
-	if (C != nullptr)
-	{
-		xxx = C->getCDT();
-		moving.enqueue(pTruck, xxx); // Priority Needs To Be Implemented
-	}
-	if (C->getCDT() == (days * 24 + hours))
-	{
-		moving.dequeue(pTruck);
-	}
-}
-
-void Company::moveTruck(Truck* pTruck)
-{
-	int xxx = 0;
 	int ttt = 0;
 	Cargo* C = nullptr;
 	pTruck->Move();
