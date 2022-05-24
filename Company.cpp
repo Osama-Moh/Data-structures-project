@@ -14,10 +14,10 @@ void Company::simulate()
 	Event* pEvent;
 	Cargo* pCargo = new Cargo;
 	Truck* pTruck = new Truck;
-	Truck* pTruckV = nullptr;
-	Truck* pTruckS = nullptr;
-	Truck* pTruckN = nullptr;
 	Cargo* wCargo = nullptr;
+	pTruckV = nullptr;
+	pTruckS = nullptr;
+	pTruckN = nullptr;
 
 	point->mainprint();
 	openinput();
@@ -189,12 +189,17 @@ void Company::addCargo(Cargo* S)
 
 Cargo* Company::removeCargo(int ID)
 {
-	return NC.removeCargo(ID);
+	if (pTruckN)
+		if (NC.getOrder(ID) > pTruckN->getTC() - pTruckN->getLoadedCount())
+			return NC.removeCargo(ID);
+	return nullptr;
 }
 
 void Company::promoteCargo(int ID, int ExtraCost)
 {
 	Cargo* S = removeCargo(ID);
+	if (S == nullptr)
+		return;
 	S->setTYP('V');
 	int Cost = S->getCOST() + ExtraCost;
 	S->setCOST(Cost);

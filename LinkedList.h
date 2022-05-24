@@ -238,6 +238,7 @@ public:
 			ptr = ptr->getNext();
 		}
 	}
+
 };
 
 #endif	

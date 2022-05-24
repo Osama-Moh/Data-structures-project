@@ -25,4 +25,17 @@ public:
 		return reqCargo->getItem();
 	}
 
+	int getOrder(int ID)
+	{
+		int order = 1;
+		Node<Cargo*>* ptr = Head;
+		while (ptr)
+		{
+			if ((ptr->getItem())->getID() == ID)
+				return order;
+			ptr = ptr->getNext();
+			order++;
+		}
+		return 0;
+	}
 };

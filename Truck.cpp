@@ -55,7 +55,7 @@ void Truck::setID(int id)
 }
 void Truck::setCOUNT(int count)
 {
-	COUNT = count;
+	COUNT=count;
 }
 char Truck::getTYP()
 {
@@ -181,7 +181,13 @@ int Truck::getfurthercargo()
 	return furthercargo;
 }
 
-void Truck::getpeek( Cargo* & C1)
+int Truck::getLoadedCount()
+{
+	return QL.getcount();
+}
+
+void Truck::getpeek(Cargo* & C1)
 {
 	QM.peek(C1);
 }
+

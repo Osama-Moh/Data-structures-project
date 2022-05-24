@@ -67,6 +67,10 @@ private:
 	PriorityQueue<Truck*> moving;
 	LinkedQueue<Cargo*> Deliveredcargos;
 
+	Truck* pTruckN;
+	Truck* pTruckS;
+	Truck* pTruckV;
+
 
 public:
 	Company();

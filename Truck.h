@@ -56,6 +56,7 @@ public:
 	int getCOUNT();   // Returns Truck Delievery Count
 	int gettotalunloading();
 	int getfurthercargo();
+	int getLoadedCount();
 	void Move();
 	bool isFull();
 	void getpeek(Cargo* & C);
