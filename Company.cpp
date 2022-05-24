@@ -190,9 +190,9 @@ void Company::addCargo(Cargo* S)
 Cargo* Company::removeCargo(int ID)
 {
 	if (pTruckN)
-		if (NC.getOrder(ID) > pTruckN->getTC() - pTruckN->getLoadedCount())
-			return NC.removeCargo(ID);
-	return nullptr;
+		if (NC.getOrder(ID) <= pTruckN->getTC() - pTruckN->getLoadedCount())
+			return nullptr;
+	return NC.removeCargo(ID);
 }
 
 void Company::promoteCargo(int ID, int ExtraCost)
@@ -264,13 +264,13 @@ Truck* Company::assignVIPCargos()
 			VT.dequeue(pTruck);
 			return pTruck;
 		}
-	else if (NT.peek(pTruck) && VT.getcount()==0)
+	if (NT.peek(pTruck) && VT.getcount()==0)
 		if (VC.getcount() >= pTruck->getTC())
 		{
 			NT.dequeue(pTruck);
 			return pTruck;
 		}
-	else if (ST.peek(pTruck) && VT.getcount()== 0 && NT.getcount()== 0)
+	if (ST.peek(pTruck) && VT.getcount()== 0 && NT.getcount()== 0)
 		if (VC.getcount() >= pTruck->getTC())
 		{
 			ST.dequeue(pTruck);
@@ -300,7 +300,7 @@ Truck* Company::assignNormalCargos()
 			NT.dequeue(pTruck);
 			return pTruck;
 		}
-	else if (VT.peek(pTruck) && NT.getcount()==0)
+	if (VT.peek(pTruck) && NT.getcount() == 0)
 		if (NC.getCount() >= pTruck->getTC())
 		{
 			VT.dequeue(pTruck);
@@ -332,6 +332,7 @@ Truck* Company::assignMaxWNormalCargos()
 		VT.dequeue(pTruck);
 		return pTruck;
 	}
+	return nullptr;
 }
 
 Truck* Company::assignMaxWSpecialCargos()
@@ -342,6 +343,7 @@ Truck* Company::assignMaxWSpecialCargos()
 		ST.dequeue(pTruck);
 		return pTruck;
 	}
+	return nullptr;
 }
 
 Truck* Company::assignMaxwCargo(char Type)
