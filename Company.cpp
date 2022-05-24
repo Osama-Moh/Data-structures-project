@@ -184,7 +184,7 @@ void Company::addCargo(Cargo* S)
 	if (S->getTYP() == 'S')
 		SC.enqueue(S);
 	if (S->getTYP() == 'V')
-		VC.enqueue(S,S->getPRIORITY());
+		VC.enqueue(S,1/(S->getPRIORITY()));
 }
 
 Cargo* Company::removeCargo(int ID)
