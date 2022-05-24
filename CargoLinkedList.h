@@ -22,7 +22,9 @@ public:
 			reqCargo = reqCargo->getNext();
 			index++;
 		}
-		return reqCargo->getItem();
+		if (reqCargo)
+			return reqCargo->getItem();
+		return nullptr;
 	}
 
 	int getOrder(int ID)
