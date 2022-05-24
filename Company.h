@@ -101,6 +101,7 @@ public:
 	Truck* assignMaxwCargo(char Type);
 	Truck* assignCargos(char Type);
 
+	void autoPromote(Cargo* pCargo);
 	bool reachedMaxW(Cargo* pCargo);
 	void loadCargo(Truck* pTruck, Cargo* pCargo);
 	void getNext(Cargo*& pCargo);

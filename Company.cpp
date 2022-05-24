@@ -56,6 +56,8 @@ void Company::simulate()
 
 		if (hours >= 5 && hours <= 23)
 		{
+			if (!pTruckN)
+				autoPromote(pCargo);
 			pCargo = nullptr;
 			VC.peek(pCargo);
 			manageLoading(pTruckV, pCargo, hourV, isMaxWV);
@@ -372,6 +374,17 @@ bool Company::reachedMaxW(Cargo* pCargo)
 	if ((24 * (days - pCargo->getPTD()) + (hours - pCargo->getPTH())) >= MaxW)
 		return true;
 	return false;
+}
+
+void Company::autoPromote(Cargo* pCargo)
+{
+	while (NC.peekFront(pCargo))
+		if (24 * (days - pCargo->getPTD()) + (hours - pCargo->getPTH()) >= 24 * AutoP)
+			promoteCargo(pCargo->getID(), 0);
+		else
+		{
+			return;
+		}
 }
 
 void Company::getNext(Cargo*& pCargo)
