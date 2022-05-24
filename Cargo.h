@@ -34,7 +34,7 @@ public:
 	int getLT();   // Returns Cargo Loading and Unloading Time
 	int getDIST();   // Returns Cargo Shipping Distance
 	int getCOST();   // Returns Cargo Shipping Cost
-	int getPRIORITY();   // Returns Cargo Priority
+	float getPRIORITY();   // Returns Cargo Priority
 	int getCDT();
 	friend ostream& operator << (ostream& out,const Cargo& C);
 	~Cargo();  // Destructor

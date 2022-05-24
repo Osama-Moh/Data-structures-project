@@ -45,7 +45,7 @@ void Cargo::setCOST(int cost)
 }
 void Cargo::setCDT(int speed)
 {
-	CDT = DIST / speed + LT;
+	CDT=DIST/speed + LT;
 }
 char Cargo::getTYP()
 {
@@ -75,9 +75,9 @@ int Cargo::getCOST()
 {
 	return COST;
 }
-int Cargo::getPRIORITY()
+float Cargo::getPRIORITY()
 {
-	return TYP == 'V' ? 1 : 0;
+	return TYP == 'V' ? float((COST*COST)/((24*PTD+PTH)*(DIST*LT))) : 0;
 }
 Cargo::~Cargo()
 {
