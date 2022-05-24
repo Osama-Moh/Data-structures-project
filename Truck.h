@@ -60,6 +60,8 @@ public:
 	void Move();
 	bool isFull();
 	void getpeek(Cargo* & C);
+	void printloadingcargos();
+	void printmovingcargos();
 	friend ostream& operator << (ostream& out, const Truck& T);
 	~Truck();   // Destructor
 };

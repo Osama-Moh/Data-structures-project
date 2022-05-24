@@ -191,3 +191,12 @@ void Truck::getpeek(Cargo* & C1)
 	QM.peek(C1);
 }
 
+void Truck::printloadingcargos()
+{
+	QL.print();
+}
+
+void Truck::printmovingcargos()
+{
+	QM.print();
+}

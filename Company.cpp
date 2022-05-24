@@ -95,7 +95,7 @@ void Company::simulate()
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
 		int TMT = Checknormal.getcount() + Checkspecial.getcount() + Checkvip.getcount();
 
-		point->printmode(n, nc, TDC, hours, days,TMT, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC, &Checknormal, &Checkspecial, &Checkvip, &moving);
+		point->printmode(n, nc, TDC, hours, days,TMT, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC, &Checknormal, &Checkspecial, &Checkvip, &moving, pTruckN, pTruckS, pTruckV);
 
 
 		hours++;
