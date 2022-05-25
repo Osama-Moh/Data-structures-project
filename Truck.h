@@ -17,14 +17,14 @@ private:
 	int N;   // Number Of Delieveries Before Checkup
 	int ID;		// Truck ID
 	int COUNT;   // Truck Delivery Count
-
+	int tripcount;
 	int SDAY, SHOUR;			// start moving time 
 	int RDAY, RHOUR;			// return from moving time
 	int FDAY, FHOUR;			// finish checkup time
 	int totalunloading;			
 	int furthercargo;
 	int activetime;
-
+	int totalcargos;
 public:
 	Truck();   // No Arguments Constructor
 	Truck(char typ, int tc, int mt, int v, int n, int id);   // Arguments Constructor
@@ -43,7 +43,7 @@ public:
 	void setfurthercargo(int fc);
 	void setRTIME(int sday, int shour);
 	void setFTIME(int duration, int day, int hour);
-	
+	void settripcount();
 	int getRDAY();
 	int getRHOUR();
 	int getFHOUR();
@@ -59,6 +59,7 @@ public:
 	int gettotalunloading();
 	int getfurthercargo();
 	int getLoadedCount();
+	int gettripcount();
 	void Move();
 	bool isFull();
 	bool getpeek(Cargo* & C) const;
@@ -66,6 +67,8 @@ public:
 	void printmovingcargos();
 	void setactivetime();
 	int getactivetime();
+	void settotalcargos(int c);
+	int gettotalcargos();
 	friend ostream& operator << (ostream& out, const Truck& T);
 	~Truck();   // Destructor
 };

@@ -243,3 +243,23 @@ int Truck::getactivetime()
 {
 	return activetime;
 }
+
+void Truck::settripcount()
+{
+	tripcount++;
+}
+
+int Truck::gettripcount()
+{
+	return tripcount;
+}
+
+void Truck::settotalcargos(int c)
+{
+	totalcargos = totalcargos + c;
+}
+
+int Truck::gettotalcargos()
+{
+	return totalcargos;
+}

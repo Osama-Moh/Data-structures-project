@@ -90,7 +90,7 @@ void Company::simulate()
 		}
 
 	}
-	Fsimulationd = days;
+	Fsimulationd = days - 1;
 	FsimulationH = hours;
 	point->printend();
 	openoutput();
@@ -222,20 +222,24 @@ void Company::openoutput()
 void Company::writetofile()
 {
 	Cargo* print;
-	output << "CDT" << "     " << "ID" << "    " << "PT" << "    " << "WT" << "    " << "TID" << endl;
+	output << "CDT" << "     " << "ID" << "    " << "PT" << "	    " << "WT" << "			" << "TID" << endl;
 	collect();
 	while (Deliveredcargos.dequeue(print))
 	{
 		output << print->getCDTD() << ":" << print->getCDTH() << "    " << print->getID() << "    " << print->getPTD() << ":" << print->getPTH() << "    ";
-		output << "    " << print->getWTD() << ":" << print->getWTH() << "		" << print->getTID() << endl;
+		output << "    " << print->getWTD() << ":" << print->getWTH() << "			" << print->getTID() << endl;
+
+		settotalwait(print->getWT());
 	}
 	output << "------------------------------------------------------------" << endl;
 	output << "------------------------------------------------------------" << endl;
 	output << "Cargos: " << TNOC << "   [N: " << TNONC << ", S: " << TNOSC << ", V: " << TNOVC << "]" << endl;
-	output << "Cargo Avg. Wait: " << gettotalwait() << endl;
+	averagedays = (gettotalwait() / TNOC) / 24;
+	averagehours = (gettotalwait() / TNOC) % 24;
+	output << "Cargo Avg. Wait: " << averagedays << ":" << averagehours << endl;
 	output << "Auto-promoted Cargos: " << AUTOpercent << " %" << endl;
 	output << "Trucks: " << TNOT;
-	output << "   " << "[" << "N: " << TNONT << ", S: " << TNOST << ", V: " << TNOVT << "]" << endl;
+	output << "   " << "[" << "N: " << NTN << ", S: " << STN << ", V: " << VTN << "]" << endl;
 	output << "Avg. Active time = " << totalactivetime << " &" << endl;
 
 
@@ -244,11 +248,10 @@ void Company::writetofile()
 void Company::collect()
 {
 	TNOC = Deliveredcargos.getcount();
-	TNOT = NT.getcount() + ST.getcount() + VT.getcount() + moving.getcount();
-	TNONT = NT.getcount();
-	TNOVT = VT.getcount();
-	TNOST = ST.getcount();
+	TNOT = NTN + STN + VTN;
+
 	AUTOpercent = (Aucargo * 100) / TNONC;
+	avgwait = (gettotalwait() * 100) / TNOC;
 }
 
 void Company::print()
@@ -607,6 +610,8 @@ void Company::checkDelievered()
 		{
 			if (24 * pTruck->getRDAY() + pTruck->getRHOUR() <= 24 * days + hours)
 			{
+				pTruck->settripcount();
+				pTruck->setCOUNT(1);
 				checkup();
 			}
 			else

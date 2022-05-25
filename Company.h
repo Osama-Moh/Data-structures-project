@@ -38,11 +38,12 @@ private:
 	int totalactivetime;
 
 	int TNOC, TNOSC, TNOVC, TNONC;
-	int averagehours, averagedays;
+	float averagehours, averagedays;
 	int TNOT, TNONT, TNOST, TNOVT;						// total no. of trucks, nomral,special and VIP
 	int avgactivetime, avgutilt, avgutilc;				//Avgactive for trucks, Avg utilization for trucks, average utilization for cargos
 	int hours = 0;
 	int days = 1;
+	float avgwait;
 
 	string fileinname;   // input File Name
 	string fileoutname;	//Output file name
