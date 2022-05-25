@@ -55,7 +55,7 @@ void Truck::setID(int id)
 }
 void Truck::setCOUNT(int count)
 {
-	COUNT=count;
+	COUNT = COUNT + count;
 }
 char Truck::getTYP()
 {
@@ -110,10 +110,10 @@ ostream& operator << (ostream& out, const Truck& T)
 	return out;
 }
 
-void Truck::setRTIME(int sd,int sh, int dt)
+void Truck::setRTIME(int sd,int sh)
 {
-		RDAY = sd + ((sh + dt) / 24);
-		RHOUR = (sh + (dt % 24)) % 24;
+		RDAY = sd + ((sh + DT) / 24);
+		RHOUR = (sh + (DT % 24)) % 24;
 }
 
 int Truck::getRDAY()

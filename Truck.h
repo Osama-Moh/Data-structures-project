@@ -39,7 +39,7 @@ public:
 	void setCOUNT(int count);   // Sets Truck Delievery Count
 	void settotalunloading(int l);
 	void setfurthercargo(int fc);
-	void setRTIME(int sday, int shour, int dt);
+	void setRTIME(int sday, int shour);
 	void setFTIME(int duration, int day, int hour);
 	
 	int getRDAY();

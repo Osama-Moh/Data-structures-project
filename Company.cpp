@@ -117,7 +117,7 @@ void Company::filltruckdata()
 		Truck* pointern = new Truck('N',NTC,CN,NTS,J,i);
 		NT.enqueue(pointern);
 	}
-	for (int j = 1; j <= STN+1; j++)
+	for (int j = 2; j <= STN+1; j++)
 	{
 		Truck* pointers = new Truck('S',STC,CS,STS,J,j);
 		ST.enqueue(pointers);
@@ -547,6 +547,7 @@ void Company::finishcheckup()
 void Company::moveTruck(Truck* pTruck)
 {
 	pTruck->Move();
+	pTruck->setRTIME(days, hours);
 	Cargo* pCargo = nullptr;
 	if (pTruck->getpeek(pCargo))
 	{
@@ -591,7 +592,8 @@ void Company::checkDelievered()
 		{
 			if (24 * pTruck->getRDAY() + pTruck->getRHOUR() <= 24 * days + hours)
 			{
-				moving.dequeue(pTruck);  // Needs To Be Implemented
+				//moving.dequeue(pTruck);  // Needs To Be Implemented
+				checkup();
 			}
 			else
 			{
