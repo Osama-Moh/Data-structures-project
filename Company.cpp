@@ -220,7 +220,7 @@ void Company::writetofile()
 {
 	Cargo* print;
 	output << "CDT" << "     " << "ID" << "    " << "PT" << "    " << "WT" << "    " << "TID" << endl;
-	totalcargos = Deliveredcargos.getcount();
+	collect();
 	while (Deliveredcargos.dequeue(print))
 	{
 		output << print->getCDTD() << ":" << print->getCDTH() << "    " << print->getID() << "    " << print->getPTD() << ":" << print->getPTH() << "    ";
@@ -229,9 +229,18 @@ void Company::writetofile()
 	output << "------------------------------------------------------------" << endl;
 	output << "------------------------------------------------------------" << endl;
 	output << "Cargos: " << totalcargos << "   [N: " << totalnormal<< ", S: " << totalspecial << ", V: " << totalvip <<"]" << endl;
-	output << "Trucks: " << NT.getcount() + ST.getcount() + VT.getcount();
-	output << "   " << "[" << "N: " << NT.getcount() << ", S: " << ST.getcount() << ", V: " << VT.getcount() << "]" << endl;
+	output << "Trucks: " << TNOT;
+	output << "   " << "[" << "N: " << TNONT << ", S: " << TNOST << ", V: " << TNOVT << "]" << endl;
 
+}
+
+void Company::collect()
+{
+	totalcargos = Deliveredcargos.getcount();
+	TNOT = NT.getcount() + ST.getcount() + VT.getcount() + moving.getcount();
+	TNONT = NT.getcount();
+	TNOVT = VT.getcount();
+	TNOST = ST.getcount();
 }
 
 void Company::print()

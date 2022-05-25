@@ -32,7 +32,7 @@ private:
 
 	int TNOC, TNOSC, TNOVC, TNONC;
 	int averagehours, averagedays;
-	int TNOT, TNONT, TNOST, TNOVT;
+	int TNOT, TNONT, TNOST, TNOVT;						// total no. of trucks, nomral,special and VIP
 	int avgactivetime, avgutilt, avgutilc;				//Avgactive for trucks, Avg utilization for trucks, average utilization for cargos
 	int hours = 0;
 	int days = 1;
@@ -107,6 +107,7 @@ public:
 	void getNext(Cargo*& pCargo);
 	void manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour, bool& isMaxW);
 
+	void collect();
 	void checkDelievered();
 	void checkup();
 	void gotowait();
