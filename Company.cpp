@@ -77,10 +77,10 @@ void Company::simulate()
 
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
-		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
+		int TDC = Deliveredcargos.getcount();
 		int TMT = Checknormal.getcount() + Checkspecial.getcount() + Checkvip.getcount();
 
-		point->printmode(n, nc, TDC, hours, days,TMT, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC, &Checknormal, &Checkspecial, &Checkvip, &moving, pTruckN, pTruckS, pTruckV);
+		point->printmode(n, nc, TDC, hours, days,TMT, &NC, &SC, &VC, &NT, &ST, &VT, &Checknormal, &Checkspecial, &Checkvip, &moving, pTruckN, pTruckS, pTruckV, &Deliveredcargos);
 
 		hours++;
 		if (hours == 24)
@@ -554,7 +554,7 @@ void Company::checkDelievered()
 			{
 				int distance = pCargo->getDIST();
 				pTruck->unloadCargo(pCargo);
-				DeliveredNC.enqueue(pCargo);
+				Deliveredcargos.enqueue(pCargo);
 				moving.dequeue(pTruck);
 				if (pTruck->getpeek(pCargo))
 				{
@@ -577,8 +577,8 @@ void Company::checkDelievered()
 		{
 			if (24 * pTruck->getRDAY() + pTruck->getRHOUR() <= 24 * days + hours)
 			{
-				moving.dequeue(pTruck);  // Needs To Be Implemented
-				//checkup();
+				//moving.dequeue(pTruck);  // Needs To Be Implemented
+				checkup();
 			}
 			else
 			{
