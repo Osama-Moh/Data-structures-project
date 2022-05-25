@@ -8,8 +8,8 @@ CDT     ID    PT    WT    TID
 2:4    4    1:9        0:6		1
 ------------------------------------------------------------
 ------------------------------------------------------------
-Cargos: 7   [N: 0, S: 0, V: 0]
+Cargos: 7   [N: 3, S: 4, V: 3]
 Cargo Avg. Wait: 0
-Auto-promoted Cargos: 0 %
-Trucks: 17   [N: 3, S: 5, V: 8]
+Auto-promoted Cargos: 33 %
+Trucks: 9   [N: 3, S: 5, V: 0]
 Avg. Active time = 0 &

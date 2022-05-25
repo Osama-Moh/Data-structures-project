@@ -3,6 +3,7 @@
 # include "Company.h"
 # include "Truck.h"
 # include "Cargo.h"
+
 using namespace std;
 
 Company::Company()
@@ -247,6 +248,7 @@ void Company::collect()
 	TNONT = NT.getcount();
 	TNOVT = VT.getcount();
 	TNOST = ST.getcount();
+	AUTOpercent = (Aucargo * 100) / TNONC;
 }
 
 void Company::print()
@@ -356,11 +358,20 @@ Truck* Company::assignMaxwCargo(char Type)
 void Company::loadCargo(Truck* pTruck, Cargo* pCargo)
 {
 	if (pCargo->getTYP() == 'N')
+	{
+		TNONC++;
 		NC.DeleteBeg(pCargo);
+	}
 	if (pCargo->getTYP() == 'S')
+	{
+		TNOSC++;
 		SC.dequeue(pCargo);
+	}
 	if (pCargo->getTYP() == 'V')
+	{
+		TNOVC++;
 		VC.dequeue(pCargo);
+	}
 	pTruck->loadCargo(pCargo);
 }
 
@@ -376,12 +387,17 @@ bool Company::reachedMaxW(Cargo* pCargo)
 void Company::autoPromote(Cargo* pCargo)
 {
 	while (NC.peekFront(pCargo))
+	{
 		if (24 * (days - pCargo->getPTD()) + (hours - pCargo->getPTH()) >= 24 * AutoP)
+		{
+			Aucargo++;
 			promoteCargo(pCargo->getID(), 0);
+		}
 		else
 		{
 			return;
 		}
+	}
 }
 
 void Company::getNext(Cargo*& pCargo)
