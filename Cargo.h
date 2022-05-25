@@ -12,11 +12,11 @@ private:
 	int LT;   // Cargo Loading and Unloading Time
 	int DIST;   // Cargo Shipping Distance
 	int COST;   // Cargo Shipping Cost
-	int CDT;
+	int CDT, CDTH, CDTD;
 	int Dd, Dh;
 	int WT;					// cargo waiting time
 	int TID;				// truck id
-
+	int WTD, WTH;
 
 public:
 	Cargo();   // No Arguments Constructor
@@ -46,6 +46,10 @@ public:
 	void setTID(int id);
 	int getTID();
 
+	int getWTH();
+	int getWTD();
+	int getCDTH();
+	int getCDTD();
 	friend ostream& operator << (ostream& out,const Cargo& C);
 	~Cargo();  // Destructor
 	

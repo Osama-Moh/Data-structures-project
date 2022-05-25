@@ -72,7 +72,6 @@ void Company::simulate()
 
 
 
-		checkup();
 		finishcheckup();
 
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
@@ -220,12 +219,12 @@ void Company::openoutput()
 void Company::writetofile()
 {
 	Cargo* print;
-	output << "CDT" << "    " << "ID" << "    " << "PT" << "    " << "WT" << "    " << "TID" << endl;
+	output << "CDT" << "     " << "ID" << "    " << "PT" << "    " << "WT" << "    " << "TID" << endl;
 	totalcargos = Deliveredcargos.getcount();
 	while (Deliveredcargos.dequeue(print))
 	{
-		output << "    " << print->getID() << "    " << print->getPTD() << ":" << print->getPTH() << "    " << endl;
-		
+		output << print->getCDTD() << ":" << print->getCDTH() << "    " << print->getID() << "    " << print->getPTD() << ":" << print->getPTH() << "    ";
+		output << "    " << print->getWTD() << ":" << print->getWTH() << "	" << print->getTID() << endl;
 	}
 	output << "------------------------------------------------------------" << endl;
 	output << "------------------------------------------------------------" << endl;
@@ -531,8 +530,8 @@ void Company::finishcheckup()
 
 void Company::moveTruck(Truck* pTruck)
 {
-	pTruck->Move();
 	//pTruck->setRTIME(days, hours);
+	pTruck->Move();
 	Cargo* pCargo = nullptr;
 	if (pTruck->getpeek(pCargo))
 	{
@@ -577,8 +576,8 @@ void Company::checkDelievered()
 		{
 			if (24 * pTruck->getRDAY() + pTruck->getRHOUR() <= 24 * days + hours)
 			{
-				//moving.dequeue(pTruck);  // Needs To Be Implemented
 				checkup();
+				moving.dequeue(pTruck);  // Needs To Be Implemented
 			}
 			else
 			{

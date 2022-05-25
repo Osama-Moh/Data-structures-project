@@ -46,6 +46,8 @@ void Cargo::setCOST(int cost)
 void Cargo::setCDT(int days, int hours, int speed, int distance)
 {
 	CDT = (24 * days + hours) + (distance / speed) + LT;
+	CDTD = CDT / 24;
+	CDTH = CDT % 24;
 }
 char Cargo::getTYP()
 {
@@ -96,6 +98,8 @@ int Cargo::getCDT()
 void Cargo::setWT(int SD, int SH)
 {
 	WT = (SD * 24 + SH) - (PTD * 24 + PTH);
+	WTD = WT / 24;
+	WTH = WT % 24;
 }
 
 int Cargo::getWT()
@@ -111,4 +115,24 @@ void Cargo::setTID(int id)
 int Cargo::getTID()
 {
 	return TID;
+}
+
+int Cargo::getWTD()
+{
+	return WTD;
+}
+
+int Cargo::getWTH()
+{
+	return WTH;
+}
+
+int Cargo::getCDTD()
+{
+	return CDTD;
+}
+
+int Cargo::getCDTH()
+{
+	return CDTH;
 }
