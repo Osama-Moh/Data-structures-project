@@ -8,7 +8,6 @@ Truck::Truck(char typ, int tc, int mt, int v, int n, int id)
 	setTYP(typ);						
 	setTC(tc);								
 	setMT(mt);	   
-	//setDT(0);
 	setV(v);								
 	setN(n);
 	setID(id);
@@ -234,4 +233,13 @@ void Truck::printloadingcargos()
 void Truck::printmovingcargos()
 {
 	QM.print();
+}
+void Truck::setactivetime()
+{
+	activetime = (furthercargo / V) + totalunloading;
+}
+
+int Truck::getactivetime()
+{
+	return activetime;
 }

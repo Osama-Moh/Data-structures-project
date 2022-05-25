@@ -23,6 +23,7 @@ private:
 	int FDAY, FHOUR;			// finish checkup time
 	int totalunloading;			
 	int furthercargo;
+	int activetime;
 
 public:
 	Truck();   // No Arguments Constructor
@@ -63,6 +64,8 @@ public:
 	bool getpeek(Cargo* & C) const;
 	void printloadingcargos();
 	void printmovingcargos();
+	void setactivetime();
+	int getactivetime();
 	friend ostream& operator << (ostream& out, const Truck& T);
 	~Truck();   // Destructor
 };

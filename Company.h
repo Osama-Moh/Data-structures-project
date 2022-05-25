@@ -30,14 +30,19 @@ private:
 	char ev, typ, colon;
 	int id, dist, lt, cost, day, hour;
 
+	int Fsimulationd, FsimulationH;
+
+	int totalwait;
+	int Aucargo = 0;									// totalnumber of auto promoted 
+	float AUTOpercent;
+	int totalactivetime;
+
 	int TNOC, TNOSC, TNOVC, TNONC;
 	int averagehours, averagedays;
 	int TNOT, TNONT, TNOST, TNOVT;						// total no. of trucks, nomral,special and VIP
 	int avgactivetime, avgutilt, avgutilc;				//Avgactive for trucks, Avg utilization for trucks, average utilization for cargos
 	int hours = 0;
 	int days = 1;
-	int totalcargos, totalnormal, totalvip, totalspecial;
-	int totalwait = 0;
 
 	string fileinname;   // input File Name
 	string fileoutname;	//Output file name
@@ -112,4 +117,8 @@ public:
 	void checkup();
 	void gotowait();
 	void finishcheckup();
+	void settotalwait(int wait);
+	int gettotalwait();
+	void settotalactive(int act);
+
 };

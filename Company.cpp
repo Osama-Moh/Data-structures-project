@@ -89,6 +89,8 @@ void Company::simulate()
 		}
 
 	}
+	Fsimulationd = days;
+	FsimulationH = hours;
 	point->printend();
 	openoutput();
 }
@@ -224,19 +226,23 @@ void Company::writetofile()
 	while (Deliveredcargos.dequeue(print))
 	{
 		output << print->getCDTD() << ":" << print->getCDTH() << "    " << print->getID() << "    " << print->getPTD() << ":" << print->getPTH() << "    ";
-		output << "    " << print->getWTD() << ":" << print->getWTH() << "	" << print->getTID() << endl;
+		output << "    " << print->getWTD() << ":" << print->getWTH() << "		" << print->getTID() << endl;
 	}
 	output << "------------------------------------------------------------" << endl;
 	output << "------------------------------------------------------------" << endl;
-	output << "Cargos: " << totalcargos << "   [N: " << totalnormal<< ", S: " << totalspecial << ", V: " << totalvip <<"]" << endl;
+	output << "Cargos: " << TNOC << "   [N: " << TNONC << ", S: " << TNOSC << ", V: " << TNOVC << "]" << endl;
+	output << "Cargo Avg. Wait: " << gettotalwait() << endl;
+	output << "Auto-promoted Cargos: " << AUTOpercent << " %" << endl;
 	output << "Trucks: " << TNOT;
 	output << "   " << "[" << "N: " << TNONT << ", S: " << TNOST << ", V: " << TNOVT << "]" << endl;
+	output << "Avg. Active time = " << totalactivetime << " &" << endl;
+
 
 }
 
 void Company::collect()
 {
-	totalcargos = Deliveredcargos.getcount();
+	TNOC = Deliveredcargos.getcount();
 	TNOT = NT.getcount() + ST.getcount() + VT.getcount() + moving.getcount();
 	TNONT = NT.getcount();
 	TNOVT = VT.getcount();
@@ -592,7 +598,20 @@ void Company::checkDelievered()
 				return;
 			}
 		}
-	}
+	}	
+}
 
-	
+void Company::settotalwait(int wait)
+{
+	totalwait = totalwait + wait;
+}
+
+int Company::gettotalwait()
+{
+	return totalwait;
+}
+
+void Company::settotalactive(int act)
+{
+	totalactivetime = act + totalactivetime;
 }
