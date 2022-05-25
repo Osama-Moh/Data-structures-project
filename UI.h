@@ -34,7 +34,7 @@ public:
 
 	void mainprint();
 
-	void printmode(int n,int TWC,int TDC, int h, int d,int TMT, CargoLinkedList* NC, LinkedQueue<Cargo*>* SC, PriorityQueue<Cargo*>* VC, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>*SCT,PriorityQueue<Truck*>*VCT, PriorityQueue<Truck*>*MT, Truck *pointn, Truck *points, Truck *pointv, LinkedQueue<Cargo*>*DC);
+	void printmode(int n,int TWC,int TDC, int h, int d,int TMT,int countm, CargoLinkedList* NC, LinkedQueue<Cargo*>* SC, PriorityQueue<Cargo*>* VC, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>*SCT,PriorityQueue<Truck*>*VCT, PriorityQueue<Truck*>*MT, Truck *pointn, Truck *points, Truck *pointv, LinkedQueue<Cargo*>*DC);
 
 	void printend();
 
@@ -43,9 +43,9 @@ public:
 	void print3(int e, char evt, char truckt, int day , int H, int id, int dist,int lt,int cost);//delete
 
 
-	void interactive(int trucksnumbet, int cargosnumber, int deliverc, int time, int days,int checkt, CargoLinkedList* NC, LinkedQueue<Cargo*>* SC, PriorityQueue<Cargo*>* VC, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck *pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC);
+	void interactive(int trucksnumbet, int cargosnumber, int deliverc, int time, int days,int checkt,int countm, CargoLinkedList* NC, LinkedQueue<Cargo*>* SC, PriorityQueue<Cargo*>* VC, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck *pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC);
 
-	void stepbystep(int trucksnumbet, int cargosnumber, int deliverc, int time, int days,int checkt, CargoLinkedList* NC, LinkedQueue<Cargo*>* SC, PriorityQueue<Cargo*>* VC, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck* pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC);
+	void stepbystep(int trucksnumbet, int cargosnumber, int deliverc, int time, int days,int checkt,int countm, CargoLinkedList* NC, LinkedQueue<Cargo*>* SC, PriorityQueue<Cargo*>* VC, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck* pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC);
 
 	void silent();
 

@@ -82,20 +82,20 @@ void UI::mainprint()
 	}
 }
 
-void UI::printmode(int n, int TNC, int TDC, int t, int d,int tcheck, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck* pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC)
+void UI::printmode(int n, int TNC, int TDC, int t, int d,int tcheck,int countm, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck* pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC)
 {
 	if (printtype == 1)
 	{
-		interactive(n, TNC, TDC, t, d,tcheck, L, Q, P, NT, ST, VT,NCT,SCT,VCT,MT,pointn,points,pointv,DC);
+		interactive(n, TNC, TDC, t, d,tcheck,countm, L, Q, P, NT, ST, VT,NCT,SCT,VCT,MT,pointn,points,pointv,DC);
 	}
 	else if (printtype == 2)
 	{
-		stepbystep(n, TNC, TDC, t, d,tcheck, L, Q, P, NT, ST, VT,NCT,SCT,VCT,MT,pointn,points,pointv,DC);
+		stepbystep(n, TNC, TDC, t, d,tcheck,countm, L, Q, P, NT, ST, VT,NCT,SCT,VCT,MT,pointn,points,pointv,DC);
 	}
 
 }
 
-void UI::interactive(int n ,int TNC, int TDC, int t, int d,int checkt, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT,PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck* pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC)
+void UI::interactive(int n ,int TNC, int TDC, int t, int d,int checkt,int countm, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT,PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck* pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC)
 {		
 	detectenter();
 
@@ -107,8 +107,23 @@ void UI::interactive(int n ,int TNC, int TDC, int t, int d,int checkt, CargoLink
 	cout << "("; Q->print(); cout << ")" << " ";
 	cout << "{"; P->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
-
-	cout << 0 << " " << "Loading Trucks:" << endl;
+	
+	int countn = 0;
+	int counts = 0;
+	int countv = 0;
+	if (pointn != nullptr)
+	{
+		countn = 1;
+	}
+	if (points != nullptr)
+	{
+		counts = 1;
+	}
+	if (pointv != nullptr)
+	{
+		countv = 1;
+	}
+	cout << countn+countv+counts << " " << "Loading Trucks:" << endl;
 	if (pointn != nullptr)
 	{
 		cout << pointn->getID() << " ";  cout << "[";  pointn->printloadingcargos(); cout << "]" << " ";
@@ -142,7 +157,7 @@ void UI::interactive(int n ,int TNC, int TDC, int t, int d,int checkt, CargoLink
 	cout << "{"; VT->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << 0 << " " << "Moving Cargos: " << endl;
+	cout << countm << " " << "Moving Cargos: " << endl;
 	MT->print(); cout << endl;
 	cout << "--------------------------------" << endl << endl;
 
@@ -158,7 +173,7 @@ void UI::interactive(int n ,int TNC, int TDC, int t, int d,int checkt, CargoLink
 
 }
 
-void UI::stepbystep(int n, int TNC, int TDC, int t, int d,int tcheck, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck* pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC)
+void UI::stepbystep(int n, int TNC, int TDC, int t, int d,int tcheck,int countm, CargoLinkedList* L, LinkedQueue<Cargo*>* Q, PriorityQueue<Cargo*>* P, LinkedQueue<Truck*>* NT, LinkedQueue<Truck*>* ST, LinkedQueue<Truck*>* VT, PriorityQueue<Truck*>*NCT, PriorityQueue<Truck*>* SCT, PriorityQueue<Truck*>* VCT, PriorityQueue<Truck*>* MT, Truck* pointn, Truck* points, Truck* pointv, LinkedQueue<Cargo*>* DC)
 {
 	cout << "Current Time (Day:Hour):" << d << ":" << t << endl << endl;
 	cout << "--------------------------------" << endl << endl;
@@ -169,7 +184,22 @@ void UI::stepbystep(int n, int TNC, int TDC, int t, int d,int tcheck, CargoLinke
 	cout << "{"; P->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << 0 << " " << "Loading Trucks:" << endl;
+	int countn = 0;
+	int counts = 0;
+	int countv = 0;
+	if (pointn != nullptr)
+	{
+		countn=1;
+	}
+	if (points != nullptr)
+	{
+		counts = 1;
+	}
+	if (pointv != nullptr)
+	{
+		countv = 1;
+	}
+	cout << countn+countv+counts << " " << "Loading Trucks:" << endl;
 	if (pointn != nullptr)
 	{
 		cout << pointn->getID() << " ";  cout << "[";  pointn->printloadingcargos(); cout << "]" << " ";
@@ -206,7 +236,7 @@ void UI::stepbystep(int n, int TNC, int TDC, int t, int d,int tcheck, CargoLinke
 	cout << "{"; VT->print(); cout << "}" << endl;
 	cout << "--------------------------------" << endl << endl;
 
-	cout << 0 << " " << "Moving Cargos: " << endl;
+	cout << countm << " " << "Moving Cargos: " << endl;
 	MT->print(); cout << endl;
 	cout << "--------------------------------" << endl << endl;
 

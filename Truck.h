@@ -25,6 +25,7 @@ private:
 	int furthercargo;
 	int activetime;
 	int totalcargos;
+
 public:
 	Truck();   // No Arguments Constructor
 	Truck(char typ, int tc, int mt, int v, int n, int id);   // Arguments Constructor
@@ -69,6 +70,7 @@ public:
 	int getactivetime();
 	void settotalcargos(int c);
 	int gettotalcargos();
+	int getmovingcargos();
 	friend ostream& operator << (ostream& out, const Truck& T);
 	~Truck();   // Destructor
 };

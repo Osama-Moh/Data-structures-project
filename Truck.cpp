@@ -140,6 +140,7 @@ ostream& operator << (ostream& out, const Truck& T)
 void Truck::setRTIME(int sd,int sh)
 {
 	setDT();
+	setactivetime();
 	RDAY = sd + ((sh + DT) / 24);
 	RHOUR = (sh + (DT % 24)) % 24;
 	SDAY = sd;
@@ -236,7 +237,8 @@ void Truck::printmovingcargos()
 }
 void Truck::setactivetime()
 {
-	activetime = (furthercargo / V) + totalunloading;
+	setDT();
+	activetime = DT - (furthercargo / V);
 }
 
 int Truck::getactivetime()
@@ -262,4 +264,9 @@ void Truck::settotalcargos(int c)
 int Truck::gettotalcargos()
 {
 	return totalcargos;
+}
+
+int Truck::getmovingcargos()
+{
+	return QM.getcount();
 }

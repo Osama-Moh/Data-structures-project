@@ -31,25 +31,28 @@ void Company::simulate()
 	bool isMaxWS = false;
 	bool isMaxWV = false;
 
-	int count = 0;
-	while (Events.peek(pEvent) || SC.peek(wCargo) || VC.peek(wCargo) || !(NC.isEmpty()))		
+	while (Events.peek(pEvent) || SC.peek(wCargo) || VC.peek(wCargo) || !(NC.isEmpty()) || moving.peek(pTruck))		
 	{
 	
-		while (pEvent->getDay() == days && pEvent->getHour() == hours)
+		if (pEvent != nullptr)
 		{
-			if (hours < 5 && hours>=0)
+			while (24 * pEvent->getDay() + pEvent->getHour() <= 24 * days + hours)
 			{
-				pEvent->setHour(5);
-			}
-			else
-			{
-				if (!Events.dequeue(pEvent))
+				if (hours < 5 && hours >= 0)
 				{
-					break;
+					pEvent->setHour(5);
 				}
-				pEvent->Execute(this);
-				Events.peek(pEvent);
+				else
+				{
+					if (!Events.dequeue(pEvent))
+					{
+						break;
+					}
+					pEvent->Execute(this);
+					Events.peek(pEvent);
+				}
 			}
+			pEvent = nullptr;
 		}
 
 
@@ -79,8 +82,8 @@ void Company::simulate()
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = Deliveredcargos.getcount();
 		int TMT = Checknormal.getcount() + Checkspecial.getcount() + Checkvip.getcount();
-
-		point->printmode(n, nc, TDC, hours, days,TMT, &NC, &SC, &VC, &NT, &ST, &VT, &Checknormal, &Checkspecial, &Checkvip, &moving, pTruckN, pTruckS, pTruckV, &Deliveredcargos);
+		
+		point->printmode(n, nc, TDC, hours, days,TMT,countmoving, &NC, &SC, &VC, &NT, &ST, &VT, &Checknormal, &Checkspecial, &Checkvip, &moving, pTruckN, pTruckS, pTruckV, &Deliveredcargos);
 
 		hours++;
 		if (hours == 24)
@@ -240,18 +243,36 @@ void Company::writetofile()
 	output << "Auto-promoted Cargos: " << AUTOpercent << " %" << endl;
 	output << "Trucks: " << TNOT;
 	output << "   " << "[" << "N: " << NTN << ", S: " << STN << ", V: " << VTN << "]" << endl;
-	output << "Avg. Active time = " << totalactivetime << " &" << endl;
+	writetrucksdata();
+}
 
-
+void Company::writetrucksdata()
+{
+	Truck* print;
+	while (NT.dequeue(print))
+	{
+		settotalactive(print->getactivetime());
+		setutilization(print->gettotalcargos(), print->getTC(), print->gettripcount(), print->getactivetime());
+	}
+	while (VT.dequeue(print))
+	{
+		settotalactive(print->getactivetime());
+		setutilization(print->gettotalcargos(), print->getTC(), print->gettripcount(), print->getactivetime());
+	}
+	while (ST.dequeue(print))
+	{
+		settotalactive(print->getactivetime());
+		setutilization(print->gettotalcargos(), print->getTC(), print->gettripcount(), print->getactivetime());
+	}
+	output << "Avg. Active time = " << (totalactivetime/TNOT)*100  << " % " << endl;
+	output << "Avg. utilization = " << avgutilize/TNOT << " %" << endl;
 }
 
 void Company::collect()
 {
 	TNOC = Deliveredcargos.getcount();
 	TNOT = NTN + STN + VTN;
-
 	AUTOpercent = (Aucargo * 100) / TNONC;
-	avgwait = (gettotalwait() * 100) / TNOC;
 }
 
 void Company::print()
@@ -263,19 +284,19 @@ Truck* Company::assignVIPCargos()
 {
 	Truck* pTruck = nullptr;
 	if (VT.peek(pTruck))
-		if (VC.getcount() >= pTruck->getTC())
+		if (VC.getcount() >= pTruck->getTC() || (Events.isEmpty() && VC.getcount() <= pTruck->getTC()))
 		{
 			VT.dequeue(pTruck);
 			return pTruck;
 		}
-	if (NT.peek(pTruck) && VT.getcount()==0)
-		if (VC.getcount() >= pTruck->getTC())
+	if (NT.peek(pTruck) && VT.getcount() == 0)
+		if (VC.getcount() >= pTruck->getTC() || (Events.isEmpty() && VC.getcount() <= pTruck->getTC()))
 		{
 			NT.dequeue(pTruck);
 			return pTruck;
 		}
-	if (ST.peek(pTruck) && VT.getcount()== 0 && NT.getcount()== 0)
-		if (VC.getcount() >= pTruck->getTC())
+	if (ST.peek(pTruck) && VT.getcount() == 0 && NT.getcount() == 0)
+		if (VC.getcount() >= pTruck->getTC() || (Events.isEmpty() && VC.getcount() <= pTruck->getTC()))
 		{
 			ST.dequeue(pTruck);
 			return pTruck;
@@ -363,16 +384,19 @@ void Company::loadCargo(Truck* pTruck, Cargo* pCargo)
 	if (pCargo->getTYP() == 'N')
 	{
 		TNONC++;
+		pTruck->settotalcargos(1);
 		NC.DeleteBeg(pCargo);
 	}
 	if (pCargo->getTYP() == 'S')
 	{
 		TNOSC++;
+		pTruck->settotalcargos(1);
 		SC.dequeue(pCargo);
 	}
 	if (pCargo->getTYP() == 'V')
 	{
 		TNOVC++;
+		pTruck->settotalcargos(1);
 		VC.dequeue(pCargo);
 	}
 	pTruck->loadCargo(pCargo);
@@ -432,13 +456,13 @@ void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL, bool& is
 	if (pTruck != nullptr)
 	{
 		hourL++;
-		if (pCargo->getLT() == hourL)
+		if (pCargo->getLT() <= hourL)
 		{
 			pTruck->settotalunloading(pCargo->getLT());
 			pTruck->setfurthercargo(pCargo->getDIST());
 			loadCargo(pTruck, pCargo);
 			hourL = 0;
-			if (pTruck->isFull() || isMaxW)
+			if (pTruck->isFull() || isMaxW || (VC.isEmpty() && Events.isEmpty() && pCargo->getTYP() == 'V'))
 			{
 				moveTruck(pTruck);
 				pTruck = nullptr;
@@ -461,7 +485,6 @@ void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL, bool& is
 	}
 
 }
-
 void Company::checkup()
 {
 
@@ -566,6 +589,7 @@ void Company::moveTruck(Truck* pTruck)
 {
 	pTruck->setRTIME(days, hours);
 	pTruck->Move();
+	countmoving = countmoving + pTruck->getmovingcargos();
 	Cargo* pCargo = nullptr;
 	if (pTruck->getpeek(pCargo))
 	{
@@ -588,6 +612,7 @@ void Company::checkDelievered()
 				int distance = pCargo->getDIST();
 				pTruck->unloadCargo(pCargo);
 				Deliveredcargos.enqueue(pCargo);
+				countmoving--;
 				moving.dequeue(pTruck);
 				if (pTruck->getpeek(pCargo))
 				{
@@ -635,4 +660,16 @@ int Company::gettotalwait()
 void Company::settotalactive(int act)
 {
 	totalactivetime = act + totalactivetime;
+}
+
+void Company::setutilization(int count, int capacity, int trips, int active)
+{
+	if (trips == 0)
+	{
+		avgutilize = avgutilize + 0;
+	}
+	else
+	{
+		avgutilize = avgutilize + (count / (capacity * trips)) * (active * (Fsimulationd * 24 + FsimulationH));
+	}
 }

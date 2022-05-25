@@ -36,7 +36,7 @@ private:
 	int Aucargo = 0;									// totalnumber of auto promoted 
 	float AUTOpercent;
 	int totalactivetime;
-
+	int countmoving;
 	int TNOC, TNOSC, TNOVC, TNONC;
 	float averagehours, averagedays;
 	int TNOT, TNONT, TNOST, TNOVT;						// total no. of trucks, nomral,special and VIP
@@ -44,7 +44,7 @@ private:
 	int hours = 0;
 	int days = 1;
 	float avgwait;
-
+	float avgutilize;
 	string fileinname;   // input File Name
 	string fileoutname;	//Output file name
 
@@ -66,9 +66,7 @@ private:
 	PriorityQueue <Truck*> Checkspecial;   // List Of CheckUp Trucks
 	PriorityQueue <Truck*> Checkvip;   // List Of CheckUp Trucks
 	PriorityQueue <Truck*> Checknormal;   // List Of CheckUp Trucks
-	//PriorityQueue <Truck*> movingnormal;   // List Of CheckUp Trucks
-	//PriorityQueue <Truck*> movingspecial;   // List Of CheckUp Trucks
-	//PriorityQueue <Truck*> movingvip;   // List Of CheckUp Trucks
+
 	
 	PriorityQueue<Truck*> moving;
 	LinkedQueue<Cargo*> Deliveredcargos;
@@ -112,7 +110,7 @@ public:
 	void loadCargo(Truck* pTruck, Cargo* pCargo);
 	void getNext(Cargo*& pCargo);
 	void manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour, bool& isMaxW);
-
+	void setutilization(int count, int capacity, int trips, int active);
 	void collect();
 	void checkDelievered();
 	void checkup();
@@ -121,5 +119,5 @@ public:
 	void settotalwait(int wait);
 	int gettotalwait();
 	void settotalactive(int act);
-
+	void writetrucksdata();
 };
