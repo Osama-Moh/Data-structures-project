@@ -43,9 +43,9 @@ void Cargo::setCOST(int cost)
 {
 	COST=cost;
 }
-void Cargo::setCDT(int speed)
+void Cargo::setCDT(int days, int hours, int speed, int distance)
 {
-	CDT = (DIST / speed + LT) + CDT;
+	CDT = (24 * days + hours) + (distance / speed) + LT;
 }
 char Cargo::getTYP()
 {

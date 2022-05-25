@@ -96,10 +96,7 @@ void Truck::Move()
 {
 	Cargo* C = nullptr;
 	while (QL.dequeue(C))
-	{
 		QM.enqueue(C, C->getDIST());
-		C->setCDT(V);
-	}
 }
 
 bool Truck::isFull()
@@ -115,8 +112,8 @@ ostream& operator << (ostream& out, const Truck& T)
 
 void Truck::setRTIME(int sd,int sh, int dt)
 {
-		RDAY = sd + ((sh+dt)/24);
-		RHOUR = (sh + (dt % 24))%24;
+		RDAY = sd + ((sh + dt) / 24);
+		RHOUR = (sh + (dt % 24)) % 24;
 }
 
 int Truck::getRDAY()
@@ -186,7 +183,7 @@ int Truck::getLoadedCount()
 	return QL.getcount();
 }
 
-bool Truck::getpeek(Cargo* & C1)
+bool Truck::getpeek(Cargo*& C1)
 {
 	if (QM.peek(C1))
 	{

@@ -107,6 +107,7 @@ public:
 	void getNext(Cargo*& pCargo);
 	void manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hour, bool& isMaxW);
 
+	void checkDelievered();
 	void checkup();
 	void gotowait();
 	void finishcheckup();

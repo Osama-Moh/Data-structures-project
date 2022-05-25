@@ -12,8 +12,9 @@ private:
 	int LT;   // Cargo Loading and Unloading Time
 	int DIST;   // Cargo Shipping Distance
 	int COST;   // Cargo Shipping Cost
-	int Dd, Dh;
 	int CDT;
+	int Dd, Dh;
+
 
 public:
 	Cargo();   // No Arguments Constructor
@@ -25,7 +26,7 @@ public:
 	void setLT(int lt);   // Sets Cargo Loading and Unloading Time
 	void setDIST(int dist);   // Sets Cargo Shipping Distance
 	void setCOST(int cost);   // Sets Cargo Shipping Cost
-	void setCDT(int speed);
+	void setCDT(int days, int hours, int speed, int distance);
 
 	char getTYP();   // Returns Cargo Type
 	int getID() const;   // Returns Cargo ID

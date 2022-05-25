@@ -68,7 +68,7 @@ void Company::simulate()
 			NC.peekFront(pCargo);
 			manageLoading(pTruckN, pCargo, hourN, isMaxWN);
 		}
-
+		checkDelievered();
 
 
 
@@ -546,41 +546,59 @@ void Company::finishcheckup()
 
 void Company::moveTruck(Truck* pTruck)
 {
-	int xxx = 0;
-	int ttt = 0;
-	Cargo* C = nullptr;
 	pTruck->Move();
-	pTruck->getpeek(C);
-
-	//int count=moving.getcount()
-	while (pTruck->getpeek(C))
+	Cargo* pCargo = nullptr;
+	if (pTruck->getpeek(pCargo))
 	{
-		int idd = C->getID();
-		if (C->getCDT() == (days * 24 + hours))
-		{
-			moving.dequeue(pTruck);
-			// call dilevered 
-		}
-		else //if (C->getCDT() > (days * 24 + hours) )      // && moving.peek() != pTruck && moving .getcount() !=count
-		{			
-			xxx = C->getCDT();
-			moving.enqueue(pTruck, xxx);
-			break;
-		}
-
+		pCargo->setCDT(days, hours, pTruck->getV(), pCargo->getDIST());
+		moving.enqueue(pTruck, pCargo->getCDT());
 	}
-	if (C == nullptr)
+
+}
+
+void Company::checkDelievered()
+{
+	Truck* pTruck = nullptr;
+	Cargo* pCargo = nullptr;
+	while (moving.peek(pTruck))
 	{
-		if ((pTruck->getRDAY() * 24 + pTruck->getRHOUR()) == (days * 24 + hours))
+		if (pTruck->getpeek(pCargo))
 		{
-			moving.dequeue(pTruck);
+			if (pCargo->getCDT() <= 24 * days + hours)
+			{
+				int distance = pCargo->getDIST();
+				pTruck->unloadCargo(pCargo);
+				DeliveredNC.enqueue(pCargo);
+				moving.dequeue(pTruck);
+				if (pTruck->getpeek(pCargo))
+				{
+					pCargo->setCDT(days, hours, pTruck->getV(), pCargo->getDIST() - distance);
+					moving.enqueue(pTruck, pCargo->getCDT());
+					pCargo = nullptr;
+				}
+				else
+				{
+					moving.enqueue(pTruck, 24*pTruck->getRDAY()+pTruck->getRHOUR());
+					pCargo = nullptr;
+				}
+			}
+			else
+			{
+				return;
+			}
 		}
 		else
 		{
-			ttt = pTruck->getRHOUR() + pTruck->getRDAY() * 24;
-			moving.enqueue(pTruck, ttt);
+			if (24 * pTruck->getRDAY() + pTruck->getRHOUR() <= 24 * days + hours)
+			{
+				moving.dequeue(pTruck);  // Needs To Be Implemented
+			}
+			else
+			{
+				return;
+			}
 		}
-
 	}
-	int com = moving.getcount();
+
+	
 }
