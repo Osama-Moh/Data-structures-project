@@ -18,9 +18,10 @@ private:
 	int ID;		// Truck ID
 	int COUNT;   // Truck Delivery Count
 
-	int RDAY, RHOUR;
-	int FDAY, FHOUR;
-	int totalunloading;
+	int SDAY, SHOUR;			// start moving time 
+	int RDAY, RHOUR;			// return from moving time
+	int FDAY, FHOUR;			// finish checkup time
+	int totalunloading;			
 	int furthercargo;
 
 public:

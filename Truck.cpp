@@ -96,7 +96,11 @@ void Truck::Move()
 {
 	Cargo* C = nullptr;
 	while (QL.dequeue(C))
+	{
 		QM.enqueue(C, C->getDIST());
+		C->setWT(SDAY, SHOUR);
+		C->setTID(ID);
+	}
 }
 
 bool Truck::isFull()
@@ -114,6 +118,8 @@ void Truck::setRTIME(int sd,int sh)
 {
 		RDAY = sd + ((sh + DT) / 24);
 		RHOUR = (sh + (DT % 24)) % 24;
+		SDAY = sd;
+		SHOUR = sh;
 }
 
 int Truck::getRDAY()

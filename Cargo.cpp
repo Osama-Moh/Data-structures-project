@@ -92,3 +92,23 @@ int Cargo::getCDT()
 {
 	return CDT;
 }
+
+void Cargo::setWT(int SD, int SH)
+{
+	WT = (SD * 24 + SH) - (PTD * 24 + PTH);
+}
+
+int Cargo::getWT()
+{
+	return WT;
+}
+
+void Cargo::setTID(int id)
+{
+	TID = id;
+}
+
+int Cargo::getTID()
+{
+	return TID;
+}

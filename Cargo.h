@@ -14,6 +14,8 @@ private:
 	int COST;   // Cargo Shipping Cost
 	int CDT;
 	int Dd, Dh;
+	int WT;					// cargo waiting time
+	int TID;				// truck id
 
 
 public:
@@ -37,6 +39,13 @@ public:
 	int getCOST();   // Returns Cargo Shipping Cost
 	float getPRIORITY();   // Returns Cargo Priority
 	int getCDT();
+
+	void setWT(int SD, int SH);
+	int getWT();
+
+	void setTID(int id);
+	int getTID();
+
 	friend ostream& operator << (ostream& out,const Cargo& C);
 	~Cargo();  // Destructor
 	

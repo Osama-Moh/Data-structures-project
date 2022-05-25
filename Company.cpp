@@ -72,31 +72,15 @@ void Company::simulate()
 
 
 
-
-
-
-
-
-
-
-
-		//if (NT.getcount() > 3 && hours == 7)
-		//{
-		//	NT.dequeue(ptrnt);
-		//	moving.enqueue(ptrnt, 1);
-		//}
 		checkup();
 		finishcheckup();
-		int nsn = SC.getcount();					// delete this before submission 
-		int vsv = VC.getcount();
-		int ncc = NC.getCount();
+
 		int n = NT.getcount() + ST.getcount() + VT.getcount();
 		int nc = SC.getcount() + VC.getcount() + NC.getCount();
 		int TDC = DeliveredNC.getcount() + DeliveredSC.getcount() + DeliveredVC.getcount();
 		int TMT = Checknormal.getcount() + Checkspecial.getcount() + Checkvip.getcount();
 
 		point->printmode(n, nc, TDC, hours, days,TMT, &NC, &SC, &VC, &NT, &ST, &VT, &DeliveredNC, &DeliveredSC, &DeliveredVC, &Checknormal, &Checkspecial, &Checkvip, &moving, pTruckN, pTruckS, pTruckV);
-
 
 		hours++;
 		if (hours == 24)
@@ -248,8 +232,7 @@ void Company::writetofile()
 	output << "Cargos: " << totalcargos << "   [N: " << totalnormal<< ", S: " << totalspecial << ", V: " << totalvip <<"]" << endl;
 	output << "Trucks: " << NT.getcount() + ST.getcount() + VT.getcount();
 	output << "   " << "[" << "N: " << NT.getcount() << ", S: " << ST.getcount() << ", V: " << VT.getcount() << "]" << endl;
-	//int avgwait = totalwait / totalcargos;
-	//output << "AVG WT:  " << avgwait;
+
 }
 
 void Company::print()
@@ -418,6 +401,8 @@ void Company::manageLoading(Truck*& pTruck, Cargo*& pCargo, int& hourL, bool& is
 		hourL++;
 		if (pCargo->getLT() == hourL)
 		{
+			pTruck->settotalunloading(pCargo->getLT());
+			pTruck->setfurthercargo(pCargo->getDIST());
 			loadCargo(pTruck, pCargo);
 			hourL = 0;
 			if (pTruck->isFull() || isMaxW)
@@ -547,7 +532,7 @@ void Company::finishcheckup()
 void Company::moveTruck(Truck* pTruck)
 {
 	pTruck->Move();
-	pTruck->setRTIME(days, hours);
+	//pTruck->setRTIME(days, hours);
 	Cargo* pCargo = nullptr;
 	if (pTruck->getpeek(pCargo))
 	{
@@ -592,8 +577,8 @@ void Company::checkDelievered()
 		{
 			if (24 * pTruck->getRDAY() + pTruck->getRHOUR() <= 24 * days + hours)
 			{
-				//moving.dequeue(pTruck);  // Needs To Be Implemented
-				checkup();
+				moving.dequeue(pTruck);  // Needs To Be Implemented
+				//checkup();
 			}
 			else
 			{
