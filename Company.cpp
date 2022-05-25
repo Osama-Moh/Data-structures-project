@@ -539,7 +539,7 @@ void Company::finishcheckup()
 
 void Company::moveTruck(Truck* pTruck)
 {
-	//pTruck->setRTIME(days, hours);
+	pTruck->setRTIME(days, hours);
 	pTruck->Move();
 	Cargo* pCargo = nullptr;
 	if (pTruck->getpeek(pCargo))
@@ -586,7 +586,6 @@ void Company::checkDelievered()
 			if (24 * pTruck->getRDAY() + pTruck->getRHOUR() <= 24 * days + hours)
 			{
 				checkup();
-				moving.dequeue(pTruck);  // Needs To Be Implemented
 			}
 			else
 			{

@@ -59,7 +59,7 @@ public:
 
 	}
 
-	int getcount()
+	int getcount() const
 	{
 		return count;
 	}
@@ -80,7 +80,7 @@ public:
 		return (Head == nullptr);
 	}
 
-	void print() 
+	void print() const
 	{
 		T item;
 		Node<T>* ptr = Head;

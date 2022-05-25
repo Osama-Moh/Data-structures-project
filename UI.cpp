@@ -116,7 +116,6 @@ void UI::interactive(int n ,int TNC, int TDC, int t, int d,int checkt, CargoLink
 	else
 	{
 		cout << "[" << "]" << " ";
-
 	}
 	if (points != nullptr)
 	{
@@ -125,7 +124,6 @@ void UI::interactive(int n ,int TNC, int TDC, int t, int d,int checkt, CargoLink
 	else
 	{
 		cout << "(" << ")" << " ";
-
 	}
 	if (pointv != nullptr)
 	{
@@ -134,9 +132,8 @@ void UI::interactive(int n ,int TNC, int TDC, int t, int d,int checkt, CargoLink
 	else
 	{
 		cout << "{" << "}" << endl;
-
 	}
-	
+	cout << endl;
 	cout << "--------------------------------" << endl << endl;
 
 	cout << n << " " << "Empty Trucks:" << endl;
@@ -146,9 +143,7 @@ void UI::interactive(int n ,int TNC, int TDC, int t, int d,int checkt, CargoLink
 	cout << "--------------------------------" << endl << endl;
 
 	cout << 0 << " " << "Moving Cargos: " << endl;
-	cout << "["; MT->print(); cout << "]" << " ";
-	cout << "(" << ")" << " ";
-	cout << "{" << "}" << endl;
+	MT->print(); cout << endl;
 	cout << "--------------------------------" << endl << endl;
 
 	cout << checkt << " " << "In-Checkup Trucks: " << endl;
@@ -202,6 +197,7 @@ void UI::stepbystep(int n, int TNC, int TDC, int t, int d,int tcheck, CargoLinke
 		cout << "{" << "}" << endl;
 
 	}
+	cout<<endl;
 	cout << "--------------------------------" << endl << endl;
 
 	cout << n << " " << "Empty Trucks:" << endl;
@@ -211,9 +207,7 @@ void UI::stepbystep(int n, int TNC, int TDC, int t, int d,int tcheck, CargoLinke
 	cout << "--------------------------------" << endl << endl;
 
 	cout << 0 << " " << "Moving Cargos: " << endl;
-	cout << "[" << "]" << " ";
-	cout << "(" << ")" << " ";
-	cout << "{" << "}" << endl;
+	MT->print(); cout << endl;
 	cout << "--------------------------------" << endl << endl;
 
 	cout << tcheck << " " << "In-Checkup Trucks: " << endl;

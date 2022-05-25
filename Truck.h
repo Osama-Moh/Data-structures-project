@@ -60,7 +60,7 @@ public:
 	int getLoadedCount();
 	void Move();
 	bool isFull();
-	bool getpeek(Cargo* & C);
+	bool getpeek(Cargo* & C) const;
 	void printloadingcargos();
 	void printmovingcargos();
 	friend ostream& operator << (ostream& out, const Truck& T);

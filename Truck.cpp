@@ -21,6 +21,7 @@ void Truck::unloadCargo(Cargo* C)
 {
 	QM.dequeue(C);
 }
+
 bool Truck::hasCargo(Cargo* C)
 {
 	return true;
@@ -111,15 +112,39 @@ bool Truck::isFull()
 ostream& operator << (ostream& out, const Truck& T)
 {
 	out << T.getID();
+	if ((T.QM).getcount() > 0)
+	{
+		Cargo* pCargo = nullptr;
+		T.getpeek(pCargo);
+		if (pCargo->getTYP() == 'N')
+		{
+			out << '[';
+			(T.QM).print();
+			out << ']';
+		}
+		if (pCargo->getTYP() == 'S')
+		{
+			out << '(';
+			(T.QM).print();
+			out << ')';
+		}
+		if (pCargo->getTYP() == 'V')
+		{
+			out << '{';
+			(T.QM).print();
+			out << '}';
+		}
+	}
 	return out;
 }
 
 void Truck::setRTIME(int sd,int sh)
 {
-		RDAY = sd + ((sh + DT) / 24);
-		RHOUR = (sh + (DT % 24)) % 24;
-		SDAY = sd;
-		SHOUR = sh;
+	setDT();
+	RDAY = sd + ((sh + DT) / 24);
+	RHOUR = (sh + (DT % 24)) % 24;
+	SDAY = sd;
+	SHOUR = sh;
 }
 
 int Truck::getRDAY()
@@ -189,7 +214,7 @@ int Truck::getLoadedCount()
 	return QL.getcount();
 }
 
-bool Truck::getpeek(Cargo*& C1)
+bool Truck::getpeek(Cargo*& C1) const
 {
 	if (QM.peek(C1))
 	{
